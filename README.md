@@ -1,7 +1,7 @@
 Original App Design Project - README Template
 ===
 
-# Schedulr (Coming up with a better one)
+# Schedulr (Coming up with a better name)
 
 ## Table of Contents
 1. [Overview](#Overview)
