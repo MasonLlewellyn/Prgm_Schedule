@@ -11,6 +11,7 @@
 		B274C85BFDE41CDD7D44A991 /* Pods_Program_Scheduler_Program_SchedulerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF8E309F5DB3BEBED841BBD /* Pods_Program_Scheduler_Program_SchedulerUITests.framework */; };
 		B927506988E1DB971B51A095 /* Pods_Program_SchedulerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780D819A831FF00F7C17806 /* Pods_Program_SchedulerTests.framework */; };
 		C38A0D2924BE1B9600330524 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2824BE1B9600330524 /* Event.m */; };
+		C38A0D2C24BE36E700330524 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2B24BE36E700330524 /* Flow.m */; };
 		C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD3E24BCCF0D00FEBFCA /* AppDelegate.m */; };
 		C39DBD4224BCCF0D00FEBFCA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD4124BCCF0D00FEBFCA /* SceneDelegate.m */; };
 		C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD4424BCCF0D00FEBFCA /* ViewController.m */; };
@@ -55,6 +56,8 @@
 		B46D8F69D25A86F101D5D128 /* Pods_Program_Scheduler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Program_Scheduler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38A0D2724BE1B9600330524 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C38A0D2824BE1B9600330524 /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		C38A0D2A24BE36E700330524 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
+		C38A0D2B24BE36E700330524 /* Flow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flow.m; sourceTree = "<group>"; };
 		C39DBD3A24BCCF0D00FEBFCA /* Program_Scheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Program_Scheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39DBD3D24BCCF0D00FEBFCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C39DBD3E24BCCF0D00FEBFCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 			children = (
 				C38A0D2724BE1B9600330524 /* Event.h */,
 				C38A0D2824BE1B9600330524 /* Event.m */,
+				C38A0D2A24BE36E700330524 /* Flow.h */,
+				C38A0D2B24BE36E700330524 /* Flow.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,
 				C38A0D2924BE1B9600330524 /* Event.m in Sources */,
 				C39DBD7824BCE5B600FEBFCA /* SignUpViewController.m in Sources */,
+				C38A0D2C24BE36E700330524 /* Flow.m in Sources */,
 				C39DBD5024BCCF0E00FEBFCA /* main.m in Sources */,
 				C39DBD4224BCCF0D00FEBFCA /* SceneDelegate.m in Sources */,
 				C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */,

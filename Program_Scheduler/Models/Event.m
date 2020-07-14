@@ -39,7 +39,43 @@
     newEvent.startDateTime = [NSDate now];
     newEvent.startDateTime = [NSDate now];
     
+    NSLog(@"Event print %@", newEvent);
     [newEvent saveInBackgroundWithBlock: nil];
     
+}
+
++ (void) testDownloadEvent{
+    // construct PFQuery
+    PFQuery *postQuery = [Event query];
+    [postQuery orderByDescending:@"createdAt"];
+    //[postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Event *> * _Nullable events, NSError * _Nullable error) {
+        if (events) {
+            // do something with the data fetched
+            for (int i = 0; i < events.count; i++){
+                NSLog(@"%@", events[i].Title);
+            }
+            
+        }
+        else {
+            // handle error
+        }
+    }];
+}
+
++ (void) getEventFromID: (NSString*)eventID eventPointer:(Event *__autoreleasing *)eventPt{
+    PFQuery *eQuery = [Event query];
+    [eQuery whereKey:@"objectID" equalTo:eventID];
+    //Note: this does not "find in background" because
+    [eQuery findObjectsInBackgroundWithBlock:^(NSArray<Event*>* _Nullable events, NSError * _Nullable error) {
+        //There should only be one event in the array
+        if (events.count > 0){
+            *eventPt = events[0];
+        }
+        
+    }];
 }
 @end

@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL isActive;
 
 + (void) testPostEvent;
++ (void) testDownloadEvent;
+
++ (void) getEventFromID: (NSString*)eventID eventPointer:(Event**)eventPt;
 @end
 
 NS_ASSUME_NONNULL_END
