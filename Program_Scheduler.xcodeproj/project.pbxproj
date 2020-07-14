@@ -16,6 +16,10 @@
 		C39DBD5024BCCF0E00FEBFCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD4F24BCCF0E00FEBFCA /* main.m */; };
 		C39DBD5A24BCCF0E00FEBFCA /* Program_SchedulerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD5924BCCF0E00FEBFCA /* Program_SchedulerTests.m */; };
 		C39DBD6524BCCF0E00FEBFCA /* Program_SchedulerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD6424BCCF0E00FEBFCA /* Program_SchedulerUITests.m */; };
+		C39DBD7524BCD78100FEBFCA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7424BCD78100FEBFCA /* LoginViewController.m */; };
+		C39DBD7824BCE5B600FEBFCA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7724BCE5B600FEBFCA /* SignUpViewController.m */; };
+		C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7A24BCE63600FEBFCA /* SignUpViewController.m */; };
+		C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,13 @@
 		C39DBD6024BCCF0E00FEBFCA /* Program_SchedulerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Program_SchedulerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39DBD6424BCCF0E00FEBFCA /* Program_SchedulerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Program_SchedulerUITests.m; sourceTree = "<group>"; };
 		C39DBD6624BCCF0E00FEBFCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C39DBD7324BCD78100FEBFCA /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C39DBD7424BCD78100FEBFCA /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C39DBD7724BCE5B600FEBFCA /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = "View Controllers/SignUpViewController.m"; sourceTree = SOURCE_ROOT; };
+		C39DBD7924BCE63600FEBFCA /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		C39DBD7A24BCE63600FEBFCA /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		C39DBD7C24BCE78E00FEBFCA /* TimelineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
+		C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +95,7 @@
 		C39DBD3124BCCF0D00FEBFCA = {
 			isa = PBXGroup;
 			children = (
+				C39DBD7224BCD75600FEBFCA /* View Controllers */,
 				C39DBD3C24BCCF0D00FEBFCA /* Program_Scheduler */,
 				C39DBD5824BCCF0E00FEBFCA /* Program_SchedulerTests */,
 				C39DBD6324BCCF0E00FEBFCA /* Program_SchedulerUITests */,
@@ -111,6 +123,7 @@
 				C39DBD4324BCCF0D00FEBFCA /* ViewController.h */,
 				C39DBD4424BCCF0D00FEBFCA /* ViewController.m */,
 				C39DBD4624BCCF0D00FEBFCA /* Main.storyboard */,
+				C39DBD7724BCE5B600FEBFCA /* SignUpViewController.m */,
 				C39DBD4924BCCF0E00FEBFCA /* Assets.xcassets */,
 				C39DBD4B24BCCF0E00FEBFCA /* LaunchScreen.storyboard */,
 				C39DBD4E24BCCF0E00FEBFCA /* Info.plist */,
@@ -135,6 +148,19 @@
 				C39DBD6624BCCF0E00FEBFCA /* Info.plist */,
 			);
 			path = Program_SchedulerUITests;
+			sourceTree = "<group>";
+		};
+		C39DBD7224BCD75600FEBFCA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C39DBD7C24BCE78E00FEBFCA /* TimelineViewController.h */,
+				C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */,
+				C39DBD7924BCE63600FEBFCA /* SignUpViewController.h */,
+				C39DBD7A24BCE63600FEBFCA /* SignUpViewController.m */,
+				C39DBD7324BCD78100FEBFCA /* LoginViewController.h */,
+				C39DBD7424BCD78100FEBFCA /* LoginViewController.m */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,9 +294,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
+				C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */,
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,
+				C39DBD7824BCE5B600FEBFCA /* SignUpViewController.m in Sources */,
 				C39DBD5024BCCF0E00FEBFCA /* main.m in Sources */,
 				C39DBD4224BCCF0D00FEBFCA /* SceneDelegate.m in Sources */,
+				C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */,
+				C39DBD7524BCD78100FEBFCA /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
