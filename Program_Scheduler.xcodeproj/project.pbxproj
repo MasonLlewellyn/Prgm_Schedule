@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		916D578827D5F907BBB8F191 /* Pods_Program_Scheduler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46D8F69D25A86F101D5D128 /* Pods_Program_Scheduler.framework */; };
 		B274C85BFDE41CDD7D44A991 /* Pods_Program_Scheduler_Program_SchedulerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF8E309F5DB3BEBED841BBD /* Pods_Program_Scheduler_Program_SchedulerUITests.framework */; };
 		B927506988E1DB971B51A095 /* Pods_Program_SchedulerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780D819A831FF00F7C17806 /* Pods_Program_SchedulerTests.framework */; };
+		C38A0D2924BE1B9600330524 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2824BE1B9600330524 /* Event.m */; };
 		C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD3E24BCCF0D00FEBFCA /* AppDelegate.m */; };
 		C39DBD4224BCCF0D00FEBFCA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD4124BCCF0D00FEBFCA /* SceneDelegate.m */; };
 		C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD4424BCCF0D00FEBFCA /* ViewController.m */; };
@@ -52,6 +53,8 @@
 		9CF8E309F5DB3BEBED841BBD /* Pods_Program_Scheduler_Program_SchedulerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Program_Scheduler_Program_SchedulerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6BC7EE9AB36465943701E85 /* Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig"; path = "Target Support Files/Pods-Program_Scheduler-Program_SchedulerUITests/Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B46D8F69D25A86F101D5D128 /* Pods_Program_Scheduler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Program_Scheduler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C38A0D2724BE1B9600330524 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		C38A0D2824BE1B9600330524 /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C39DBD3A24BCCF0D00FEBFCA /* Program_Scheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Program_Scheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39DBD3D24BCCF0D00FEBFCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C39DBD3E24BCCF0D00FEBFCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -107,6 +110,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C38A0D2624BE1A7200330524 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C38A0D2724BE1B9600330524 /* Event.h */,
+				C38A0D2824BE1B9600330524 /* Event.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C39DBD3124BCCF0D00FEBFCA = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +151,7 @@
 				C39DBD4124BCCF0D00FEBFCA /* SceneDelegate.m */,
 				C39DBD4324BCCF0D00FEBFCA /* ViewController.h */,
 				C39DBD4424BCCF0D00FEBFCA /* ViewController.m */,
+				C38A0D2624BE1A7200330524 /* Models */,
 				C39DBD4624BCCF0D00FEBFCA /* Main.storyboard */,
 				C39DBD7724BCE5B600FEBFCA /* SignUpViewController.m */,
 				C39DBD4924BCCF0E00FEBFCA /* Assets.xcassets */,
@@ -200,7 +213,6 @@
 				59CA19CE66A7A5A79BEEBF18 /* Pods-Program_SchedulerTests.debug.xcconfig */,
 				3454A5F9DE5AA44F6D28B8F1 /* Pods-Program_SchedulerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -445,6 +457,7 @@
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
 				C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */,
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,
+				C38A0D2924BE1B9600330524 /* Event.m in Sources */,
 				C39DBD7824BCE5B600FEBFCA /* SignUpViewController.m in Sources */,
 				C39DBD5024BCCF0E00FEBFCA /* main.m in Sources */,
 				C39DBD4224BCCF0D00FEBFCA /* SceneDelegate.m in Sources */,

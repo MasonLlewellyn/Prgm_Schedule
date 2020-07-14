@@ -83,8 +83,8 @@
         [alert addAction:okAction];
     }
     
-    if (p_unmatch){
-        UIAlertController *alert = [UIAlertController alloc];
+    else if (p_unmatch){
+        alert = [UIAlertController alloc];
         alert = [UIAlertController alertControllerWithTitle:@"Login Error"
                 message:@"Passwords must match"
            preferredStyle:(UIAlertControllerStyleAlert)];
@@ -97,6 +97,7 @@
                
         [alert addAction:okAction];
     }
+    
     bool good_val = !((p_empty || u_empty) || p_unmatch);
     if (!good_val){
         [self presentViewController:alert animated:YES completion:^{
