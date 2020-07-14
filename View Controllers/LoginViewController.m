@@ -7,11 +7,12 @@
 //
 
 #import "LoginViewController.h"
-#import "Parse.h"
+#import <Parse/Parse.h>
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
 
 @end
 
@@ -20,14 +21,75 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //self.passwordField.secureTextEntry = YES;
 }
 
+- (BOOL) loginProtection{
+    //A method to protect the login screen, returns good if both username and password are nonempty
+    bool u_empty = [self.usernameField.text isEqual:@""];
+    bool p_empty = [self.passwordField.text isEqual:@""];
+       
+    UIAlertController *alert = [UIAlertController alloc];
+    if (u_empty && p_empty){
+        alert = [UIAlertController alertControllerWithTitle:@"Login Error"
+                message:@"Both Username and Password cannot be empty"
+           preferredStyle:(UIAlertControllerStyleAlert)];
+               
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+               style:UIAlertActionStyleDefault
+           handler:^(UIAlertAction * _Nonnull action) {
+                       // handle response here.
+        }];
+               
+        [alert addAction:okAction];
+           
+    }
+    else if (u_empty){
+        alert = [UIAlertController alertControllerWithTitle:@"Login Error"
+                message:@"Username cannot be empty"
+        preferredStyle:(UIAlertControllerStyleAlert)];
+               
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+               style:UIAlertActionStyleDefault
+        handler:^(UIAlertAction * _Nonnull action) {
+                       // handle response here.
+        }];
+               
+        [alert addAction:okAction];
+               
+    }
+    else if (p_empty){
+        alert = [UIAlertController alertControllerWithTitle:@"Login Error"
+            message:@"Password cannot be empty"
+            preferredStyle:(UIAlertControllerStyleAlert)];
+               
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction * _Nonnull action) {
+                           // handle response here.
+                       }];
+               
+        [alert addAction:okAction];
+    }
+    
+    bool good_val = !(p_empty || u_empty);
+    if (!good_val){
+        [self presentViewController:alert animated:YES completion:^{
+            // optional code for what happens after the alert controller has finished presenting
+        }];
+    }
+    
+    
+    return good_val;
+}
 
 - (void)loginUser {
-    NSString *username = @"";//self.usernameField.text;
-    NSString *password = @"";//self.passwordField.text;
-     
-     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
+    if (![self loginProtection]) return;
+    
+    NSString *username = self.usernameField.text;
+    NSString *password = self.passwordField.text;
+    
+    [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
          if (error != nil) {
              NSLog(@"User log in failed: %@", error.localizedDescription);
          } else {
@@ -37,9 +99,11 @@
          }
      }];
  }
+
 - (IBAction)loginButtonPressed:(id)sender {
-    
+    [self loginUser];
 }
+
 - (IBAction)signUpPressed:(id)sender {
     [self performSegueWithIdentifier:@"loginToSignUp" sender:nil];
 }
