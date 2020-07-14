@@ -8,6 +8,7 @@
 
 #import "TimelineViewController.h"
 #import <Parse/Parse.h>
+#import "Event.h"
 
 @interface TimelineViewController ()
 
@@ -18,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [Event testPostEvent];
 }
 
 /*

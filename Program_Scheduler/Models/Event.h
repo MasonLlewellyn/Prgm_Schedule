@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Event : PFObject<PFSubclassing>
 @property (nonatomic, strong) NSString *Title;
+@property (nonatomic, strong) PFUser *author;
 @property (nonatomic, strong) NSDate *startDateTime; //NOTE: might have to convert to string to store in database
 @property (nonatomic, strong) NSDate *endDateTime;
 @property (nonatomic) NSInteger locationLat;
@@ -19,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *locationTitle;
 @property (nonatomic, strong) Event *dependsEvent;
 @property (nonatomic) BOOL isActive;
+
++ (void) testPostEvent;
 @end
 
 NS_ASSUME_NONNULL_END

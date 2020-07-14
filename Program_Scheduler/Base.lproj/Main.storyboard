@@ -76,7 +76,7 @@
                         <outlet property="passwordField" destination="pai-up-eTm" id="OWU-zO-4e0"/>
                         <outlet property="usernameField" destination="l33-qv-C1g" id="R1Y-zQ-4lH"/>
                         <segue destination="hfO-F9-sNd" kind="presentation" identifier="loginToSignUp" id="Hjc-Vc-6uw"/>
-                        <segue destination="hmn-nL-ZZq" kind="show" id="VJB-1d-guM"/>
+                        <segue destination="hmn-nL-ZZq" kind="show" identifier="loginToTimeline" id="VJB-1d-guM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -145,7 +145,7 @@
                         <outlet property="passwordField" destination="lOl-XD-Adn" id="Rne-fZ-skb"/>
                         <outlet property="rePasswordField" destination="yXQ-kf-VOq" id="F1k-1G-esk"/>
                         <outlet property="usernameField" destination="trh-ap-VO8" id="0Hh-EX-lHR"/>
-                        <segue destination="hmn-nL-ZZq" kind="show" id="Sgq-tz-Jch"/>
+                        <segue destination="hmn-nL-ZZq" kind="show" identifier="signUpToTimeline" id="Sgq-tz-Jch"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZ8-e1-m1J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
