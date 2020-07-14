@@ -7,6 +7,7 @@
 //
 
 #import "TimelineViewController.h"
+#import "Parse.h"
 
 @interface TimelineViewController ()
 

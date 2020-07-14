@@ -19,15 +19,21 @@
                                 <rect key="frame" x="50" y="246" width="275" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="usernameField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="JRe-ef-PqY"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pai-up-eTm">
                                 <rect key="frame" x="50" y="325" width="275" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfR-EA-GGz">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfR-EA-GGz">
                                 <rect key="frame" x="50" y="424" width="54" height="30"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Pc-hY-zaG"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Program" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysj-OC-CPm">
                                 <rect key="frame" x="50" y="94" width="275" height="42"/>
@@ -35,9 +41,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2f4-Ny-VTm">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2f4-Ny-VTm">
                                 <rect key="frame" x="279" y="424" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9J7-pv-CWx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -67,6 +76,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="passwordField" destination="pai-up-eTm" id="nXZ-UB-kVP"/>
+                        <outlet property="usernameField" destination="l33-qv-C1g" id="R1Y-zQ-4lH"/>
                         <segue destination="hfO-F9-sNd" kind="presentation" identifier="loginToSignUp" id="Hjc-Vc-6uw"/>
                         <segue destination="hmn-nL-ZZq" kind="show" id="VJB-1d-guM"/>
                     </connections>
@@ -109,6 +120,9 @@
                                 <rect key="frame" x="160" y="534" width="54" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpPressed:" destination="hfO-F9-sNd" eventType="touchUpInside" id="ofR-i9-C4G"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -124,6 +138,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="NZt-mP-rj6"/>
                     <connections>
+                        <outlet property="passwordField" destination="lOl-XD-Adn" id="Rne-fZ-skb"/>
+                        <outlet property="rePasswordField" destination="9wJ-Qx-2a5" id="Fni-0a-vuH"/>
+                        <outlet property="usernameField" destination="trh-ap-VO8" id="0Hh-EX-lHR"/>
                         <segue destination="hmn-nL-ZZq" kind="show" id="Sgq-tz-Jch"/>
                     </connections>
                 </viewController>
@@ -233,6 +250,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VJB-1d-guM"/>
+        <segue reference="Sgq-tz-Jch"/>
     </inferredMetricsTieBreakers>
 </document>
