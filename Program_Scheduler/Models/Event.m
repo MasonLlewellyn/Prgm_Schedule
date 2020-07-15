@@ -22,6 +22,8 @@
 @dynamic isActive;
 
 
+
+
 + (nonnull NSString *)parseClassName {
     return @"Event";
 }
@@ -35,17 +37,7 @@
     //This is a method that is just designed to test whether or not the Parse database can hold the class that I have defined
     //This method is not necessary for production
     
-    Event* newEvent = [Event new];
-    newEvent.dependsEvent = [Event new];//Can't pass null to this variable.  Right now, this signifies an empty event
-    newEvent.Title = @"A meeting that could be an email";
-    newEvent.isActive = YES;
-    newEvent.locationLat = 0;
-    newEvent.locationLong = 0;
-    newEvent.locationTitle = @"Home, where the heart is";
-    
-    newEvent.startDateTime = [NSDate now];
-    newEvent.startDateTime = [NSDate now];
-    
+    Event* newEvent = [self dummyEvent];
     NSLog(@"Event print %@", newEvent);
     [newEvent saveInBackgroundWithBlock: nil];
     
@@ -71,6 +63,21 @@
             // handle error
         }
     }];
+}
+
++ (Event*) dummyEvent{
+    Event* newEvent = [Event new];
+    newEvent.dependsEvent = [Event new];//Can't pass null to this variable.  Right now, this signifies an empty event
+    newEvent.Title = @"A meeting that could be an email";
+    newEvent.isActive = YES;
+    newEvent.locationLat = 0;
+    newEvent.locationLong = 0;
+    newEvent.locationTitle = @"Home, where the heart is";
+    
+    newEvent.startDateTime = [NSDate now];
+    newEvent.startDateTime = [NSDate now];
+    
+    return newEvent;
 }
 
 + (void) getEventFromID: (NSString*)eventID eventPointer:(Event *__autoreleasing *)eventPt{

@@ -27,23 +27,13 @@
     newFlow.flowTitle = @"The other day";
     newFlow.startDate = [NSDate now];
     newFlow.endDate = [NSDate now];
-    
-    Event* newEvent = [Event new];
-    newEvent.dependsEvent = [Event new];//Can't pass null to this variable.  Right now, this signifies an empty event
-    newEvent.Title = @"A meeting that could be an email";
-    newEvent.isActive = YES;
-    newEvent.locationLat = 0;
-    newEvent.locationLong = 0;
-    newEvent.locationTitle = @"Home, where the heart is";
-    
-    newEvent.startDateTime = [NSDate now];
-    newEvent.startDateTime = [NSDate now];
-    
-    newFlow.events = @[newEvent];
+    newFlow.active = NO;
+    Event *newEvent = [Event dummyEvent];
     
     //NSLog(@"Pre objectID: %@", newFlow.objectId);
     [newFlow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         //NSLog(@"Saved objectID: %@", newFlow.objectId);
+        [newEvent saveEventToFlow:newFlow];
     }];
 }
 

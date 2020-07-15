@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) testPostEvent;
 + (void) testDownloadEvent;
++ (Event*) dummyEvent;
 - (void) saveEventToFlow: (Flow*)parentFlow;
 @end
 

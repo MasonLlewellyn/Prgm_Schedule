@@ -12,6 +12,7 @@
 		B927506988E1DB971B51A095 /* Pods_Program_SchedulerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780D819A831FF00F7C17806 /* Pods_Program_SchedulerTests.framework */; };
 		C38A0D2924BE1B9600330524 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2824BE1B9600330524 /* Event.m */; };
 		C38A0D2C24BE36E700330524 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2B24BE36E700330524 /* Flow.m */; };
+		C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2F24BE831B00330524 /* FlowFeedTableViewCell.m */; };
 		C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD3E24BCCF0D00FEBFCA /* AppDelegate.m */; };
 		C39DBD4224BCCF0D00FEBFCA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD4124BCCF0D00FEBFCA /* SceneDelegate.m */; };
 		C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD4424BCCF0D00FEBFCA /* ViewController.m */; };
@@ -58,6 +59,8 @@
 		C38A0D2824BE1B9600330524 /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C38A0D2A24BE36E700330524 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
 		C38A0D2B24BE36E700330524 /* Flow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flow.m; sourceTree = "<group>"; };
+		C38A0D2E24BE831B00330524 /* FlowFeedTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowFeedTableViewCell.h; sourceTree = "<group>"; };
+		C38A0D2F24BE831B00330524 /* FlowFeedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowFeedTableViewCell.m; sourceTree = "<group>"; };
 		C39DBD3A24BCCF0D00FEBFCA /* Program_Scheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Program_Scheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39DBD3D24BCCF0D00FEBFCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C39DBD3E24BCCF0D00FEBFCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -124,10 +127,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C38A0D2D24BE82EC00330524 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C38A0D2E24BE831B00330524 /* FlowFeedTableViewCell.h */,
+				C38A0D2F24BE831B00330524 /* FlowFeedTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C39DBD3124BCCF0D00FEBFCA = {
 			isa = PBXGroup;
 			children = (
 				C39DBD7224BCD75600FEBFCA /* View Controllers */,
+				C38A0D2D24BE82EC00330524 /* Views */,
 				C39DBD3C24BCCF0D00FEBFCA /* Program_Scheduler */,
 				C39DBD5824BCCF0E00FEBFCA /* Program_SchedulerTests */,
 				C39DBD6324BCCF0E00FEBFCA /* Program_SchedulerUITests */,
@@ -461,6 +474,7 @@
 			files = (
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
 				C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */,
+				C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */,
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,
 				C38A0D2924BE1B9600330524 /* Event.m in Sources */,
 				C39DBD7824BCE5B600FEBFCA /* SignUpViewController.m in Sources */,

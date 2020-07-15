@@ -25,7 +25,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfR-EA-GGz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfR-EA-GGz">
                                 <rect key="frame" x="50" y="424" width="54" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
@@ -38,7 +38,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2f4-Ny-VTm">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2f4-Ny-VTm">
                                 <rect key="frame" x="279" y="424" width="46" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -76,7 +76,7 @@
                         <outlet property="passwordField" destination="pai-up-eTm" id="OWU-zO-4e0"/>
                         <outlet property="usernameField" destination="l33-qv-C1g" id="R1Y-zQ-4lH"/>
                         <segue destination="hfO-F9-sNd" kind="presentation" identifier="loginToSignUp" id="Hjc-Vc-6uw"/>
-                        <segue destination="hmn-nL-ZZq" kind="show" identifier="loginToTimeline" id="VJB-1d-guM"/>
+                        <segue destination="bBf-5v-9I7" kind="show" identifier="loginToTimeline" id="VJB-1d-guM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -145,7 +145,7 @@
                         <outlet property="passwordField" destination="lOl-XD-Adn" id="Rne-fZ-skb"/>
                         <outlet property="rePasswordField" destination="yXQ-kf-VOq" id="F1k-1G-esk"/>
                         <outlet property="usernameField" destination="trh-ap-VO8" id="0Hh-EX-lHR"/>
-                        <segue destination="hmn-nL-ZZq" kind="show" identifier="signUpToTimeline" id="Sgq-tz-Jch"/>
+                        <segue destination="bBf-5v-9I7" kind="show" identifier="signUpToTimeline" id="Sgq-tz-Jch"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZ8-e1-m1J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -164,7 +164,7 @@
                                 <rect key="frame" x="0.0" y="50" width="375" height="708"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="usK-Ae-Ehn">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="77" id="usK-Ae-Ehn" customClass="FlowFeedTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="usK-Ae-Ehn" id="tgI-aj-eQC">
@@ -193,6 +193,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="descriptionLabel" destination="VNM-tB-sP4" id="MUf-2A-Eif"/>
+                                            <outlet property="titleLabel" destination="WbH-TW-oTk" id="NoK-bK-dHL"/>
                                             <segue destination="Nnv-5H-Rk2" kind="presentation" id="OcG-Nk-Drr"/>
                                         </connections>
                                     </tableViewCell>
@@ -208,11 +210,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7ha-Fo-o7Y"/>
                     </view>
-                    <navigationItem key="navigationItem" id="fBa-BN-z7B"/>
+                    <navigationItem key="navigationItem" id="fBa-BN-z7B">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="nI7-ZG-1WN"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="TaV-LY-wX3" id="ZRj-RV-KRM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Viq-QE-a2B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1709.5999999999999" y="-245.32019704433498"/>
+            <point key="canvasLocation" x="2652" y="-245.32019704433498"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ov7-hQ-gAz">
@@ -250,7 +257,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0AP-J0-Cnp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3157.5999999999999" y="-245.32019704433498"/>
+            <point key="canvasLocation" x="4100" y="-245.32019704433498"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vhJ-4A-qlZ">
+            <objects>
+                <navigationController storyboardIdentifier="timelineViewController" automaticallyAdjustsScrollViewInsets="NO" id="bBf-5v-9I7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Ngk-Y4-XaA"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZiB-dE-yIE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hmn-nL-ZZq" kind="relationship" relationship="rootViewController" id="KzC-Fu-Cea"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gfX-HK-8wN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1709.5999999999999" y="-245.32019704433498"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
