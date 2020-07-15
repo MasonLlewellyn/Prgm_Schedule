@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+@class Flow;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,12 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger locationLong;
 @property (nonatomic, strong) NSString *locationTitle;
 @property (nonatomic, strong) Event *dependsEvent;
+@property (nonatomic, strong) NSString* flowID;
 @property (nonatomic) BOOL isActive;
 
 + (void) testPostEvent;
 + (void) testDownloadEvent;
-
-+ (void) getEventFromID: (NSString*)eventID eventPointer:(Event**)eventPt;
+- (void) saveEventToFlow: (Flow*)parentFlow;
 @end
 
 NS_ASSUME_NONNULL_END

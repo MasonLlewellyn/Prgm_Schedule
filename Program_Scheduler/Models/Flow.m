@@ -40,7 +40,11 @@
     newEvent.startDateTime = [NSDate now];
     
     newFlow.events = @[newEvent];
-    [newFlow saveInBackgroundWithBlock:nil];
+    
+    //NSLog(@"Pre objectID: %@", newFlow.objectId);
+    [newFlow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        //NSLog(@"Saved objectID: %@", newFlow.objectId);
+    }];
 }
 
 + (void) testDownloadFlow{
@@ -58,6 +62,13 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+}
+
+- (void) getFlowEvents: (PFQueryArrayResultBlock) completion {
+    PFQuery *eventQuery = [Event query];
+    [eventQuery whereKey:@"flowID" equalTo:self.objectId];
+    [eventQuery findObjectsInBackgroundWithBlock:completion];
+    
 }
 
 

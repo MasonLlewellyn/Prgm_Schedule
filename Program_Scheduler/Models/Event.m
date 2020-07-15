@@ -7,11 +7,13 @@
 //
 
 #import "Event.h"
+#import "Flow.h"
 
 @implementation Event
 @dynamic Title;
 @dynamic author;
 @dynamic startDateTime; //NOTE: might have to convert to string to store in database
+@dynamic flowID;
 @dynamic endDateTime;
 @dynamic locationLat;
 @dynamic locationLong;
@@ -22,6 +24,11 @@
 
 + (nonnull NSString *)parseClassName {
     return @"Event";
+}
+
+- (void) saveEventToFlow: (Flow*)parentFlow{
+    self.flowID = parentFlow.objectId;
+    [self saveInBackgroundWithBlock:nil];
 }
 
 + (void) testPostEvent{

@@ -21,15 +21,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [Event testPostEvent];
-    [Event testDownloadEvent];
-    
-    [Flow testPostFlow];
-    [Flow testDownloadFlow];
-    
-    Event *e = nil;
-    [Event getEventFromID:@"gmRYzE5vTK" eventPointer:&e];
-    NSLog(@"Event e: %@", e);
 }
 
 /*
