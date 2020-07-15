@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (strong, nonatomic) Flow* flow;
+@property (weak, nonatomic) IBOutlet UISwitch *activeSwitch;
 
 - (void) setupCell: (Flow*)flow;
 

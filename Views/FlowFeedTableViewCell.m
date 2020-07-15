@@ -25,7 +25,15 @@
     self.titleLabel.text = flow.flowTitle;
     self.descriptionLabel.text = @"Unavialable";
     
+    [self.activeSwitch setOn:flow.active];
     self.flow = flow;
+}
+- (IBAction)switchValueChanged:(id)sender {
+    //Update the active/inactive state of switch
+    NSLog(@"Shuffle ball change");
+    UISwitch *swi = sender;
+    self.flow.active = swi.isOn;
+    [self.flow saveInBackground];
 }
 
 @end

@@ -10,6 +10,9 @@
 		916D578827D5F907BBB8F191 /* Pods_Program_Scheduler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46D8F69D25A86F101D5D128 /* Pods_Program_Scheduler.framework */; };
 		B274C85BFDE41CDD7D44A991 /* Pods_Program_Scheduler_Program_SchedulerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF8E309F5DB3BEBED841BBD /* Pods_Program_Scheduler_Program_SchedulerUITests.framework */; };
 		B927506988E1DB971B51A095 /* Pods_Program_SchedulerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780D819A831FF00F7C17806 /* Pods_Program_SchedulerTests.framework */; };
+		C3804A2A24BF829B00027F85 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3804A2924BF829B00027F85 /* EventView.xib */; };
+		C3804A2D24BF82DE00027F85 /* EventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3804A2C24BF82DE00027F85 /* EventView.m */; };
+		C3804A3024BF908100027F85 /* FlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3804A2F24BF908100027F85 /* FlowViewController.m */; };
 		C38A0D2924BE1B9600330524 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2824BE1B9600330524 /* Event.m */; };
 		C38A0D2C24BE36E700330524 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2B24BE36E700330524 /* Flow.m */; };
 		C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2F24BE831B00330524 /* FlowFeedTableViewCell.m */; };
@@ -55,6 +58,11 @@
 		9CF8E309F5DB3BEBED841BBD /* Pods_Program_Scheduler_Program_SchedulerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Program_Scheduler_Program_SchedulerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6BC7EE9AB36465943701E85 /* Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig"; path = "Target Support Files/Pods-Program_Scheduler-Program_SchedulerUITests/Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B46D8F69D25A86F101D5D128 /* Pods_Program_Scheduler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Program_Scheduler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3804A2924BF829B00027F85 /* EventView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EventView.xib; path = Program_Scheduler/EventView.xib; sourceTree = SOURCE_ROOT; };
+		C3804A2B24BF82DE00027F85 /* EventView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventView.h; sourceTree = "<group>"; };
+		C3804A2C24BF82DE00027F85 /* EventView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventView.m; sourceTree = "<group>"; };
+		C3804A2E24BF908100027F85 /* FlowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowViewController.h; sourceTree = "<group>"; };
+		C3804A2F24BF908100027F85 /* FlowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowViewController.m; sourceTree = "<group>"; };
 		C38A0D2724BE1B9600330524 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C38A0D2824BE1B9600330524 /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C38A0D2A24BE36E700330524 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
@@ -130,6 +138,9 @@
 		C38A0D2D24BE82EC00330524 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C3804A2924BF829B00027F85 /* EventView.xib */,
+				C3804A2C24BF82DE00027F85 /* EventView.m */,
+				C3804A2B24BF82DE00027F85 /* EventView.h */,
 				C38A0D2E24BE831B00330524 /* FlowFeedTableViewCell.h */,
 				C38A0D2F24BE831B00330524 /* FlowFeedTableViewCell.m */,
 			);
@@ -207,6 +218,8 @@
 				C39DBD7A24BCE63600FEBFCA /* SignUpViewController.m */,
 				C39DBD7324BCD78100FEBFCA /* LoginViewController.h */,
 				C39DBD7424BCD78100FEBFCA /* LoginViewController.m */,
+				C3804A2E24BF908100027F85 /* FlowViewController.h */,
+				C3804A2F24BF908100027F85 /* FlowViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -345,6 +358,7 @@
 				C39DBD4D24BCCF0E00FEBFCA /* LaunchScreen.storyboard in Resources */,
 				C39DBD4A24BCCF0E00FEBFCA /* Assets.xcassets in Resources */,
 				C39DBD4824BCCF0D00FEBFCA /* Main.storyboard in Resources */,
+				C3804A2A24BF829B00027F85 /* EventView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,12 +487,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
+				C3804A3024BF908100027F85 /* FlowViewController.m in Sources */,
 				C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */,
 				C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */,
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,
 				C38A0D2924BE1B9600330524 /* Event.m in Sources */,
 				C39DBD7824BCE5B600FEBFCA /* SignUpViewController.m in Sources */,
 				C38A0D2C24BE36E700330524 /* Flow.m in Sources */,
+				C3804A2D24BF82DE00027F85 /* EventView.m in Sources */,
 				C39DBD5024BCCF0E00FEBFCA /* main.m in Sources */,
 				C39DBD4224BCCF0D00FEBFCA /* SceneDelegate.m in Sources */,
 				C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */,

@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,7 +76,7 @@
                         <outlet property="passwordField" destination="pai-up-eTm" id="OWU-zO-4e0"/>
                         <outlet property="usernameField" destination="l33-qv-C1g" id="R1Y-zQ-4lH"/>
                         <segue destination="hfO-F9-sNd" kind="presentation" identifier="loginToSignUp" id="Hjc-Vc-6uw"/>
-                        <segue destination="bBf-5v-9I7" kind="show" identifier="loginToTimeline" id="VJB-1d-guM"/>
+                        <segue destination="bBf-5v-9I7" kind="modal" identifier="loginToTimeline" id="VJB-1d-guM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -171,28 +171,37 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random Flow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbH-TW-oTk">
-                                                    <rect key="frame" x="15.000000000000007" y="11" width="113.66666666666669" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Random Flow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbH-TW-oTk">
+                                                    <rect key="frame" x="15" y="11" width="113.66666666666669" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule Desc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNM-tB-sP4">
-                                                    <rect key="frame" x="168.66666666666666" y="11" width="119.99999999999997" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Schedule Desc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNM-tB-sP4">
+                                                    <rect key="frame" x="168.66666666666663" y="11" width="120" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RrM-gr-Q9I">
+                                                    <rect key="frame" x="311" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="switchValueChanged:" destination="usK-Ae-Ehn" eventType="valueChanged" id="TZo-hE-r5S"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="VNM-tB-sP4" firstAttribute="leading" secondItem="WbH-TW-oTk" secondAttribute="trailing" constant="40" id="1Z9-Om-mad"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="VNM-tB-sP4" secondAttribute="trailing" constant="10" id="IJf-s7-Txu"/>
+                                                <constraint firstAttribute="trailing" secondItem="RrM-gr-Q9I" secondAttribute="trailing" constant="15" id="LLY-ya-spY"/>
+                                                <constraint firstItem="RrM-gr-Q9I" firstAttribute="leading" secondItem="VNM-tB-sP4" secondAttribute="trailing" constant="24" id="ZH6-P6-o0V"/>
                                                 <constraint firstItem="WbH-TW-oTk" firstAttribute="top" secondItem="tgI-aj-eQC" secondAttribute="topMargin" id="cHa-pf-2rT"/>
                                                 <constraint firstItem="WbH-TW-oTk" firstAttribute="leading" secondItem="tgI-aj-eQC" secondAttribute="leadingMargin" id="jMM-oP-UFW"/>
+                                                <constraint firstItem="RrM-gr-Q9I" firstAttribute="top" secondItem="tgI-aj-eQC" secondAttribute="top" constant="6" id="oFE-KM-76v"/>
                                                 <constraint firstItem="VNM-tB-sP4" firstAttribute="top" secondItem="tgI-aj-eQC" secondAttribute="topMargin" id="twW-dM-W9n"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="activeSwitch" destination="RrM-gr-Q9I" id="WBP-bC-LYJ"/>
                                             <outlet property="descriptionLabel" destination="VNM-tB-sP4" id="MUf-2A-Eif"/>
                                             <outlet property="titleLabel" destination="WbH-TW-oTk" id="NoK-bK-dHL"/>
                                             <segue destination="Nnv-5H-Rk2" kind="presentation" id="OcG-Nk-Drr"/>
@@ -211,7 +220,11 @@
                         <viewLayoutGuide key="safeArea" id="7ha-Fo-o7Y"/>
                     </view>
                     <navigationItem key="navigationItem" id="fBa-BN-z7B">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="nI7-ZG-1WN"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="nI7-ZG-1WN">
+                            <connections>
+                                <action selector="logoutPressed:" destination="hmn-nL-ZZq" id="ffi-wR-f7Z"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="TaV-LY-wX3" id="ZRj-RV-KRM"/>
@@ -221,10 +234,10 @@
             </objects>
             <point key="canvasLocation" x="2652" y="-245.32019704433498"/>
         </scene>
-        <!--View Controller-->
+        <!--Flow View Controller-->
         <scene sceneID="ov7-hQ-gAz">
             <objects>
-                <viewController id="Nnv-5H-Rk2" sceneMemberID="viewController">
+                <viewController id="Nnv-5H-Rk2" customClass="FlowViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e91-dq-rZQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -254,6 +267,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Yp-vW-hEy"/>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="ow5-vJ-OOV" id="Oe9-oz-VLk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0AP-J0-Cnp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
