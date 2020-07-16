@@ -10,7 +10,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventView">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Ic9-bu-VuC"/>
-                <outlet property="endDateLabel" destination="ovD-L6-LN1" id="ZuF-NT-0oH"/>
                 <outlet property="startDateLabel" destination="Khl-Tg-VCW" id="twA-de-Sub"/>
                 <outlet property="titleLabel" destination="nj5-tD-94z" id="mZh-k2-3yU"/>
             </connections>
@@ -21,20 +20,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nj5-tD-94z">
-                    <rect key="frame" x="16" y="20" width="80.5" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="16" y="20" width="152.5" height="27"/>
+                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="23"/>
                     <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StartDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khl-Tg-VCW">
-                    <rect key="frame" x="16" y="48.5" width="74" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EndDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovD-L6-LN1">
-                    <rect key="frame" x="16" y="79.5" width="65.5" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="16" y="55" width="72.5" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -43,11 +36,8 @@
             <constraints>
                 <constraint firstItem="Khl-Tg-VCW" firstAttribute="top" secondItem="nj5-tD-94z" secondAttribute="bottom" priority="750" constant="8" id="MVw-PI-i1e"/>
                 <constraint firstItem="Khl-Tg-VCW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="QWf-xi-ct1"/>
-                <constraint firstItem="ovD-L6-LN1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="QmV-Tt-Oz6"/>
                 <constraint firstItem="nj5-tD-94z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="WdD-AS-qyW"/>
-                <constraint firstItem="ovD-L6-LN1" firstAttribute="top" secondItem="Khl-Tg-VCW" secondAttribute="bottom" priority="750" constant="10" id="kDi-sG-yF2"/>
                 <constraint firstItem="nj5-tD-94z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="nPq-Q1-eIT"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ovD-L6-LN1" secondAttribute="bottom" constant="5" id="uLL-ef-gNj"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>

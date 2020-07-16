@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "FlowViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EventView : UIView
+@interface EventView : UIView <UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *startDateLabel;
 @property (strong, nonatomic) Event* event;
-@property (weak, nonatomic) IBOutlet UILabel *endDateLabel;
 - (void) setupAssets: (Event*)event;
 @end
 

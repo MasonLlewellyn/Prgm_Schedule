@@ -41,7 +41,7 @@ NSInteger pageCount = 5;
     [refreshControl addTarget:self action:@selector(refreshFlows:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     
-    [Flow testPostFlow];
+    //[Flow testPostFlow];
     
     [self fetchFlows];
     

@@ -13,6 +13,8 @@
 		C3804A2A24BF829B00027F85 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3804A2924BF829B00027F85 /* EventView.xib */; };
 		C3804A2D24BF82DE00027F85 /* EventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3804A2C24BF82DE00027F85 /* EventView.m */; };
 		C3804A3024BF908100027F85 /* FlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3804A2F24BF908100027F85 /* FlowViewController.m */; };
+		C386087024C0DDD2007C1F78 /* EnlargedEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C386086F24C0DDD2007C1F78 /* EnlargedEventView.xib */; };
+		C386087324C0E277007C1F78 /* EnlargedEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C386087224C0E277007C1F78 /* EnlargedEventView.m */; };
 		C38A0D2924BE1B9600330524 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2824BE1B9600330524 /* Event.m */; };
 		C38A0D2C24BE36E700330524 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2B24BE36E700330524 /* Flow.m */; };
 		C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2F24BE831B00330524 /* FlowFeedTableViewCell.m */; };
@@ -63,6 +65,9 @@
 		C3804A2C24BF82DE00027F85 /* EventView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventView.m; sourceTree = "<group>"; };
 		C3804A2E24BF908100027F85 /* FlowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowViewController.h; sourceTree = "<group>"; };
 		C3804A2F24BF908100027F85 /* FlowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowViewController.m; sourceTree = "<group>"; };
+		C386086F24C0DDD2007C1F78 /* EnlargedEventView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnlargedEventView.xib; sourceTree = "<group>"; };
+		C386087124C0E277007C1F78 /* EnlargedEventView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnlargedEventView.h; sourceTree = "<group>"; };
+		C386087224C0E277007C1F78 /* EnlargedEventView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnlargedEventView.m; sourceTree = "<group>"; };
 		C38A0D2724BE1B9600330524 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C38A0D2824BE1B9600330524 /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C38A0D2A24BE36E700330524 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
@@ -139,6 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				C3804A2924BF829B00027F85 /* EventView.xib */,
+				C386086F24C0DDD2007C1F78 /* EnlargedEventView.xib */,
+				C386087124C0E277007C1F78 /* EnlargedEventView.h */,
+				C386087224C0E277007C1F78 /* EnlargedEventView.m */,
 				C3804A2C24BF82DE00027F85 /* EventView.m */,
 				C3804A2B24BF82DE00027F85 /* EventView.h */,
 				C38A0D2E24BE831B00330524 /* FlowFeedTableViewCell.h */,
@@ -357,6 +365,7 @@
 			files = (
 				C39DBD4D24BCCF0E00FEBFCA /* LaunchScreen.storyboard in Resources */,
 				C39DBD4A24BCCF0E00FEBFCA /* Assets.xcassets in Resources */,
+				C386087024C0DDD2007C1F78 /* EnlargedEventView.xib in Resources */,
 				C39DBD4824BCCF0D00FEBFCA /* Main.storyboard in Resources */,
 				C3804A2A24BF829B00027F85 /* EventView.xib in Resources */,
 			);
@@ -489,6 +498,7 @@
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
 				C3804A3024BF908100027F85 /* FlowViewController.m in Sources */,
 				C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */,
+				C386087324C0E277007C1F78 /* EnlargedEventView.m in Sources */,
 				C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */,
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,
 				C38A0D2924BE1B9600330524 /* Event.m in Sources */,

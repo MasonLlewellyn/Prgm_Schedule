@@ -7,6 +7,7 @@
 //
 
 #import "EventView.h"
+#import "EnlargedEventView.h"
 
 @implementation EventView
 
@@ -41,6 +42,36 @@
     [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
     
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    
+    [self addGestureRecognizer:tapGestureRecognizer];
+    tapGestureRecognizer.delegate = self;
+}
+
+- (void) viewTapped: (UITapGestureRecognizer*)recognizer{
+    NSLog(@"You really just tapped my view...wow");
+    [self presentEnlargedView];
+}
+
+- (void) presentEnlargedView{
+    EnlargedEventView *bigEView = [[EnlargedEventView alloc] initWithFrame:CGRectZero];
+    
+    bigEView.frame = CGRectMake(0, 0, self.superview.superview.frame.size.width, 300);
+    bigEView.center = self.superview.superview.center;
+    
+    
+    //Make a background that covers the whole flowView
+    UIView *touchInterceptView = [[UIView alloc] initWithFrame:CGRectZero];
+    touchInterceptView.frame = self.superview.superview.bounds;
+    touchInterceptView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
+    touchInterceptView.center = bigEView.center;
+    
+    [self.superview.superview addSubview:touchInterceptView];
+    [self.superview.superview bringSubviewToFront:touchInterceptView];
+    
+    //Bring the enlarged schedule view to the front
+    [self.superview.superview addSubview:bigEView];
+    [self.superview.superview bringSubviewToFront:bigEView];
 }
 
 - (void)setupAssets:(Event *)event{
@@ -53,8 +84,6 @@
     formatter.timeStyle = NSDateFormatterShortStyle;
     
     self.startDateLabel.text = [formatter stringFromDate:event.startDateTime];
-    
-    self.endDateLabel.text = [formatter stringFromDate: event.endDateTime];
     
     
     self.contentView.layer.cornerRadius = 10;
