@@ -41,6 +41,47 @@
     [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
 }
+
+- (void)leaveView{
+    [self.touchInterceptView removeFromSuperview];
+    [self.contentView removeFromSuperview];
+}
+
+- (void)interceptTapped: (UITapGestureRecognizer*)recognizer{
+    NSLog(@"Intercept tapped");
+    [self leaveView];
+}
+
+- (IBAction)backButtonTapped:(id)sender {
+    [self leaveView];
+}
+
+- (void)setupIntercept{
+    NSLog(@"Setting up intercept");
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(interceptTapped:)];
+    
+    [self.touchInterceptView addGestureRecognizer: tapGestureRecognizer];
+}
+
+- (void)setupAssets: (Event*)event intercept: (UIView*)touchIntercept{
+    self.event = event;
+    self.touchInterceptView = touchIntercept;
+    
+    self.titleLabel.text = event.Title;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+    formatter.timeStyle = NSDateFormatterShortStyle;
+    
+    self.startTimeLabel.text = [formatter stringFromDate:event.startDateTime];
+    self.endTimeLabel.text = [formatter stringFromDate:event.endDateTime];
+    
+    self.contentView.layer.cornerRadius = 10;
+    self.contentView.layer.masksToBounds = true;
+    
+    [self setupIntercept];
+    
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -56,7 +56,7 @@
 - (void) presentEnlargedView{
     EnlargedEventView *bigEView = [[EnlargedEventView alloc] initWithFrame:CGRectZero];
     
-    bigEView.frame = CGRectMake(0, 0, self.superview.superview.frame.size.width, 300);
+    bigEView.frame = CGRectMake(0, 0, self.superview.superview.frame.size.width - 20, 300);
     bigEView.center = self.superview.superview.center;
     
     
@@ -72,6 +72,8 @@
     //Bring the enlarged schedule view to the front
     [self.superview.superview addSubview:bigEView];
     [self.superview.superview bringSubviewToFront:bigEView];
+    
+    [bigEView setupAssets:self.event intercept:touchInterceptView];
 }
 
 - (void)setupAssets:(Event *)event{
