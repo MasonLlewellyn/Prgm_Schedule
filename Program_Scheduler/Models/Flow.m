@@ -33,11 +33,17 @@
     newEvent.Title = @"Fake event";
     Event *secondEvent = [Event dummyEvent];
     
+    
     //NSLog(@"Pre objectID: %@", newFlow.objectId);
     [newFlow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         //NSLog(@"Saved objectID: %@", newFlow.objectId);
         [newEvent saveEventToFlow:newFlow];
         [secondEvent saveEventToFlow:newFlow];
+        
+        for (int i = 0; i < 20; i++){
+            Event *loopEvent = [Event dummyEvent];
+            [loopEvent saveEventToFlow:newFlow];
+        }
     }];
 }
 

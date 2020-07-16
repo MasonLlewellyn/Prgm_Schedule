@@ -10,6 +10,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventView">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Ic9-bu-VuC"/>
+                <outlet property="endDateLabel" destination="ovD-L6-LN1" id="ZuF-NT-0oH"/>
+                <outlet property="startDateLabel" destination="Khl-Tg-VCW" id="twA-de-Sub"/>
                 <outlet property="titleLabel" destination="nj5-tD-94z" id="mZh-k2-3yU"/>
             </connections>
         </placeholder>

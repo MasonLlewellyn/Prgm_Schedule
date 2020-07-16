@@ -75,7 +75,7 @@
     newEvent.locationTitle = @"Home, where the heart is";
     
     newEvent.startDateTime = [NSDate now];
-    newEvent.startDateTime = [NSDate now];
+    newEvent.endDateTime = [NSDate now];
     
     return newEvent;
 }

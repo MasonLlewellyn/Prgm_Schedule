@@ -21,9 +21,12 @@
 @property (nonatomic, strong) NSMutableArray *inactiveFlows;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (assign, nonatomic) NSInteger loadedCount;
 @end
 
 //NSString *HeaderViewIdentifier = @"TableViewHeaderView";
+NSInteger pageCount = 5;
 
 @implementation TimelineViewController
 
@@ -63,13 +66,13 @@
     
     __weak typeof(self) weakSelf = self;
     PFQuery *query = [Flow query];
+    query.limit = pageCount;
     //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
     [query findObjectsInBackgroundWithBlock:^(NSArray<Flow*> * _Nullable flows, NSError * _Nullable error) {
         if (flows){
             weakSelf.activeFlows = [NSMutableArray arrayWithArray:flows];
-            NSLog(@"Active Count: %lu", weakSelf.activeFlows.count);
-            
-            [self.tableView reloadData];
+            weakSelf.loadedCount = weakSelf.activeFlows.count;
+            [weakSelf.tableView reloadData];
         }
         else{
             NSLog(@"%@", error.localizedDescription);
@@ -77,6 +80,23 @@
     }];
 }
 
+- (void) fetchMoreFlows{
+    __weak typeof(self) weakSelf = self;
+    PFQuery *query = [Flow query];
+    query.skip = self.loadedCount;
+    //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<Flow*> * _Nullable flows, NSError * _Nullable error) {
+        if (flows){
+            [weakSelf.activeFlows addObjectsFromArray:flows];
+            weakSelf.loadedCount = weakSelf.activeFlows.count;
+            weakSelf.isMoreDataLoading = false;
+            [weakSelf.tableView reloadData];
+        }
+        else{
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
 
 #pragma mark - Navigation
 
@@ -115,5 +135,20 @@
     return self.activeFlows.count;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(!self.isMoreDataLoading){
+
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            NSLog(@"Reached bottom.  More data being loaded");
+            [self fetchMoreFlows];
+        }
+    }
+
+}
 
 @end

@@ -44,9 +44,22 @@
 }
 
 - (void)setupAssets:(Event *)event{
-    NSLog(@"Igor the hot potato");
     self.event = event;
     self.titleLabel.text = event.Title;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+    //formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterShortStyle;
+    
+    self.startDateLabel.text = [formatter stringFromDate:event.startDateTime];
+    
+    self.endDateLabel.text = [formatter stringFromDate: event.endDateTime];
+    
+    
+    self.contentView.layer.cornerRadius = 10;
+    self.contentView.layer.masksToBounds = true;
+    
     NSLog(@"%@", self.event);
     NSLog(@"%@", event.Title);
     NSLog(@"%@", self.titleLabel.text);
