@@ -42,15 +42,13 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, contentHeight);
     [self makeEventViews];
 }
+
 - (void) makeEventViews{
     NSUInteger startY = 0;
     for (NSUInteger i = 0; i < self.events.count; i++){
         EventView *eView = [[EventView alloc] initWithFrame:CGRectMake(10, startY, 300, 120)];
         
-        //[eView setupAssets:self.events[i]];
-        eView.titleLabel.enabled = YES;
-        eView.titleLabel.text = self.events[i].Title;
-        NSLog(@"%@", eView.titleLabel.text);
+        [eView setupAssets:self.events[i]];
         
         [self.scrollView addSubview:eView];
         

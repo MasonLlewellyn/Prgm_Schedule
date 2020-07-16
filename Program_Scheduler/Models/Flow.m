@@ -28,12 +28,16 @@
     newFlow.startDate = [NSDate now];
     newFlow.endDate = [NSDate now];
     newFlow.active = NO;
+    
     Event *newEvent = [Event dummyEvent];
+    newEvent.Title = @"Fake event";
+    Event *secondEvent = [Event dummyEvent];
     
     //NSLog(@"Pre objectID: %@", newFlow.objectId);
     [newFlow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         //NSLog(@"Saved objectID: %@", newFlow.objectId);
         [newEvent saveEventToFlow:newFlow];
+        [secondEvent saveEventToFlow:newFlow];
     }];
 }
 
