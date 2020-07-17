@@ -234,6 +234,61 @@
             </objects>
             <point key="canvasLocation" x="2652" y="-245.32019704433498"/>
         </scene>
+        <!--Event Editor View Controller-->
+        <scene sceneID="Tk4-2T-e09">
+            <objects>
+                <viewController id="wnb-cu-bIt" customClass="EventEditorViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CwN-HG-l92">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fTy-El-Cca">
+                                <rect key="frame" x="16" y="102" width="251" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="titleField:" destination="CZ3-JC-KLE" eventType="editingDidEnd" id="cai-Az-2i5"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVQ-BM-20j">
+                                <rect key="frame" x="22" y="204" width="87" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zO-1X-8BV">
+                                <rect key="frame" x="22" y="345" width="87" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="4uW-Km-IiC">
+                                <rect key="frame" x="117" y="308" width="242" height="95"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pSa-0q-IWY">
+                                <rect key="frame" x="117" y="175" width="242" height="95"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="HGO-pA-PKj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="twV-XC-iRx"/>
+                    <connections>
+                        <outlet property="endDatePicker" destination="4uW-Km-IiC" id="BbC-8A-slu"/>
+                        <outlet property="startDatePicker" destination="pSa-0q-IWY" id="WO4-GA-GHW"/>
+                        <outlet property="titleTextField" destination="fTy-El-Cca" id="wlx-e4-AIy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vlI-rK-95a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="CZ3-JC-KLE" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5042.3999999999996" y="-1166.0098522167489"/>
+        </scene>
         <!--Flow View Controller-->
         <scene sceneID="ov7-hQ-gAz">
             <objects>
@@ -252,6 +307,9 @@
                                 <rect key="frame" x="20" y="83" width="39" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Event"/>
+                                <connections>
+                                    <action selector="eventButtonPressed:" destination="Nnv-5H-Rk2" eventType="touchUpInside" id="BJJ-KB-mHS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6V-6a-cU0">
                                 <rect key="frame" x="154" y="83" width="66" height="30"/>
@@ -269,6 +327,7 @@
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="ow5-vJ-OOV" id="Oe9-oz-VLk"/>
+                        <segue destination="foV-aM-DzH" kind="show" identifier="flowToEventEditor" id="YNI-Od-6Py"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0AP-J0-Cnp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -293,6 +352,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfX-HK-8wN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1709.5999999999999" y="-245.32019704433498"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ojf-hK-KjF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="foV-aM-DzH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="a4m-xm-rhi"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="L2L-lt-t1b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wnb-cu-bIt" kind="relationship" relationship="rootViewController" id="MFe-BC-oLE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P51-Bj-SsC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4100" y="-1166.0098522167489"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

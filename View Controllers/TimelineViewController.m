@@ -26,7 +26,7 @@
 @end
 
 //NSString *HeaderViewIdentifier = @"TableViewHeaderView";
-NSInteger pageCount = 5;
+NSInteger pageCount = 20;
 
 @implementation TimelineViewController
 
@@ -84,6 +84,7 @@ NSInteger pageCount = 5;
     __weak typeof(self) weakSelf = self;
     PFQuery *query = [Flow query];
     query.skip = self.loadedCount;
+    query.limit = pageCount;
     //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
     [query findObjectsInBackgroundWithBlock:^(NSArray<Flow*> * _Nullable flows, NSError * _Nullable error) {
         if (flows){

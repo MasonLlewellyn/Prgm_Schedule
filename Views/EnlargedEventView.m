@@ -43,8 +43,9 @@
 }
 
 - (void)leaveView{
+    [self removeFromSuperview];
+    
     [self.touchInterceptView removeFromSuperview];
-    [self.contentView removeFromSuperview];
 }
 
 - (void)interceptTapped: (UITapGestureRecognizer*)recognizer{
@@ -68,6 +69,7 @@
     self.touchInterceptView = touchIntercept;
     
     self.titleLabel.text = event.Title;
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";

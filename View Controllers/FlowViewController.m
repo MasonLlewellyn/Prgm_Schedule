@@ -7,6 +7,7 @@
 //
 
 #import "FlowViewController.h"
+#import "EventEditorViewController.h"
 #import "EventView.h"
 #import <Parse/Parse.h>
 
@@ -57,14 +58,27 @@
     //[eView release];
 }
 
-/*
+- (IBAction)eventButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"flowToEventEditor" sender:nil];
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    
+    if ([sender isKindOfClass:[Event class]]){
+        //If we are editing an eventt
+        EventEditorViewController *evc = [segue destinationViewController];
+        evc.event = sender;
+        
+        
+    }
 }
-*/
+
 
 @end

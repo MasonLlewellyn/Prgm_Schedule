@@ -68,7 +68,7 @@
                     <state key="normal" image="pencil" catalog="system"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.88875072674920685" blue="0.75802348645513695" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="2A3-J0-wMv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="0nC-WG-mLJ"/>
                 <constraint firstItem="6Q9-dO-Wna" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="5vI-23-dnu"/>

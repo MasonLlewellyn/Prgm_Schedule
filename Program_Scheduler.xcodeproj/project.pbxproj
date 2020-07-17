@@ -15,6 +15,7 @@
 		C3804A3024BF908100027F85 /* FlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3804A2F24BF908100027F85 /* FlowViewController.m */; };
 		C386087024C0DDD2007C1F78 /* EnlargedEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C386086F24C0DDD2007C1F78 /* EnlargedEventView.xib */; };
 		C386087324C0E277007C1F78 /* EnlargedEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C386087224C0E277007C1F78 /* EnlargedEventView.m */; };
+		C386087C24C11B67007C1F78 /* EventEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C386087B24C11B67007C1F78 /* EventEditorViewController.m */; };
 		C38A0D2924BE1B9600330524 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2824BE1B9600330524 /* Event.m */; };
 		C38A0D2C24BE36E700330524 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2B24BE36E700330524 /* Flow.m */; };
 		C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2F24BE831B00330524 /* FlowFeedTableViewCell.m */; };
@@ -68,6 +69,8 @@
 		C386086F24C0DDD2007C1F78 /* EnlargedEventView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnlargedEventView.xib; sourceTree = "<group>"; };
 		C386087124C0E277007C1F78 /* EnlargedEventView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnlargedEventView.h; sourceTree = "<group>"; };
 		C386087224C0E277007C1F78 /* EnlargedEventView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnlargedEventView.m; sourceTree = "<group>"; };
+		C386087A24C11B67007C1F78 /* EventEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventEditorViewController.h; sourceTree = "<group>"; };
+		C386087B24C11B67007C1F78 /* EventEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventEditorViewController.m; sourceTree = "<group>"; };
 		C38A0D2724BE1B9600330524 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C38A0D2824BE1B9600330524 /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C38A0D2A24BE36E700330524 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 		C39DBD7224BCD75600FEBFCA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C386087A24C11B67007C1F78 /* EventEditorViewController.h */,
+				C386087B24C11B67007C1F78 /* EventEditorViewController.m */,
 				C39DBD7C24BCE78E00FEBFCA /* TimelineViewController.h */,
 				C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */,
 				C39DBD7924BCE63600FEBFCA /* SignUpViewController.h */,
@@ -506,6 +511,7 @@
 				C38A0D2C24BE36E700330524 /* Flow.m in Sources */,
 				C3804A2D24BF82DE00027F85 /* EventView.m in Sources */,
 				C39DBD5024BCCF0E00FEBFCA /* main.m in Sources */,
+				C386087C24C11B67007C1F78 /* EventEditorViewController.m in Sources */,
 				C39DBD4224BCCF0D00FEBFCA /* SceneDelegate.m in Sources */,
 				C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */,
 				C39DBD7524BCD78100FEBFCA /* LoginViewController.m in Sources */,
