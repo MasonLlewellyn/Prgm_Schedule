@@ -152,4 +152,37 @@ NSInteger pageCount = 20;
 
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+//Delete all of the events in a given flow
+- (void) removeAssociatedEvents: (Flow*) flow{
+    [flow getFlowEvents:^(NSArray<Event*> * _Nullable events, NSError * _Nullable error) {
+        if (error){
+            NSLog(@"%@", error.localizedDescription);
+        }
+        else{
+            //Delete all events in the array
+            for (NSInteger i = 0; i < events.count; i++){
+                [events[i] deleteInBackground];
+            }
+        }
+    }];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //remove the deleted object from your data source.
+        //If your data source is an NSMutableArray, do this
+        Flow *removedFlow = self.activeFlows[indexPath.row];
+        
+        [self removeAssociatedEvents:removedFlow];
+        [removedFlow deleteInBackground];
+        
+        [self.activeFlows removeObjectAtIndex:indexPath.row];
+        [tableView reloadData]; // tell table to refresh now
+    }
+}
+
 @end

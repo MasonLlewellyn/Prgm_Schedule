@@ -37,12 +37,12 @@
     //NSLog(@"Pre objectID: %@", newFlow.objectId);
     [newFlow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         //NSLog(@"Saved objectID: %@", newFlow.objectId);
-        [newEvent saveEventToFlow:newFlow];
-        [secondEvent saveEventToFlow:newFlow];
+        [newEvent saveEventToFlow:newFlow completionHandler:nil];
+        [secondEvent saveEventToFlow:newFlow completionHandler:nil];
         
         for (int i = 0; i < 20; i++){
             Event *loopEvent = [Event dummyEvent];
-            [loopEvent saveEventToFlow:newFlow];
+            [loopEvent saveEventToFlow:newFlow completionHandler:nil];
         }
     }];
 }

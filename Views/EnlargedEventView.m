@@ -57,6 +57,14 @@
     [self leaveView];
 }
 
+- (IBAction)deleteButtonTapped:(id)sender {
+    UIAlertController *alert = [UIAlertController alloc];
+    
+    alert = [UIAlertController alertControllerWithTitle:@"Login Error"
+         message:@"Both Username and Password cannot be empty"
+    preferredStyle:(UIAlertControllerStyleAlert)];
+}
+
 - (void)setupIntercept{
     NSLog(@"Setting up intercept");
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(interceptTapped:)];

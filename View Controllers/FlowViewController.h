@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FlowViewController : UIViewController
 @property (strong, nonatomic) Flow *flow;
 @property (strong, nonatomic) NSMutableArray<Event*> *events;
+-(void) initializeView;
 @end
 
 NS_ASSUME_NONNULL_END

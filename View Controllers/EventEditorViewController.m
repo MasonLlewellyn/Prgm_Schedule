@@ -7,6 +7,7 @@
 //
 
 #import "EventEditorViewController.h"
+#import "FlowViewController.h"
 
 @interface EventEditorViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
@@ -25,6 +26,22 @@
     self.endDatePicker.datePickerMode = UIDatePickerModeTime;
     
 }
+- (IBAction)saveButtonPressed:(id)sender {
+    if (self.event == nil) self.event = [Event new];
+    
+    self.event.Title = self.titleTextField.text;
+    self.event.startDateTime = self.startDatePicker.date;
+    self.event.endDateTime = self.endDatePicker.date;
+    
+    [self.event saveEventToFlow:self.flow completionHandler:^(BOOL succeeded, NSError * _Nullable error) {
+        FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
+        [fvc.events addObject:self.event];
+        //Dismiss the editing view and update the Flow View
+        [self dismissViewControllerAnimated:YES completion:^{
+            [fvc initializeView];
+        }];
+    }];
+}
 
 /*
 #pragma mark - Navigation
@@ -36,6 +53,4 @@
 }
 */
 
-- (IBAction)titleField:(id)sender {
-}
 @end

@@ -24,6 +24,7 @@
     [self initializeView];
 }
 
+#pragma mark - Event Space
 //TODO: instantiate an EventView for each individual event and lay them out vertically
 - (void) initializeView{
     [self.flow getFlowEvents:^(NSArray<Event*> * _Nullable objects, NSError * _Nullable error) {
@@ -55,7 +56,6 @@
         
         startY += 170;
     }
-    //[eView release];
 }
 
 - (IBAction)eventButtonPressed:(id)sender {
@@ -69,14 +69,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
-    
-    if ([sender isKindOfClass:[Event class]]){
-        //If we are editing an eventt
-        EventEditorViewController *evc = [segue destinationViewController];
+    if ([sender isKindOfClass:[Event class]] || sender == nil){
+        //If we are editing an eventt or creating a new one
+        UINavigationController *navCtrl = [segue destinationViewController];
+        EventEditorViewController *evc = [navCtrl viewControllers][0];
         evc.event = sender;
-        
-        
+        evc.flow = self.flow;
     }
 }
 

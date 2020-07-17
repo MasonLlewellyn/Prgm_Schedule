@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -67,6 +67,13 @@
                     <rect key="frame" x="246" y="20" width="18" height="22"/>
                     <state key="normal" image="pencil" catalog="system"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdg-yu-nfH">
+                    <rect key="frame" x="214.5" y="20" width="19.5" height="22"/>
+                    <state key="normal" image="trash" catalog="system"/>
+                    <connections>
+                        <action selector="deleteButtonTapped:" destination="-1" eventType="touchUpInside" id="EFg-l0-2Kb"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
@@ -77,9 +84,11 @@
                 <constraint firstItem="s0G-Mj-87Y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Gsu-E3-z9U"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2A3-J0-wMv" secondAttribute="bottom" constant="10" id="JLw-QM-yia"/>
                 <constraint firstAttribute="trailing" secondItem="WJV-ln-Waj" secondAttribute="trailing" constant="16" id="MDl-FZ-Z3u"/>
-                <constraint firstItem="6Q9-dO-Wna" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s0G-Mj-87Y" secondAttribute="trailing" constant="10" id="Nay-Ln-EnC"/>
+                <constraint firstItem="6Q9-dO-Wna" firstAttribute="leading" secondItem="bdg-yu-nfH" secondAttribute="trailing" constant="12" id="R7v-6s-wQB"/>
                 <constraint firstItem="8qj-MM-cIJ" firstAttribute="top" secondItem="PU0-Pi-vCy" secondAttribute="bottom" constant="15" id="RCi-aT-EGx"/>
+                <constraint firstItem="bdg-yu-nfH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="Uty-GU-WpI"/>
                 <constraint firstItem="PU0-Pi-vCy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Zjk-Vz-K7v"/>
+                <constraint firstItem="bdg-yu-nfH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s0G-Mj-87Y" secondAttribute="trailing" constant="10" id="aoH-HJ-phE"/>
                 <constraint firstItem="EKe-e5-2fC" firstAttribute="top" secondItem="s0G-Mj-87Y" secondAttribute="bottom" constant="15" id="bfH-cd-iYl"/>
                 <constraint firstItem="PU0-Pi-vCy" firstAttribute="top" secondItem="s0G-Mj-87Y" secondAttribute="bottom" constant="15" id="f5J-Nl-Vwm"/>
                 <constraint firstItem="WJV-ln-Waj" firstAttribute="leading" secondItem="6Q9-dO-Wna" secondAttribute="trailing" constant="20" id="haF-jE-BcC"/>
@@ -94,5 +103,6 @@
     <resources>
         <image name="arrow.turn.up.left" catalog="system" width="128" height="99"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
     </resources>
 </document>

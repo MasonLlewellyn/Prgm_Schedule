@@ -28,9 +28,15 @@
     return @"Event";
 }
 
-- (void) saveEventToFlow: (Flow*)parentFlow{
+- (void) saveEventToFlow: (Flow*)parentFlow completionHandler: (nullable PFBooleanResultBlock)completion{
+    //TODO: Add completion handler to this to pass to the saveInBackground part
     self.flowID = parentFlow.objectId;
-    [self saveInBackgroundWithBlock:nil];
+    if (completion == nil){
+        [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
+    }
+    else{
+        [self saveInBackgroundWithBlock:completion];
+    }
 }
 
 + (void) testPostEvent{
@@ -40,7 +46,6 @@
     Event* newEvent = [self dummyEvent];
     NSLog(@"Event print %@", newEvent);
     [newEvent saveInBackgroundWithBlock: nil];
-    
 }
 
 + (void) testDownloadEvent{
