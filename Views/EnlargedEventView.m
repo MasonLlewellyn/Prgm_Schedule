@@ -59,7 +59,7 @@
 
 - (IBAction)deleteButtonTapped:(id)sender {
     [self.delegate displayDeleteAlert:self];
-    
+    [self leaveView];
 }
 
 - (void)setupIntercept{

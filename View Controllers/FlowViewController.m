@@ -13,7 +13,7 @@
 
 @interface FlowViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
+@property (strong, nonatomic) NSMutableArray<EventView*> *eventViews;
 @end
 
 @implementation FlowViewController
@@ -51,6 +51,7 @@
         [eView setupAssets:self.events[i] flowViewController:self];
         
         [self.scrollView addSubview:eView];
+        [self.eventViews addObject:eView];
         
         startY += 170;
     }
@@ -90,6 +91,14 @@
            style:UIAlertActionStyleDefault
        handler:^(UIAlertAction * _Nonnull action) {
         [enlargedView.event deleteInBackground];
+        //Refresh the Event space
+        [self initializeView];
+        
+        //NOTE: This gives a warning but you know what, it works
+        //Also, it's pretty much guarunteed that the event is nonnll
+        NSUInteger eventIndex = [self.eventViews indexOfObject:enlargedView.event];
+        [self.eventViews removeObjectAtIndex:eventIndex];
+        [self arrangeView];
     }];
     
     
