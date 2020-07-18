@@ -102,6 +102,7 @@
 		C39DBD7A24BCE63600FEBFCA /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		C39DBD7C24BCE78E00FEBFCA /* TimelineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
 		C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
+		C3BBC5D424C244AD00372A03 /* EnlargedEventViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnlargedEventViewDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +224,7 @@
 		C39DBD7224BCD75600FEBFCA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3BBC5D424C244AD00372A03 /* EnlargedEventViewDelegate.h */,
 				C386087A24C11B67007C1F78 /* EventEditorViewController.h */,
 				C386087B24C11B67007C1F78 /* EventEditorViewController.m */,
 				C39DBD7C24BCE78E00FEBFCA /* TimelineViewController.h */,

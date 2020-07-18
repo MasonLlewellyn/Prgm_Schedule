@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "EnlargedEventViewDelegate.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EnlargedEventView : UIView
@@ -22,7 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) UIView *touchInterceptView;
 @property (weak, nonatomic) Event *event;
 
+@property (nonatomic, weak) id <EnlargedEventViewDelegate> delegate;
+
 - (void)setupAssets: (Event*)event intercept: (UIView*)touchIntercept;
 @end
+
+
+
 
 NS_ASSUME_NONNULL_END

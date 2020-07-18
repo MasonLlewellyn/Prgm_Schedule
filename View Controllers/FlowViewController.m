@@ -36,7 +36,6 @@
             [self arrangeView];
         }
     }];
-    
 }
 
 - (void) arrangeView{
@@ -49,8 +48,7 @@
     NSUInteger startY = 0;
     for (NSUInteger i = 0; i < self.events.count; i++){
         EventView *eView = [[EventView alloc] initWithFrame:CGRectMake(10, startY, 300, 120)];
-        
-        [eView setupAssets:self.events[i]];
+        [eView setupAssets:self.events[i] flowViewController:self];
         
         [self.scrollView addSubview:eView];
         
@@ -61,6 +59,7 @@
 - (IBAction)eventButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"flowToEventEditor" sender:nil];
 }
+
 
 
 #pragma mark - Navigation
@@ -76,6 +75,37 @@
         evc.event = sender;
         evc.flow = self.flow;
     }
+}
+
+#pragma mark - Enlarged Event View
+- (void) displayDeleteAlert: (EnlargedEventView*)enlargedView{
+    NSLog(@"Delegate Called!");
+    UIAlertController *alert = [UIAlertController alloc];
+    
+    alert = [UIAlertController alertControllerWithTitle:@"Delete event"
+         message:@"Are you sure that you want to delete this event"
+    preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes"
+           style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * _Nonnull action) {
+        [enlargedView.event deleteInBackground];
+    }];
+    
+    
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No"
+           style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * _Nonnull action) {
+                   // handle response here.
+    }];
+    
+    [alert addAction:yesAction];
+    [alert addAction:noAction];
+    
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+    }];
+    
 }
 
 

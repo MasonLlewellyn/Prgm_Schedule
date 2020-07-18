@@ -58,11 +58,8 @@
 }
 
 - (IBAction)deleteButtonTapped:(id)sender {
-    UIAlertController *alert = [UIAlertController alloc];
+    [self.delegate displayDeleteAlert:self];
     
-    alert = [UIAlertController alertControllerWithTitle:@"Login Error"
-         message:@"Both Username and Password cannot be empty"
-    preferredStyle:(UIAlertControllerStyleAlert)];
 }
 
 - (void)setupIntercept{

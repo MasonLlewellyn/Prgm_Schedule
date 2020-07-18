@@ -59,6 +59,7 @@
     bigEView.frame = CGRectMake(0, 0, self.superview.superview.frame.size.width - 20, 300);
     bigEView.center = self.superview.superview.center;
     
+    bigEView.delegate = self.flowVC;
     
     //Make a background that covers the whole flowView
     UIView *touchInterceptView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -76,7 +77,7 @@
     [bigEView setupAssets:self.event intercept:touchInterceptView];
 }
 
-- (void)setupAssets:(Event *)event{
+- (void)setupAssets:(Event *)event flowViewController:(FlowViewController*)flowControl{
     self.event = event;
     self.titleLabel.text = event.Title;
     
@@ -91,9 +92,13 @@
     self.contentView.layer.cornerRadius = 10;
     self.contentView.layer.masksToBounds = true;
     
+    self.flowVC = flowControl;
+    
     NSLog(@"%@", self.event);
     NSLog(@"%@", event.Title);
     NSLog(@"%@", self.titleLabel.text);
+    
+    
 }
 /*
 // Only override drawRect: if you perform custom drawing.
