@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol EnlargedEventViewDelegate <NSObject>
 - (void) displayDeleteAlert: (EnlargedEventView*)enlargedView;
+- (void) editSelectedEvent: (EnlargedEventView*)enlargedView;
 @end
 
 NS_ASSUME_NONNULL_END

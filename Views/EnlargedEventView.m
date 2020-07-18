@@ -62,6 +62,10 @@
     [self leaveView];
 }
 
+- (IBAction)editButtonTapped:(id)sender {
+    [self.delegate editSelectedEvent:self];
+}
+
 - (void)setupIntercept{
     NSLog(@"Setting up intercept");
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(interceptTapped:)];
@@ -69,9 +73,9 @@
     [self.touchInterceptView addGestureRecognizer: tapGestureRecognizer];
 }
 
-- (void)setupAssets: (Event*)event intercept: (UIView*)touchIntercept{
+
+- (void) setupDisplay: (Event*)event{
     self.event = event;
-    self.touchInterceptView = touchIntercept;
     
     self.titleLabel.text = event.Title;
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -85,9 +89,12 @@
     
     self.contentView.layer.cornerRadius = 10;
     self.contentView.layer.masksToBounds = true;
-    
+}
+
+- (void)setupAssets: (Event*)event intercept: (UIView*)touchIntercept{
+    [self setupDisplay:event];
+    self.touchInterceptView = touchIntercept;
     [self setupIntercept];
-    
 }
 /*
 // Only override drawRect: if you perform custom drawing.

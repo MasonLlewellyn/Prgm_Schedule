@@ -60,6 +60,7 @@
     bigEView.center = self.superview.superview.center;
     
     bigEView.delegate = self.flowVC;
+    self.flowVC.currEnlargedView = bigEView;
     
     //Make a background that covers the whole flowView
     UIView *touchInterceptView = [[UIView alloc] initWithFrame:CGRectZero];

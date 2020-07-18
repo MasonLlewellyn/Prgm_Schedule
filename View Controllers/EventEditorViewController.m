@@ -25,7 +25,16 @@
     self.startDatePicker.datePickerMode = UIDatePickerModeTime;
     self.endDatePicker.datePickerMode = UIDatePickerModeTime;
     
+    if (self.event)
+        [self setupView];
 }
+
+- (void) setupView{
+    self.titleTextField.text = self.event.Title;
+    [self.startDatePicker setDate:self.event.startDateTime];
+    [self.endDatePicker setDate:self.event.endDateTime];
+}
+
 - (IBAction)saveButtonPressed:(id)sender {
     if (self.event == nil) self.event = [Event new];
     
@@ -38,8 +47,15 @@
         [fvc.events addObject:self.event];
         //Dismiss the editing view and update the Flow View
         [self dismissViewControllerAnimated:YES completion:^{
+            //Question: Should this go in the initializeView section
+            //Resets the englarged display view if it is currently being displayed
+            if (fvc.currEnlargedView){
+                [fvc.currEnlargedView setupDisplay:self.event];
+            }
             [fvc initializeView];
         }];
+        
+        
     }];
 }
 

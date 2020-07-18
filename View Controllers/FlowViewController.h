@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FlowViewController : UIViewController <EnlargedEventViewDelegate>
 @property (strong, nonatomic) Flow *flow;
 @property (strong, nonatomic) NSMutableArray<Event*> *events;
+@property (strong, nonatomic) EnlargedEventView *currEnlargedView;
+
 -(void) initializeView;
 @end
 

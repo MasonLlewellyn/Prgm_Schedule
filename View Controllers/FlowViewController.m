@@ -117,5 +117,10 @@
     
 }
 
+- (void) editSelectedEvent:(EnlargedEventView *)enlargedView{
+    NSLog(@"Editing the selected event");
+    [self performSegueWithIdentifier:@"flowToEventEditor" sender:enlargedView.event];
+}
+
 
 @end

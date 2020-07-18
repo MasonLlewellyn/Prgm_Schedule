@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id <EnlargedEventViewDelegate> delegate;
 
 - (void)setupAssets: (Event*)event intercept: (UIView*)touchIntercept;
+- (void)setupDisplay: (Event*)event;
 @end
 
 
