@@ -7,6 +7,7 @@
 //
 
 #import "FriendsViewController.h"
+#import "FriendsTableViewCell.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
@@ -20,8 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    /*self.tableView.dataSource = self;
-    self.tableView.delegate = self;*/
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     [self setupView];
 }
@@ -30,19 +31,21 @@
     [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me/friends" parameters:nil]
       startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
         if (!error) {
-            NSLog(@"Friends list: %@", result[@"data"][0]);
+            self.friendList = result[@"data"];
         }
     }];
 }
 
 #pragma mark - Table View
-/*- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    FriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FriendCell"];
+    //TODO: continue from here
+    return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.activeFlows.count;
-}*/
+    return self.friendList.count;
+}
 /*
 #pragma mark - Navigation
 

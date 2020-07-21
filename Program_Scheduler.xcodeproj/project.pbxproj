@@ -40,6 +40,7 @@
 		C39DBD7824BCE5B600FEBFCA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7724BCE5B600FEBFCA /* SignUpViewController.m */; };
 		C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7A24BCE63600FEBFCA /* SignUpViewController.m */; };
 		C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */; };
+		C3CC472424C7766C001BE164 /* FriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC472324C7766C001BE164 /* FriendsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,8 @@
 		C39DBD7C24BCE78E00FEBFCA /* TimelineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
 		C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
 		C3BBC5D424C244AD00372A03 /* EnlargedEventViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnlargedEventViewDelegate.h; sourceTree = "<group>"; };
+		C3CC472224C7766C001BE164 /* FriendsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewCell.h; sourceTree = "<group>"; };
+		C3CC472324C7766C001BE164 /* FriendsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 		C38A0D2D24BE82EC00330524 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C3CC472224C7766C001BE164 /* FriendsTableViewCell.h */,
+				C3CC472324C7766C001BE164 /* FriendsTableViewCell.m */,
 				C3804A2924BF829B00027F85 /* EventView.xib */,
 				C386086F24C0DDD2007C1F78 /* EnlargedEventView.xib */,
 				C386087124C0E277007C1F78 /* EnlargedEventView.h */,
@@ -550,6 +555,7 @@
 				C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */,
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,
 				C38A0D2924BE1B9600330524 /* Event.m in Sources */,
+				C3CC472424C7766C001BE164 /* FriendsTableViewCell.m in Sources */,
 				C39DBD7824BCE5B600FEBFCA /* SignUpViewController.m in Sources */,
 				C38A0D2C24BE36E700330524 /* Flow.m in Sources */,
 				C3804A2D24BF82DE00027F85 /* EventView.m in Sources */,
