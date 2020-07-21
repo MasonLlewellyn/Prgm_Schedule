@@ -40,7 +40,6 @@
     loginButton.frame = self.connectFacebookButton.frame;//NOTE: This is a band-aid fix to get the Facebook login button oriented correctly
     [self.view addSubview:loginButton];
     self.connectFacebookButton.hidden = YES;
-    
     User *currUser = [User currentUser];
     self.usernameLabel.text = currUser.username;
     

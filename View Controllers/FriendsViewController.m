@@ -7,9 +7,12 @@
 //
 
 #import "FriendsViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface FriendsViewController ()
-
+@interface FriendsViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *friendList;
 @end
 
 @implementation FriendsViewController
@@ -17,8 +20,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    /*self.tableView.dataSource = self;
+    self.tableView.delegate = self;*/
+    
+    [self setupView];
 }
 
+- (void) setupView{
+    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me/friends" parameters:nil]
+      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            NSLog(@"Friends list: %@", result[@"data"][0]);
+        }
+    }];
+}
+
+#pragma mark - Table View
+/*- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.activeFlows.count;
+}*/
 /*
 #pragma mark - Navigation
 

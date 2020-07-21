@@ -72,8 +72,8 @@ NSInteger pageCount = 20;
 - (IBAction)friendsButtonPressed:(id)sender {
     //IF the user is already logged into Facebook (Perform some action)
     if ([FBSDKAccessToken currentAccessToken]) {
-        //Action TBD
         //TODO: print a list of all friends on the application
+        [self performSegueWithIdentifier:@"timelineToFriends" sender:nil];
     }
     else{
         NSLog(@"There is no Faceboook account so I can't really help you");
