@@ -225,11 +225,18 @@
                                 <action selector="logoutPressed:" destination="hmn-nL-ZZq" id="ffi-wR-f7Z"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="person.circle" catalog="system" id="nrX-yi-IJw">
-                            <connections>
-                                <action selector="profileButtonPressed:" destination="hmn-nL-ZZq" id="ZFg-BD-C4L"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="person.circle" catalog="system" id="nrX-yi-IJw">
+                                <connections>
+                                    <action selector="profileButtonPressed:" destination="hmn-nL-ZZq" id="ZFg-BD-C4L"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="person.3.fill" catalog="system" id="fBy-aC-8ql">
+                                <connections>
+                                    <action selector="friendsButtonPressed:" destination="hmn-nL-ZZq" id="97B-aM-UQM"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="TaV-LY-wX3" id="ZRj-RV-KRM"/>
@@ -544,6 +551,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
     </resources>

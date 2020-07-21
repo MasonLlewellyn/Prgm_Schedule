@@ -44,10 +44,7 @@ NSInteger pageCount = 20;
     [refreshControl addTarget:self action:@selector(refreshFlows:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     
-    //IF the user is already logged into Facebook (Perform some action)
-    if ([FBSDKAccessToken currentAccessToken]) {
-        //Action TBD
-    }
+
     
     [self fetchFlows];
     
@@ -71,6 +68,16 @@ NSInteger pageCount = 20;
 }
 - (IBAction)profileButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"timelineToProfileView" sender:nil];
+}
+- (IBAction)friendsButtonPressed:(id)sender {
+    //IF the user is already logged into Facebook (Perform some action)
+    if ([FBSDKAccessToken currentAccessToken]) {
+        //Action TBD
+        //TODO: print a list of all friends on the application
+    }
+    else{
+        NSLog(@"There is no Faceboook account so I can't really help you");
+    }
 }
 
 - (void)fetchFlows{

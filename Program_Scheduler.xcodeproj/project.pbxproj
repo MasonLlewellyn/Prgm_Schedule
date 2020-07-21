@@ -17,6 +17,7 @@
 		C36A704224C663CC0092AC2F /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C36A704124C663CC0092AC2F /* FacebookCore */; };
 		C36A704424C663CC0092AC2F /* FacebookGamingServices in Frameworks */ = {isa = PBXBuildFile; productRef = C36A704324C663CC0092AC2F /* FacebookGamingServices */; };
 		C36A704624C663CC0092AC2F /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C36A704524C663CC0092AC2F /* FacebookLogin */; };
+		C36A704924C6B5000092AC2F /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A704824C6B5000092AC2F /* FriendsViewController.m */; };
 		C3804A2A24BF829B00027F85 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3804A2924BF829B00027F85 /* EventView.xib */; };
 		C3804A2D24BF82DE00027F85 /* EventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3804A2C24BF82DE00027F85 /* EventView.m */; };
 		C3804A3024BF908100027F85 /* FlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3804A2F24BF908100027F85 /* FlowViewController.m */; };
@@ -74,6 +75,8 @@
 		C36A703924C6241E0092AC2F /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C36A703B24C630A80092AC2F /* ImageUploadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageUploadViewController.h; sourceTree = "<group>"; };
 		C36A703C24C630A80092AC2F /* ImageUploadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageUploadViewController.m; sourceTree = "<group>"; };
+		C36A704724C6B5000092AC2F /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		C36A704824C6B5000092AC2F /* FriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		C3804A2924BF829B00027F85 /* EventView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EventView.xib; path = Program_Scheduler/EventView.xib; sourceTree = SOURCE_ROOT; };
 		C3804A2B24BF82DE00027F85 /* EventView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventView.h; sourceTree = "<group>"; };
 		C3804A2C24BF82DE00027F85 /* EventView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventView.m; sourceTree = "<group>"; };
@@ -258,6 +261,8 @@
 				C36A703624C617890092AC2F /* ProfileViewController.m */,
 				C36A703B24C630A80092AC2F /* ImageUploadViewController.h */,
 				C36A703C24C630A80092AC2F /* ImageUploadViewController.m */,
+				C36A704724C6B5000092AC2F /* FriendsViewController.h */,
+				C36A704824C6B5000092AC2F /* FriendsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 			files = (
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
 				C3804A3024BF908100027F85 /* FlowViewController.m in Sources */,
+				C36A704924C6B5000092AC2F /* FriendsViewController.m in Sources */,
 				C36A703724C617890092AC2F /* ProfileViewController.m in Sources */,
 				C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */,
 				C36A703A24C6241E0092AC2F /* User.m in Sources */,
