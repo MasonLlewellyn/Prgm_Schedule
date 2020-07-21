@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProfileViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ImageUploadViewController : UIViewController
 @property (nonatomic, weak) id<ImageUploadViewControllerDelegate> delegate;
+@property (nonatomic, strong) ProfileViewController *profileView;
 @end
 
 NS_ASSUME_NONNULL_END

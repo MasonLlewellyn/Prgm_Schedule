@@ -26,7 +26,9 @@
     if (currentUser.profileImage){
         NSLog(@"Setting profile image because there is one");
         self.profileImage.file = currentUser.profileImage;
-        [self.profileImage loadInBackground];
+        [self.profileImage loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+            self.profilePicture = image;
+        }];
     }
 }
 - (IBAction)cameraPressed:(id)sender {
@@ -48,7 +50,10 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 - (IBAction)cancelPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        //Reset profile view to reflect new values
+        [self.profileView setupView];
+    }];
 }
 
 - (IBAction)setImageAsProfile:(id)sender {
@@ -56,7 +61,10 @@
     currentUser.profileImage = [self getPFFileFromImage:self.profilePicture];
     
     [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            //Reset profile view to reflect new values
+            [self.profileView setupView];
+        }];
     }];
 }
 

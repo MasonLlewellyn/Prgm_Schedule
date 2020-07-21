@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileViewController : UIViewController
-
+- (void) setupView;
 @end
 
 NS_ASSUME_NONNULL_END

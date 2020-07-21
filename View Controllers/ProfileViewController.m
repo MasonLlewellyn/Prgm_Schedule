@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import "ImageUploadViewController.h"
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
@@ -28,9 +29,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    /*UIColor *fbColor = [UIColor colorWithRed:59/255.0 green:89/255.0 blue:152/255.0 alpha:1.0];
-    self.connectFacebookButton.backgroundColor = fbColor;*/
-    
+    [self setupView];
+}
+
+- (void) setupView{
     //Facebook Login Test
     
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
@@ -47,7 +49,6 @@
         self.profilePictureView.file = currUser.profileImage;
         [self.profilePictureView loadInBackground];
     }
-    
 }
 
 - (IBAction)connectToFacebookPressed:(id)sender {
@@ -68,14 +69,19 @@
     }];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if (sender == nil){
+        UINavigationController *navCtrl = [segue destinationViewController];
+        ImageUploadViewController *ivc = [navCtrl viewControllers][0];
+        ivc.profileView = self;
+    }
 }
-*/
+
 
 @end
