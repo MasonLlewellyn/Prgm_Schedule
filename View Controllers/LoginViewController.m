@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 
+
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -21,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //self.passwordField.secureTextEntry = YES;
+    self.passwordField.secureTextEntry = YES;
 }
 
 - (BOOL) loginProtection{

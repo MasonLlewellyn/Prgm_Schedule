@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "User.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/Parse.h>
 
 @interface AppDelegate ()
@@ -18,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [User registerSubclass]; //Hope this works
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
         configuration.applicationId = @"PROGRAM_SCHEDULE";

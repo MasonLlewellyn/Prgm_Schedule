@@ -3,13 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		916D578827D5F907BBB8F191 /* Pods_Program_Scheduler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46D8F69D25A86F101D5D128 /* Pods_Program_Scheduler.framework */; };
 		B274C85BFDE41CDD7D44A991 /* Pods_Program_Scheduler_Program_SchedulerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF8E309F5DB3BEBED841BBD /* Pods_Program_Scheduler_Program_SchedulerUITests.framework */; };
 		B927506988E1DB971B51A095 /* Pods_Program_SchedulerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780D819A831FF00F7C17806 /* Pods_Program_SchedulerTests.framework */; };
+		C36A703724C617890092AC2F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703624C617890092AC2F /* ProfileViewController.m */; };
+		C36A703A24C6241E0092AC2F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703924C6241E0092AC2F /* User.m */; };
+		C36A703D24C630A80092AC2F /* ImageUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703C24C630A80092AC2F /* ImageUploadViewController.m */; };
+		C36A704024C663CC0092AC2F /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = C36A703F24C663CC0092AC2F /* FacebookShare */; };
+		C36A704224C663CC0092AC2F /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C36A704124C663CC0092AC2F /* FacebookCore */; };
+		C36A704424C663CC0092AC2F /* FacebookGamingServices in Frameworks */ = {isa = PBXBuildFile; productRef = C36A704324C663CC0092AC2F /* FacebookGamingServices */; };
+		C36A704624C663CC0092AC2F /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C36A704524C663CC0092AC2F /* FacebookLogin */; };
 		C3804A2A24BF829B00027F85 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3804A2924BF829B00027F85 /* EventView.xib */; };
 		C3804A2D24BF82DE00027F85 /* EventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3804A2C24BF82DE00027F85 /* EventView.m */; };
 		C3804A3024BF908100027F85 /* FlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3804A2F24BF908100027F85 /* FlowViewController.m */; };
@@ -61,6 +68,12 @@
 		9CF8E309F5DB3BEBED841BBD /* Pods_Program_Scheduler_Program_SchedulerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Program_Scheduler_Program_SchedulerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6BC7EE9AB36465943701E85 /* Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig"; path = "Target Support Files/Pods-Program_Scheduler-Program_SchedulerUITests/Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B46D8F69D25A86F101D5D128 /* Pods_Program_Scheduler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Program_Scheduler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C36A703524C617890092AC2F /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		C36A703624C617890092AC2F /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		C36A703824C6241E0092AC2F /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C36A703924C6241E0092AC2F /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C36A703B24C630A80092AC2F /* ImageUploadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageUploadViewController.h; sourceTree = "<group>"; };
+		C36A703C24C630A80092AC2F /* ImageUploadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageUploadViewController.m; sourceTree = "<group>"; };
 		C3804A2924BF829B00027F85 /* EventView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EventView.xib; path = Program_Scheduler/EventView.xib; sourceTree = SOURCE_ROOT; };
 		C3804A2B24BF82DE00027F85 /* EventView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventView.h; sourceTree = "<group>"; };
 		C3804A2C24BF82DE00027F85 /* EventView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventView.m; sourceTree = "<group>"; };
@@ -110,7 +123,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C36A704624C663CC0092AC2F /* FacebookLogin in Frameworks */,
+				C36A704024C663CC0092AC2F /* FacebookShare in Frameworks */,
+				C36A704224C663CC0092AC2F /* FacebookCore in Frameworks */,
 				916D578827D5F907BBB8F191 /* Pods_Program_Scheduler.framework in Frameworks */,
+				C36A704424C663CC0092AC2F /* FacebookGamingServices in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +153,8 @@
 		C38A0D2624BE1A7200330524 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C36A703824C6241E0092AC2F /* User.h */,
+				C36A703924C6241E0092AC2F /* User.m */,
 				C38A0D2724BE1B9600330524 /* Event.h */,
 				C38A0D2824BE1B9600330524 /* Event.m */,
 				C38A0D2A24BE36E700330524 /* Flow.h */,
@@ -235,6 +254,10 @@
 				C39DBD7424BCD78100FEBFCA /* LoginViewController.m */,
 				C3804A2E24BF908100027F85 /* FlowViewController.h */,
 				C3804A2F24BF908100027F85 /* FlowViewController.m */,
+				C36A703524C617890092AC2F /* ProfileViewController.h */,
+				C36A703624C617890092AC2F /* ProfileViewController.m */,
+				C36A703B24C630A80092AC2F /* ImageUploadViewController.h */,
+				C36A703C24C630A80092AC2F /* ImageUploadViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -280,6 +303,12 @@
 			dependencies = (
 			);
 			name = Program_Scheduler;
+			packageProductDependencies = (
+				C36A703F24C663CC0092AC2F /* FacebookShare */,
+				C36A704124C663CC0092AC2F /* FacebookCore */,
+				C36A704324C663CC0092AC2F /* FacebookGamingServices */,
+				C36A704524C663CC0092AC2F /* FacebookLogin */,
+			);
 			productName = Program_Scheduler;
 			productReference = C39DBD3A24BCCF0D00FEBFCA /* Program_Scheduler.app */;
 			productType = "com.apple.product-type.application";
@@ -354,6 +383,9 @@
 				Base,
 			);
 			mainGroup = C39DBD3124BCCF0D00FEBFCA;
+			packageReferences = (
+				C36A703E24C663CC0092AC2F /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = C39DBD3B24BCCF0D00FEBFCA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -504,7 +536,10 @@
 			files = (
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
 				C3804A3024BF908100027F85 /* FlowViewController.m in Sources */,
+				C36A703724C617890092AC2F /* ProfileViewController.m in Sources */,
 				C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */,
+				C36A703A24C6241E0092AC2F /* User.m in Sources */,
+				C36A703D24C630A80092AC2F /* ImageUploadViewController.m in Sources */,
 				C386087324C0E277007C1F78 /* EnlargedEventView.m in Sources */,
 				C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */,
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,
@@ -837,6 +872,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C36A703E24C663CC0092AC2F /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C36A703F24C663CC0092AC2F /* FacebookShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C36A703E24C663CC0092AC2F /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookShare;
+		};
+		C36A704124C663CC0092AC2F /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C36A703E24C663CC0092AC2F /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		C36A704324C663CC0092AC2F /* FacebookGamingServices */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C36A703E24C663CC0092AC2F /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookGamingServices;
+		};
+		C36A704524C663CC0092AC2F /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C36A703E24C663CC0092AC2F /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C39DBD3224BCCF0D00FEBFCA /* Project object */;
 }

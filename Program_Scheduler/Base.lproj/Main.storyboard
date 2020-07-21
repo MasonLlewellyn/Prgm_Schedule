@@ -225,9 +225,15 @@
                                 <action selector="logoutPressed:" destination="hmn-nL-ZZq" id="ffi-wR-f7Z"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="person.circle" catalog="system" id="nrX-yi-IJw">
+                            <connections>
+                                <action selector="profileButtonPressed:" destination="hmn-nL-ZZq" id="ZFg-BD-C4L"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="TaV-LY-wX3" id="ZRj-RV-KRM"/>
+                        <segue destination="Zgt-Sa-jf7" kind="presentation" identifier="timelineToProfileView" id="UQH-Pm-h68"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Viq-QE-a2B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -361,6 +367,79 @@
             </objects>
             <point key="canvasLocation" x="1709.5999999999999" y="-245.32019704433498"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="bGP-pp-Z0P">
+            <objects>
+                <viewController id="Zgt-Sa-jf7" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JMZ-pf-gCb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TvD-SF-nCZ" customClass="PFImageView">
+                                <rect key="frame" x="32" y="52.000000000000014" width="311" height="253"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vif-Nw-09C">
+                                <rect key="frame" x="16" y="475" width="343" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutPressed:" destination="Zgt-Sa-jf7" eventType="touchUpInside" id="Q0Q-9s-Gkh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqy-00-eJW">
+                                <rect key="frame" x="32" y="314.33333333333331" width="311" height="39.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="33"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tyq-YD-mYf">
+                                <rect key="frame" x="16" y="403" width="343" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Connect to Facebook">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="connectToFacebookPressed:" destination="Zgt-Sa-jf7" eventType="touchUpInside" id="NQd-HI-8qw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-NP-LKs">
+                                <rect key="frame" x="319" y="12" width="24" height="30"/>
+                                <state key="normal" image="camera" catalog="system"/>
+                                <connections>
+                                    <action selector="cameraButtonPressed:" destination="Zgt-Sa-jf7" eventType="touchUpInside" id="YIQ-L2-QkY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="TvD-SF-nCZ" firstAttribute="top" secondItem="JMZ-pf-gCb" secondAttribute="topMargin" constant="50" id="0GN-TF-IY3"/>
+                            <constraint firstItem="TvD-SF-nCZ" firstAttribute="leading" secondItem="JMZ-pf-gCb" secondAttribute="leadingMargin" constant="16" id="BNL-OJ-fcE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TvD-SF-nCZ" secondAttribute="trailing" constant="16" id="KAG-rs-ZFv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cfu-NP-LKs" secondAttribute="trailing" constant="16" id="PLi-8O-b7D"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="aqy-00-eJW" secondAttribute="bottom" constant="370" id="X9F-jw-CNk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aqy-00-eJW" secondAttribute="trailing" constant="16" id="ZMP-C4-Ruf"/>
+                            <constraint firstItem="aqy-00-eJW" firstAttribute="leading" secondItem="JMZ-pf-gCb" secondAttribute="leadingMargin" constant="16" id="ZmX-Jh-pi0"/>
+                            <constraint firstItem="Cfu-NP-LKs" firstAttribute="top" secondItem="JMZ-pf-gCb" secondAttribute="topMargin" constant="12" id="aDz-yz-l8b"/>
+                            <constraint firstItem="aqy-00-eJW" firstAttribute="top" secondItem="TvD-SF-nCZ" secondAttribute="bottom" constant="8" id="cyE-Qy-fLT"/>
+                            <constraint firstItem="TvD-SF-nCZ" firstAttribute="top" secondItem="Cfu-NP-LKs" secondAttribute="bottom" constant="8" id="nMA-X0-Ggc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1m4-nx-KNI"/>
+                    </view>
+                    <connections>
+                        <outlet property="connectFacebookButton" destination="Tyq-YD-mYf" id="m37-L6-e3k"/>
+                        <outlet property="profilePictureView" destination="TvD-SF-nCZ" id="9tm-aT-y6N"/>
+                        <outlet property="usernameLabel" destination="aqy-00-eJW" id="j4C-pa-gww"/>
+                        <segue destination="OnL-sO-k0T" kind="presentation" identifier="profileToImageUploader" id="qAv-gg-2zx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="psx-xg-JwB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2652" y="-1203"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ojf-hK-KjF">
             <objects>
@@ -380,8 +459,92 @@
             </objects>
             <point key="canvasLocation" x="4100" y="-1166.0098522167489"/>
         </scene>
+        <!--Image Upload View Controller-->
+        <scene sceneID="uVz-Bl-ewl">
+            <objects>
+                <viewController storyboardIdentifier="uploadViewController" id="vhs-qf-hcm" customClass="ImageUploadViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Q6-kj-tC4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="leq-yQ-FZ8" customClass="PFImageView">
+                                <rect key="frame" x="16" y="58" width="343" height="316.66666666666669"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="UMZ-NP-i9c"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twp-gh-RYF">
+                                <rect key="frame" x="16" y="436" width="84" height="30"/>
+                                <state key="normal" title="Use Camera"/>
+                                <connections>
+                                    <action selector="cameraPressed:" destination="vhs-qf-hcm" eventType="touchUpInside" id="lrs-pC-Uqf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OtT-j2-0bE">
+                                <rect key="frame" x="16" y="500" width="97" height="30"/>
+                                <state key="normal" title="Find in Library"/>
+                                <connections>
+                                    <action selector="libararyPressed:" destination="vhs-qf-hcm" eventType="touchUpInside" id="2Dr-gn-UzU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="leq-yQ-FZ8" secondAttribute="trailing" id="5uA-LB-y12"/>
+                            <constraint firstItem="leq-yQ-FZ8" firstAttribute="leading" secondItem="5Q6-kj-tC4" secondAttribute="leadingMargin" id="8H5-Ge-1n5"/>
+                            <constraint firstItem="twp-gh-RYF" firstAttribute="top" secondItem="leq-yQ-FZ8" secondAttribute="bottom" constant="60" id="9q0-yr-GBe"/>
+                            <constraint firstItem="twp-gh-RYF" firstAttribute="leading" secondItem="5Q6-kj-tC4" secondAttribute="leadingMargin" id="IxY-eM-GSK"/>
+                            <constraint firstItem="leq-yQ-FZ8" firstAttribute="top" secondItem="5Q6-kj-tC4" secondAttribute="topMargin" id="P8j-pe-QrI"/>
+                            <constraint firstItem="OtT-j2-0bE" firstAttribute="top" secondItem="twp-gh-RYF" secondAttribute="bottom" constant="34" id="byP-38-slA"/>
+                            <constraint firstItem="OtT-j2-0bE" firstAttribute="leading" secondItem="5Q6-kj-tC4" secondAttribute="leadingMargin" id="dcl-jX-Bhm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Kkj-8s-jah"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="g8D-6h-7F2">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jej-L2-Orz">
+                            <connections>
+                                <action selector="cancelPressed:" destination="vhs-qf-hcm" id="fJe-Sq-Mf4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Set Image" id="vhE-yw-VBu">
+                            <connections>
+                                <action selector="setImageAsProfile:" destination="vhs-qf-hcm" id="RGj-f1-7N9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="profileImage" destination="leq-yQ-FZ8" id="Wwd-m6-5hd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hd7-cM-n4c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2570.4000000000001" y="-1953.6945812807883"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nWZ-ZL-ToE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OnL-sO-k0T" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dly-yY-BN5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vhs-qf-hcm" kind="relationship" relationship="rootViewController" id="9Ce-GI-X2w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NMD-Av-AFe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="-1953.6945812807883"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="VJB-1d-guM"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+    </resources>
 </document>

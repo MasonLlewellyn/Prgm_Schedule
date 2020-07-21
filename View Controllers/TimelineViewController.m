@@ -16,6 +16,9 @@
 #import "SceneDelegate.h"
 #import "AppDelegate.h"
 
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
 @interface TimelineViewController ()
 @property (nonatomic, strong) NSMutableArray *activeFlows;
 @property (nonatomic, strong) NSMutableArray *inactiveFlows;
@@ -41,9 +44,14 @@ NSInteger pageCount = 20;
     [refreshControl addTarget:self action:@selector(refreshFlows:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     
-    //[Flow testPostFlow];
+    //IF the user is already logged into Facebook (Perform some action)
+    if ([FBSDKAccessToken currentAccessToken]) {
+        //Action TBD
+    }
     
     [self fetchFlows];
+    
+    
     
 }
 
@@ -60,6 +68,9 @@ NSInteger pageCount = 20;
         LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         sceneDelegate.window.rootViewController = loginViewController;
     }];
+}
+- (IBAction)profileButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"timelineToProfileView" sender:nil];
 }
 
 - (void)fetchFlows{
@@ -105,11 +116,15 @@ NSInteger pageCount = 20;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if (sender){
+    if ([sender isKindOfClass:[FlowFeedTableViewCell class]]){
         FlowFeedTableViewCell *cell = sender;
         FlowViewController *controller = [segue destinationViewController];
         
         controller.flow = cell.flow;
+    }
+    else{
+        //Going to user profile screen
+        
     }
 }
 
