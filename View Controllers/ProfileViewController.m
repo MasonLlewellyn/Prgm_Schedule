@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "ImageUploadViewController.h"
+#import "User.h"
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
@@ -59,7 +60,25 @@
     }
 }
 
-- (void) loginUser: (FBSDKLoginManager*)loginManager{
+- (void) updateUser{
+    //Add facebook UserID to the current Parse User
+    User *currUser = [User currentUser];
+    NSLog(@"%@", currUser);
+    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+           if (!error) {
+               NSLog(@"%@", result[@"id"]);
+               currUser.facebooKID = result[@"id"];
+               [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                   if (!error)
+                       NSLog(@"Save was complete");
+               }];
+           }
+       }];
+}
+
+- (void) loginFacebookUser: (FBSDKLoginManager*)loginManager{
+    //Logs user in to Facebook
     [loginManager logInWithPermissions:@[@"user_friends"] fromViewController:self handler:^(FBSDKLoginManagerLoginResult * _Nullable result, NSError * _Nullable error) {
         if (error){
             NSLog(@"Login error: %@", error.localizedDescription);
@@ -67,7 +86,7 @@
         else{
             [self.connectFacebookButton setTitle:@"Log out of Facebook" forState:UIControlStateNormal];
             self.facebookLoggedIn = YES;
-
+            [self updateUser];
         }
     }];
 }
@@ -77,11 +96,17 @@
         NSLog(@"Logging you out.  Just because");
         [loginManager logOut];
         [self.connectFacebookButton setTitle:@"Connect to Facebook" forState:UIControlStateNormal];
+        
+        //Delete the facebook ID from the Parse database
+        User *currUser = [User currentUser];
+        currUser.facebooKID = nil;
+        [currUser saveInBackground];
+        
         self.facebookLoggedIn = NO;
     }
     else{
         NSLog(@"Maybe you can get in");
-        [self loginUser: loginManager];
+        [self loginFacebookUser: loginManager];
     }
     
 }

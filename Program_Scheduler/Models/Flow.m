@@ -8,6 +8,7 @@
 
 #import "Flow.h"
 #import "Event.h"
+#import "User.h"
 
 @implementation Flow
 
@@ -28,7 +29,7 @@
     newFlow.startDate = [NSDate now];
     newFlow.endDate = [NSDate now];
     newFlow.active = NO;
-    
+    newFlow.author = [User currentUser];
     Event *newEvent = [Event dummyEvent];
     newEvent.Title = @"Fake event";
     Event *secondEvent = [Event dummyEvent];

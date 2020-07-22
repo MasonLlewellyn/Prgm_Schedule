@@ -128,6 +128,7 @@
             NSLog(@"User registered successfully");
             
             // manually segue to logged in view
+            [self performSegueWithIdentifier:@"signUpToTimeline" sender:nil];
         }
     }];
 }

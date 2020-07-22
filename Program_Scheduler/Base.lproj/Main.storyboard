@@ -76,7 +76,7 @@
                         <outlet property="passwordField" destination="pai-up-eTm" id="OWU-zO-4e0"/>
                         <outlet property="usernameField" destination="l33-qv-C1g" id="R1Y-zQ-4lH"/>
                         <segue destination="hfO-F9-sNd" kind="presentation" identifier="loginToSignUp" id="Hjc-Vc-6uw"/>
-                        <segue destination="bBf-5v-9I7" kind="modal" identifier="loginToTimeline" id="VJB-1d-guM"/>
+                        <segue destination="bBf-5v-9I7" kind="show" identifier="loginToTimeline" id="VJB-1d-guM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -577,6 +577,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="usernameLabel" destination="teh-1J-y2m" id="YtR-A3-CnS"/>
+                                            <segue destination="bBf-5v-9I7" kind="presentation" id="u8X-Fj-2bP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -614,7 +615,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VJB-1d-guM"/>
+        <segue reference="u8X-Fj-2bP"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>

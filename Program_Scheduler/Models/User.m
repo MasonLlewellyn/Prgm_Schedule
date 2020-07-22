@@ -11,6 +11,6 @@
 
 @implementation User
 @dynamic profileImage;
-
+@dynamic  facebooKID;
 
 @end

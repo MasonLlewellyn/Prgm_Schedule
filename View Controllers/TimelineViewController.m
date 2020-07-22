@@ -44,8 +44,10 @@ NSInteger pageCount = 20;
     [refreshControl addTarget:self action:@selector(refreshFlows:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     
-
+    if (self.currUser == nil)
+        self.currUser = [User currentUser];
     
+    [Flow testPostFlow];
     [self fetchFlows];
     
     
@@ -86,6 +88,7 @@ NSInteger pageCount = 20;
     PFQuery *query = [Flow query];
     query.limit = pageCount;
     //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
+    [query whereKey:@"author" equalTo:self.currUser];
     [query findObjectsInBackgroundWithBlock:^(NSArray<Flow*> * _Nullable flows, NSError * _Nullable error) {
         if (flows){
             weakSelf.activeFlows = [NSMutableArray arrayWithArray:flows];
@@ -103,6 +106,7 @@ NSInteger pageCount = 20;
     PFQuery *query = [Flow query];
     query.skip = self.loadedCount;
     query.limit = pageCount;
+    [query whereKey:@"author" equalTo:self.currUser];
     //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
     [query findObjectsInBackgroundWithBlock:^(NSArray<Flow*> * _Nullable flows, NSError * _Nullable error) {
         if (flows){

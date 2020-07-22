@@ -8,6 +8,8 @@
 
 #import "FriendsViewController.h"
 #import "FriendsTableViewCell.h"
+#import "User.h"
+#import "TimelineViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
@@ -53,14 +55,30 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.friendList.count;
 }
-/*
+
 #pragma mark - Navigation
 
+- (User*)getUserFromID: (NSString*)facebookID{
+    PFQuery *query = [User query];
+    [query whereKey:@"facebooKID" equalTo:facebookID];
+    User *usr = [query getFirstObject];
+    return usr;
+}
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([sender isKindOfClass:[FriendsTableViewCell class]]){
+        //A tableviewcell was pressed meaning you should segue
+        UINavigationController *navCtrl = [segue destinationViewController];
+        TimelineViewController *timeline = [navCtrl viewControllers][0];
+        
+        FriendsTableViewCell *cell = sender;
+        User *friendUser = [self getUserFromID: cell.userInfo[@"id"]];
+        
+        timeline.currUser = friendUser;
+    }
 }
-*/
+
 
 @end
