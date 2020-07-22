@@ -23,15 +23,20 @@
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
+    self.title = @"Friends";
     [self setupView];
 }
 
 - (void) setupView{
+    NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
+    paramDict[@"fields"] = @"friends";
+    
     [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me/friends" parameters:nil]
       startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
         if (!error) {
+            NSLog(@"%@", result);
             self.friendList = result[@"data"];
+            [self.tableView reloadData];
         }
     }];
 }
@@ -40,6 +45,8 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     FriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FriendCell"];
     //TODO: continue from here
+    NSDictionary *userDict = self.friendList[indexPath.row];
+    [cell setupCell: userDict];
     return cell;
 }
 

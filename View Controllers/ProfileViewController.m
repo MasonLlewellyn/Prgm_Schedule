@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *connectFacebookButton;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePictureView;
-
+@property (nonatomic) BOOL facebookLoggedIn;
 
 @end
 
@@ -35,11 +35,14 @@
 - (void) setupView{
     //Facebook Login Test
     
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    /*FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     // Optional: Place the button in the center of your view.
     loginButton.frame = self.connectFacebookButton.frame;//NOTE: This is a band-aid fix to get the Facebook login button oriented correctly
-    [self.view addSubview:loginButton];
-    self.connectFacebookButton.hidden = YES;
+    [self.view addSubview:loginButton];*/
+    
+    UIColor *fbColor = [UIColor colorWithRed:59/255.0 green:89/255.0 blue:152/255.0 alpha:1.0];
+    self.connectFacebookButton.backgroundColor = fbColor;
+    
     User *currUser = [User currentUser];
     self.usernameLabel.text = currUser.username;
     
@@ -48,10 +51,39 @@
         self.profilePictureView.file = currUser.profileImage;
         [self.profilePictureView loadInBackground];
     }
+    
+    if ([FBSDKAccessToken currentAccessToken]){
+        NSLog(@"It's like talking to a brick wall");
+        [self.connectFacebookButton setTitle:@"Log out of Facebook" forState:UIControlStateNormal];
+        self.facebookLoggedIn = YES;
+    }
 }
 
+- (void) loginUser: (FBSDKLoginManager*)loginManager{
+    [loginManager logInWithPermissions:@[@"user_friends"] fromViewController:self handler:^(FBSDKLoginManagerLoginResult * _Nullable result, NSError * _Nullable error) {
+        if (error){
+            NSLog(@"Login error: %@", error.localizedDescription);
+        }
+        else{
+            [self.connectFacebookButton setTitle:@"Log out of Facebook" forState:UIControlStateNormal];
+            self.facebookLoggedIn = YES;
+
+        }
+    }];
+}
 - (IBAction)connectToFacebookPressed:(id)sender {
-    NSLog(@"You really press my buttons");
+    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+    if (self.facebookLoggedIn){
+        NSLog(@"Logging you out.  Just because");
+        [loginManager logOut];
+        [self.connectFacebookButton setTitle:@"Connect to Facebook" forState:UIControlStateNormal];
+        self.facebookLoggedIn = NO;
+    }
+    else{
+        NSLog(@"Maybe you can get in");
+        [self loginUser: loginManager];
+    }
+    
 }
 - (IBAction)cameraButtonPressed:(id)sender {
     //Camera button used to add a profile picture to the user image

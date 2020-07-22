@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FriendsTableViewCell : UITableViewCell
-- (void) setupCell;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (strong, nonatomic) NSDictionary *userInfo;
+- (void) setupCell: (NSDictionary*)userInfo;
 @end
 
 NS_ASSUME_NONNULL_END

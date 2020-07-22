@@ -21,4 +21,9 @@
     // Configure the view for the selected state
 }
 
+- (void) setupCell:(NSDictionary *)userInfo{
+    self.usernameLabel.text = userInfo[@"name"];
+    self.userInfo = userInfo;
+}
+
 @end
