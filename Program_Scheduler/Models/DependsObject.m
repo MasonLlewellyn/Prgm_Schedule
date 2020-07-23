@@ -7,8 +7,9 @@
 //
 
 #import "DependsObject.h"
-@dynamic dependsOn;
+
 @implementation DependsObject
+@dynamic dependsOn;
 - (BOOL) getActive{
     return YES;
 }
