@@ -100,13 +100,24 @@
 + (void) getEventFromID: (NSString*)eventID eventPointer:(Event *__autoreleasing *)eventPt{
     PFQuery *eQuery = [Event query];
     [eQuery whereKey:@"objectID" equalTo:eventID];
-    //Note: this does not "find in background" because
     [eQuery findObjectsInBackgroundWithBlock:^(NSArray<Event*>* _Nullable events, NSError * _Nullable error) {
         //There should only be one event in the array
         if (events.count > 0){
             *eventPt = events[0];
         }
         
+    }];
+}
+
++ (void) cleanHouse{
+    PFQuery *eQuery = [Event query];
+    [eQuery whereKeyDoesNotExist:@"flowID"];
+    [eQuery findObjectsInBackgroundWithBlock:^(NSArray<Event*>* _Nullable events, NSError * _Nullable error) {
+        NSLog(@"----------Clearing House------------------------------");
+        for (unsigned long i = 0; i < events.count; i++){
+            [events[i] deleteInBackground];
+        }
+        NSLog(@"------------We did it guys, we deleted all the orphans----------------");
     }];
 }
 @end

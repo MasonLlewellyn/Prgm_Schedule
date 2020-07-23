@@ -65,6 +65,8 @@
     [self makeEventViews];
 }
 
+
+
 - (void) makeEventViews{
     NSUInteger startY = 0;
     for (NSUInteger i = 0; i < self.events.count; i++){

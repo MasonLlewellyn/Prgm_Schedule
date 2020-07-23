@@ -10,6 +10,9 @@
 		916D578827D5F907BBB8F191 /* Pods_Program_Scheduler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46D8F69D25A86F101D5D128 /* Pods_Program_Scheduler.framework */; };
 		B274C85BFDE41CDD7D44A991 /* Pods_Program_Scheduler_Program_SchedulerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF8E309F5DB3BEBED841BBD /* Pods_Program_Scheduler_Program_SchedulerUITests.framework */; };
 		B927506988E1DB971B51A095 /* Pods_Program_SchedulerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780D819A831FF00F7C17806 /* Pods_Program_SchedulerTests.framework */; };
+		C30AE9FD24CA1C4D0089AFA5 /* DependsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AE9FC24CA1C4D0089AFA5 /* DependsObject.m */; };
+		C30AEA0024CA1C700089AFA5 /* EventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AE9FF24CA1C700089AFA5 /* EventObject.m */; };
+		C30AEA0324CA1C7D0089AFA5 /* WeatherObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AEA0224CA1C7D0089AFA5 /* WeatherObject.m */; };
 		C36A703724C617890092AC2F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703624C617890092AC2F /* ProfileViewController.m */; };
 		C36A703A24C6241E0092AC2F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703924C6241E0092AC2F /* User.m */; };
 		C36A703D24C630A80092AC2F /* ImageUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703C24C630A80092AC2F /* ImageUploadViewController.m */; };
@@ -71,6 +74,12 @@
 		9CF8E309F5DB3BEBED841BBD /* Pods_Program_Scheduler_Program_SchedulerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Program_Scheduler_Program_SchedulerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6BC7EE9AB36465943701E85 /* Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig"; path = "Target Support Files/Pods-Program_Scheduler-Program_SchedulerUITests/Pods-Program_Scheduler-Program_SchedulerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B46D8F69D25A86F101D5D128 /* Pods_Program_Scheduler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Program_Scheduler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30AE9FB24CA1C4D0089AFA5 /* DependsObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DependsObject.h; sourceTree = "<group>"; };
+		C30AE9FC24CA1C4D0089AFA5 /* DependsObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DependsObject.m; sourceTree = "<group>"; };
+		C30AE9FE24CA1C700089AFA5 /* EventObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventObject.h; sourceTree = "<group>"; };
+		C30AE9FF24CA1C700089AFA5 /* EventObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventObject.m; sourceTree = "<group>"; };
+		C30AEA0124CA1C7D0089AFA5 /* WeatherObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherObject.h; sourceTree = "<group>"; };
+		C30AEA0224CA1C7D0089AFA5 /* WeatherObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherObject.m; sourceTree = "<group>"; };
 		C36A703524C617890092AC2F /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		C36A703624C617890092AC2F /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		C36A703824C6241E0092AC2F /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -170,6 +179,12 @@
 				C38A0D2B24BE36E700330524 /* Flow.m */,
 				C3FD92F924C9075600B1D7C4 /* Weather.h */,
 				C3FD92FA24C9075600B1D7C4 /* Weather.m */,
+				C30AE9FE24CA1C700089AFA5 /* EventObject.h */,
+				C30AE9FF24CA1C700089AFA5 /* EventObject.m */,
+				C30AEA0124CA1C7D0089AFA5 /* WeatherObject.h */,
+				C30AEA0224CA1C7D0089AFA5 /* WeatherObject.m */,
+				C30AE9FB24CA1C4D0089AFA5 /* DependsObject.h */,
+				C30AE9FC24CA1C4D0089AFA5 /* DependsObject.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -549,13 +564,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C30AE9FD24CA1C4D0089AFA5 /* DependsObject.m in Sources */,
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
 				C3804A3024BF908100027F85 /* FlowViewController.m in Sources */,
 				C36A704924C6B5000092AC2F /* FriendsViewController.m in Sources */,
+				C30AEA0024CA1C700089AFA5 /* EventObject.m in Sources */,
 				C36A703724C617890092AC2F /* ProfileViewController.m in Sources */,
 				C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */,
 				C36A703A24C6241E0092AC2F /* User.m in Sources */,
 				C36A703D24C630A80092AC2F /* ImageUploadViewController.m in Sources */,
+				C30AEA0324CA1C7D0089AFA5 /* WeatherObject.m in Sources */,
 				C386087324C0E277007C1F78 /* EnlargedEventView.m in Sources */,
 				C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */,
 				C3FD92FB24C9075600B1D7C4 /* Weather.m in Sources */,

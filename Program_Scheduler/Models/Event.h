@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (Event*) dummyEvent;
 - (void) saveEventToFlow: (Flow*)parentFlow completionHandler: (nullable PFBooleanResultBlock)completion;
 - (void) copyEvent: (Event*)givenEvent;
+
++ (void) cleanHouse; //A debug method that removes all orphanaed events from the database
 @end
 
 NS_ASSUME_NONNULL_END
