@@ -31,6 +31,7 @@
         }];
     }
 }
+
 - (IBAction)cameraPressed:(id)sender {
     NSLog(@"I see you've chosen the camera");
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];

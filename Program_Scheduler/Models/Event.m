@@ -8,6 +8,7 @@
 
 #import "Event.h"
 #import "Flow.h"
+#import "User.h"
 
 @implementation Event
 @dynamic Title;
@@ -29,7 +30,6 @@
 }
 
 - (void) saveEventToFlow: (Flow*)parentFlow completionHandler: (nullable PFBooleanResultBlock)completion{
-    //TODO: Add completion handler to this to pass to the saveInBackground part
     self.flowID = parentFlow.objectId;
     if (completion == nil){
         [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
@@ -37,6 +37,18 @@
     else{
         [self saveInBackgroundWithBlock:completion];
     }
+}
+
+- (void) copyEvent:(Event *)givenEvent{
+    //NOTE: Omit copying the FlowID because we are copying this event to a new flow,
+    //Also, omitting the dependency copy because we will
+    self.Title = givenEvent.Title;
+    self.author = [User currentUser];
+    self.startDateTime = givenEvent.startDateTime;
+    self.endDateTime = givenEvent.endDateTime;
+    self.locationLat = givenEvent.locationLat;
+    self.locationLong = givenEvent.locationLong;
+    self.isActive = givenEvent.isActive;
 }
 
 + (void) testPostEvent{

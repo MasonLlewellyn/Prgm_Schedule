@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) testDownloadEvent;
 + (Event*) dummyEvent;
 - (void) saveEventToFlow: (Flow*)parentFlow completionHandler: (nullable PFBooleanResultBlock)completion;
+- (void) copyEvent: (Event*)givenEvent;
 @end
 
 NS_ASSUME_NONNULL_END

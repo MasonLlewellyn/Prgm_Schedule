@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) testPostFlow;
 + (void) testDownloadFlow;
+- (void) copyFlow: (Flow*)givenFlow events: (NSArray*)events;
 - (void) getFlowEvents: (PFQueryArrayResultBlock)completion;
 @end
 

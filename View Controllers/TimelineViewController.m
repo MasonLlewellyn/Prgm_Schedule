@@ -23,6 +23,9 @@
 @property (nonatomic, strong) NSMutableArray *activeFlows;
 @property (nonatomic, strong) NSMutableArray *inactiveFlows;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *profileButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *friendsButton;
 
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) NSInteger loadedCount;
@@ -38,16 +41,27 @@ NSInteger pageCount = 20;
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    //[self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:HeaderViewIdentifier];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshFlows:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     
-    if (self.currUser == nil)
+    if (self.showOther){
+        [self.friendsButton setEnabled:NO];
+        [self.logoutButton setEnabled:NO];
+        [self.profileButton setEnabled:NO];
+        
+        [self.friendsButton setTintColor:[UIColor clearColor]];
+        [self.logoutButton setTintColor:[UIColor clearColor]];
+        [self.profileButton setTintColor:[UIColor clearColor]];
+        self.title = @"Flows";
+    }
+    else if (!self.showOther && self.currUser == nil){
+        NSLog(@"Taking matters into my own hands");
         self.currUser = [User currentUser];
+    }
     
-    [Flow testPostFlow];
+    //[Flow testPostFlow];
     [self fetchFlows];
     
     
@@ -83,7 +97,10 @@ NSInteger pageCount = 20;
 }
 
 - (void)fetchFlows{
-    
+    if (self.showOther && !self.currUser){
+        NSLog(@"No user so I can't get anything");
+        return;
+    }
     __weak typeof(self) weakSelf = self;
     PFQuery *query = [Flow query];
     query.limit = pageCount;
@@ -102,6 +119,11 @@ NSInteger pageCount = 20;
 }
 
 - (void) fetchMoreFlows{
+    if (self.showOther && !self.currUser){
+        NSLog(@"No user so I can't get anything");
+        return;
+    }
+    
     __weak typeof(self) weakSelf = self;
     PFQuery *query = [Flow query];
     query.skip = self.loadedCount;
@@ -130,6 +152,12 @@ NSInteger pageCount = 20;
     if ([sender isKindOfClass:[FlowFeedTableViewCell class]]){
         FlowFeedTableViewCell *cell = sender;
         FlowViewController *controller = [segue destinationViewController];
+        
+        //If the current user is looking at someone else's flow, they shouldn't be able to edit it
+        if ([User currentUser] != self.currUser){
+            NSLog(@"I'm not feeling like myself");
+            controller.nonEditable = YES;
+        }
         
         controller.flow = cell.flow;
     }
@@ -179,7 +207,7 @@ NSInteger pageCount = 20;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    return !self.showOther;
 }
 
 //Delete all of the events in a given flow

@@ -9,10 +9,19 @@
 #import "FlowViewController.h"
 #import "EventEditorViewController.h"
 #import "EventView.h"
+#import "User.h"
+#import "Weather.h"
 #import <Parse/Parse.h>
 
-@interface FlowViewController () <UIScrollViewDelegate>
+
+@interface FlowViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIButton *eventButton;
+@property (weak, nonatomic) IBOutlet UIButton *reminderButton;
+@property (weak, nonatomic) IBOutlet UIButton *actionButton;
+@property (weak, nonatomic) IBOutlet UIButton *flowCopyButton;
+
+
 @property (strong, nonatomic) NSMutableArray<EventView*> *eventViews;
 @end
 
@@ -27,13 +36,25 @@
 #pragma mark - Event Space
 //TODO: instantiate an EventView for each individual event and lay them out vertically
 - (void) initializeView{
+    //If the current user is looking at someone else's flow, they should not be able to edit it
+    
+    self.eventButton.hidden = self.nonEditable;
+    self.actionButton.hidden = self.nonEditable;
+    self.reminderButton.hidden = self.nonEditable;
+    self.flowCopyButton.hidden = !self.nonEditable;
+    
     [self.flow getFlowEvents:^(NSArray<Event*> * _Nullable objects, NSError * _Nullable error) {
         if (error){
             NSLog(@"%@", error.localizedDescription);
         }
         else{
             self.events = [NSMutableArray arrayWithArray:objects];
-            [self arrangeView];
+            [Weather getWeather:^(NSError *error, Weather *weather) {
+                NSLog(@"Begin Completion");
+                NSLog(@"------Weather Temp%f", weather.temperature);
+                [self arrangeView];
+            }];
+            
         }
     }];
 }
@@ -48,6 +69,7 @@
     NSUInteger startY = 0;
     for (NSUInteger i = 0; i < self.events.count; i++){
         EventView *eView = [[EventView alloc] initWithFrame:CGRectMake(10, startY, 300, 120)];
+        eView.nonEditable = self.nonEditable;
         [eView setupAssets:self.events[i] flowViewController:self];
         
         [self.scrollView addSubview:eView];
@@ -59,6 +81,14 @@
 
 - (IBAction)eventButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"flowToEventEditor" sender:nil];
+}
+- (IBAction)copyFlowButtonPressed:(id)sender {
+    //Copy back the flow to the original user
+    Flow *myFlow = [Flow new];
+    
+    [myFlow copyFlow:self.flow events:self.events];
+    myFlow.author = [User currentUser];
+    [myFlow saveInBackground];
 }
 
 

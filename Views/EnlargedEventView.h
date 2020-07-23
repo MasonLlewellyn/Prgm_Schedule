@@ -19,12 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *locationTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dependsTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (weak, nonatomic) UIView *touchInterceptView;
 @property (weak, nonatomic) Event *event;
 
 @property (nonatomic, weak) id <EnlargedEventViewDelegate> delegate;
-
+@property (nonatomic) BOOL nonEditable;
 - (void)setupAssets: (Event*)event intercept: (UIView*)touchIntercept;
 - (void)setupDisplay: (Event*)event;
 @end

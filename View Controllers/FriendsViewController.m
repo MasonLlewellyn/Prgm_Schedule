@@ -77,6 +77,7 @@
         User *friendUser = [self getUserFromID: cell.userInfo[@"id"]];
         
         timeline.currUser = friendUser;
+        timeline.showOther = YES;
     }
 }
 

@@ -89,6 +89,10 @@
     
     self.contentView.layer.cornerRadius = 10;
     self.contentView.layer.masksToBounds = true;
+    
+    self.editButton.hidden = self.nonEditable;
+    self.deleteButton.hidden = self.nonEditable;
+    
 }
 
 - (void)setupAssets: (Event*)event intercept: (UIView*)touchIntercept{
@@ -96,6 +100,7 @@
     self.touchInterceptView = touchIntercept;
     [self setupIntercept];
 }
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

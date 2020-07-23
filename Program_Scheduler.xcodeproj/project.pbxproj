@@ -41,6 +41,7 @@
 		C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7A24BCE63600FEBFCA /* SignUpViewController.m */; };
 		C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */; };
 		C3CC472424C7766C001BE164 /* FriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC472324C7766C001BE164 /* FriendsTableViewCell.m */; };
+		C3FD92FB24C9075600B1D7C4 /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD92FA24C9075600B1D7C4 /* Weather.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,8 @@
 		C3BBC5D424C244AD00372A03 /* EnlargedEventViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnlargedEventViewDelegate.h; sourceTree = "<group>"; };
 		C3CC472224C7766C001BE164 /* FriendsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewCell.h; sourceTree = "<group>"; };
 		C3CC472324C7766C001BE164 /* FriendsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewCell.m; sourceTree = "<group>"; };
+		C3FD92F924C9075600B1D7C4 /* Weather.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
+		C3FD92FA24C9075600B1D7C4 /* Weather.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 				C38A0D2824BE1B9600330524 /* Event.m */,
 				C38A0D2A24BE36E700330524 /* Flow.h */,
 				C38A0D2B24BE36E700330524 /* Flow.m */,
+				C3FD92F924C9075600B1D7C4 /* Weather.h */,
+				C3FD92FA24C9075600B1D7C4 /* Weather.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -553,6 +558,7 @@
 				C36A703D24C630A80092AC2F /* ImageUploadViewController.m in Sources */,
 				C386087324C0E277007C1F78 /* EnlargedEventView.m in Sources */,
 				C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */,
+				C3FD92FB24C9075600B1D7C4 /* Weather.m in Sources */,
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,
 				C38A0D2924BE1B9600330524 /* Event.m in Sources */,
 				C3CC472424C7766C001BE164 /* FriendsTableViewCell.m in Sources */,

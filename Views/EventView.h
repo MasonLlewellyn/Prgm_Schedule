@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *startDateLabel;
 @property (strong, nonatomic) Event* event;
 @property (weak, nonatomic) FlowViewController *flowVC;
+@property (nonatomic) BOOL nonEditable;
 - (void) setupAssets: (Event*)event flowViewController:(FlowViewController*)flowControl;
 @end
 

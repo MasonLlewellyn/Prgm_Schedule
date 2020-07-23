@@ -55,6 +55,7 @@
 
 - (void) presentEnlargedView{
     EnlargedEventView *bigEView = [[EnlargedEventView alloc] initWithFrame:CGRectZero];
+    bigEView.nonEditable = self.nonEditable;
     
     bigEView.frame = CGRectMake(0, 0, self.superview.superview.frame.size.width - 20, 300);
     bigEView.center = self.superview.superview.center;
@@ -94,10 +95,6 @@
     self.contentView.layer.masksToBounds = true;
     
     self.flowVC = flowControl;
-    
-    NSLog(@"%@", self.event);
-    NSLog(@"%@", event.Title);
-    NSLog(@"%@", self.titleLabel.text);
     
     
 }

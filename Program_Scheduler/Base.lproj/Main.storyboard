@@ -239,6 +239,9 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="friendsButton" destination="fBy-aC-8ql" id="8II-k5-ige"/>
+                        <outlet property="logoutButton" destination="nI7-ZG-1WN" id="MNb-Sl-jdF"/>
+                        <outlet property="profileButton" destination="nrX-yi-IJw" id="myJ-Kx-BNJ"/>
                         <outlet property="tableView" destination="TaV-LY-wX3" id="ZRj-RV-KRM"/>
                         <segue destination="Zgt-Sa-jf7" kind="presentation" identifier="timelineToProfileView" id="UQH-Pm-h68"/>
                         <segue destination="uQW-v7-YL3" kind="presentation" identifier="timelineToFriends" id="gB6-tP-idC"/>
@@ -343,11 +346,23 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Action"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzm-8d-7wN">
+                                <rect key="frame" x="20" y="45" width="72" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Copy Flow"/>
+                                <connections>
+                                    <action selector="copyFlowButtonPressed:" destination="Nnv-5H-Rk2" eventType="touchUpInside" id="fAc-IJ-2W0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Yp-vW-hEy"/>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="5JD-kl-BES" id="4nF-CP-xo2"/>
+                        <outlet property="eventButton" destination="vg7-HT-RJB" id="MCS-zT-qkr"/>
+                        <outlet property="flowCopyButton" destination="qzm-8d-7wN" id="AWw-qV-s2R"/>
+                        <outlet property="reminderButton" destination="J6V-6a-cU0" id="Rgs-jj-erN"/>
                         <outlet property="scrollView" destination="ow5-vJ-OOV" id="Oe9-oz-VLk"/>
                         <segue destination="foV-aM-DzH" kind="show" identifier="flowToEventEditor" id="YNI-Od-6Py"/>
                     </connections>
@@ -384,7 +399,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TvD-SF-nCZ" customClass="PFImageView">
-                                <rect key="frame" x="32" y="52.000000000000014" width="311" height="253"/>
+                                <rect key="frame" x="32" y="51.999999999999986" width="311" height="246.66666666666669"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="Ho7-SN-XXT"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vif-Nw-09C">
                                 <rect key="frame" x="16" y="475" width="343" height="56"/>
@@ -398,7 +416,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqy-00-eJW">
-                                <rect key="frame" x="32" y="314.33333333333331" width="311" height="39.666666666666686"/>
+                                <rect key="frame" x="32" y="308" width="311" height="39.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="33"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -406,7 +424,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tyq-YD-mYf">
                                 <rect key="frame" x="16" y="403" width="343" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.88875072669999999" blue="0.75802348649999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Connect to Facebook">
                                     <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 </state>
@@ -428,7 +446,6 @@
                             <constraint firstItem="TvD-SF-nCZ" firstAttribute="leading" secondItem="JMZ-pf-gCb" secondAttribute="leadingMargin" constant="16" id="BNL-OJ-fcE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TvD-SF-nCZ" secondAttribute="trailing" constant="16" id="KAG-rs-ZFv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Cfu-NP-LKs" secondAttribute="trailing" constant="16" id="PLi-8O-b7D"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="aqy-00-eJW" secondAttribute="bottom" constant="370" id="X9F-jw-CNk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aqy-00-eJW" secondAttribute="trailing" constant="16" id="ZMP-C4-Ruf"/>
                             <constraint firstItem="aqy-00-eJW" firstAttribute="leading" secondItem="JMZ-pf-gCb" secondAttribute="leadingMargin" constant="16" id="ZmX-Jh-pi0"/>
                             <constraint firstItem="Cfu-NP-LKs" firstAttribute="top" secondItem="JMZ-pf-gCb" secondAttribute="topMargin" constant="12" id="aDz-yz-l8b"/>
@@ -615,6 +632,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="gB6-tP-idC"/>
         <segue reference="u8X-Fj-2bP"/>
     </inferredMetricsTieBreakers>
     <resources>

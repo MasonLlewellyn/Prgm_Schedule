@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) User *currUser;
+@property (nonatomic) BOOL showOther;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,7 +11,9 @@
             <connections>
                 <outlet property="backButton" destination="WJV-ln-Waj" id="jgo-fl-r6X"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="XBI-EI-b98"/>
+                <outlet property="deleteButton" destination="bdg-yu-nfH" id="CAR-lL-wN8"/>
                 <outlet property="dependsTitleLabel" destination="2A3-J0-wMv" id="3cJ-YO-OOs"/>
+                <outlet property="editButton" destination="6Q9-dO-Wna" id="eHx-Y9-tZU"/>
                 <outlet property="endTimeLabel" destination="EKe-e5-2fC" id="ppw-5x-oJT"/>
                 <outlet property="locationTitleLabel" destination="8qj-MM-cIJ" id="uts-8x-mRP"/>
                 <outlet property="startTimeLabel" destination="PU0-Pi-vCy" id="GCD-a5-IyW"/>
