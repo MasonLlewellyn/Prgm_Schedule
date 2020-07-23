@@ -9,5 +9,12 @@
 #import "EventObject.h"
 
 @implementation EventObject
-
+- (BOOL)getActive{
+    //If the event depends on something, evaluate that
+    if (self.dependsOn){
+        return [self.dependsOn getActive];
+    }
+    //If the event had no dependency, just let it be active
+    return TRUE;
+}
 @end

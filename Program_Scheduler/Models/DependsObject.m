@@ -10,6 +10,8 @@
 
 @implementation DependsObject
 @dynamic dependsOn;
+@dynamic flowID;
+
 - (BOOL) getActive{
     return YES;
 }

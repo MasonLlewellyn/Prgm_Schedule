@@ -9,10 +9,19 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+//This Weather class is a static class that should be initialized once at the start of each FlowView
+static float temperature;
+static NSString *conditionStr;
 
 @interface Weather : NSObject
-@property (nonatomic, strong) NSString *conditionStr;
-@property (nonatomic) float temperature;
++ (void) initialize: (void (^)(NSError *error))completion;
+
++ (void) setTemperature: (float)tempValue;
++ (float) getTemperature;
+
++ (void) setConditionStr: (NSString*)condition;
++ (NSString*) getConditionStr;
+
 + (void) testWeather;
 + (void) getWeather: (void (^)(NSError *error, Weather *weather))completion;//Gets the current weather
 @end

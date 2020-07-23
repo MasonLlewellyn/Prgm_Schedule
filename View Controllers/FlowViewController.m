@@ -49,11 +49,8 @@
         }
         else{
             self.events = [NSMutableArray arrayWithArray:objects];
-            [Weather getWeather:^(NSError *error, Weather *weather) {
-                NSLog(@"Begin Completion");
-                NSLog(@"------Weather Temp%f", weather.temperature);
-                [self arrangeView];
-            }];
+            //TODO: Add Weather initialization here
+            [self arrangeView];
             
         }
     }];

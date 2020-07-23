@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EventObject : DependsObject
-
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSDate *startDate;
+@property (strong, nonatomic) NSDate *endDate;
+@property (nonatomic) BOOL userBool; //Boolean value that checks whether the user has activated the event
 @end
 
 NS_ASSUME_NONNULL_END

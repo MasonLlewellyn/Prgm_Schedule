@@ -11,8 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DependsObject : PFObject
-- (BOOL) getActive;
 @property (strong, nonatomic) DependsObject *dependsOn;
+@property (strong, nonatomic) NSString *flowID;
+- (BOOL) getActive;
 @end
 
 NS_ASSUME_NONNULL_END

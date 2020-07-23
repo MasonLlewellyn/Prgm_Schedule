@@ -11,31 +11,7 @@
 
 NSString *API_KEY = @"bc4e17fd97575a98976af35841962bef";
 @implementation Weather
-+ (void) testWeather{
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    NSString *baseURL = @"http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=";
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@", baseURL, API_KEY];
-    
-    NSURL *URL = [NSURL URLWithString:fullURL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    
-    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil
-    completionHandler:^(NSURLResponse *response, id  responseObject, NSError *error) {
-            if (error) {
-                NSLog(@"Error: %@", error);
-            } else {
-                NSLog(@"-------------------------------------");
-                NSDictionary *dataDictionary = responseObject;
-                NSLog(@"Temperature: %@", responseObject[@"main"][@"temp"]);
-            }
-    }];
-    
-    [dataTask resume];
-    
-}
-+ (void) getWeather: (void (^)(NSError *error, Weather *weather))completion{
++ (void)initialize:(void (^)(NSError * _Nonnull))completion{
     //Get the weather from the OpenWeatherAPI
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
@@ -49,21 +25,29 @@ NSString *API_KEY = @"bc4e17fd97575a98976af35841962bef";
     
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil
     completionHandler:^(NSURLResponse *response, id  responseObject, NSError *error) {
-        Weather *weatherObj = [Weather alloc];
         if (!error){
-            weatherObj.temperature = [responseObject[@"main"][@"temp"] floatValue];
-            //weatherObj.conditionStr = responseObject[@"weather"][@"main"];
+            [self setTemperature:[responseObject[@"main"][@"temp"] floatValue]];
+            [self setConditionStr:responseObject[@"weather"][@"main"]];
         }
-        else{
-            weatherObj = nil;
-        }
-            
-        completion(error, weatherObj);
+        completion(error);
     }];
     
     [dataTask resume];
 }
-+ (Weather*) getWeather{
-    return [Weather alloc];
+
++ (void)setTemperature:(float)tempValue{
+    temperature = tempValue;
+}
+
++ (float)getTemperature{
+    return temperature;
+}
+
++ (void) setConditionStr:(NSString *)condition{
+    conditionStr = condition;
+}
+
++ (NSString*)getConditionStr{
+    return conditionStr;
 }
 @end

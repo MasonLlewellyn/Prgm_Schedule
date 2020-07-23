@@ -11,7 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WeatherObject : DependsObject
-
 @end
 
 NS_ASSUME_NONNULL_END
