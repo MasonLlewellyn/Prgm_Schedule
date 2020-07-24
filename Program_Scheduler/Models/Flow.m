@@ -11,6 +11,7 @@
 #import "User.h"
 #import "DependsObject.h"
 #import "EventObject.h"
+#import "LocalDependsObject.h"
 
 @implementation Flow
 
@@ -40,9 +41,8 @@
     
     //NSLog(@"Pre objectID: %@", newFlow.objectId);
     [newFlow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        DependsObject *d = [DependsObject new];
-        d[@"mirror_me"] = @"em_rorrim";
-        [d saveToFlow:newFlow completionHandler:nil];
+        LocalDependsObject *ldo = [LocalDependsObject new];
+        [ldo saveToDatabase:newFlow completion:nil];
     }];
 }
 
