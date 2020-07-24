@@ -50,6 +50,11 @@
     [dObj saveToFlow:flow completionHandler:completion];
 }
 
+- (void)deleteDatabaseObj{
+    if (self.databaseObj)
+        [self.databaseObj deleteInBackground];
+}
+
 //TODO: Figure out how to copy the dependency tree without duplications
 + (LocalDependsObject*) databaseToLocal: (DependsObject*)dbObject{
     NSString *kindStr = dbObject[@"kind"];
@@ -65,6 +70,15 @@
         //If it is an event
         EventObject *eObj = [EventObject new];
         eObj.databaseObj = dbObject;
+        eObj.title = dbObject[@"title"];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+        //formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterShortStyle;
+        
+        eObj.startDate = [formatter dateFromString:dbObject[@"startDate"]];
+        eObj.endDate = [formatter dateFromString:dbObject[@"endDate"]];
         return eObj;
     }
     //As a last resort, just instantiate it a a LocalDatabaseObject
@@ -73,11 +87,11 @@
     return lObj;
 }
 //The translation method
-+ (NSMutableArray*) queryDependsObjects:  (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion{
++ (NSMutableArray*) queryDependsObjects: (NSString*)flowID completion: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion{
     //TODO: Add completionhandler
     PFQuery *query = [DependsObject query];
     //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
-    //[query whereKey:@"author" equalTo:self.currUser];
+    [query whereKey:@"flowID" equalTo:flowID];
     [query findObjectsInBackgroundWithBlock:^(NSArray<DependsObject*> * _Nullable objects, NSError * _Nullable error) {
         NSMutableArray *array = [[NSMutableArray alloc] init];
         if (!error){

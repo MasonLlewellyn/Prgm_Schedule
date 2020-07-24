@@ -76,21 +76,21 @@
     [self.superview.superview addSubview:bigEView];
     [self.superview.superview bringSubviewToFront:bigEView];
     
-    [bigEView setupAssets:self.event intercept:touchInterceptView];
+    [bigEView setupAssets:self.eventObj intercept:touchInterceptView];
 }
 
-- (void)setupAssets:(Event *)event flowViewController:(FlowViewController*)flowControl{
-    self.event = event;
-    self.titleLabel.text = event.Title;
+- (void)setupAssets:(EventObject *)eventObj flowViewController:(FlowViewController*)flowControl{
+    self.eventObj = eventObj;
+    self.titleLabel.text = eventObj.title;
     
-    self.contentView.backgroundColor = self.event.isActive ?  UIColor.systemGreenColor: UIColor.redColor;
+    self.contentView.backgroundColor = [self.eventObj getActive] ?  UIColor.systemGreenColor: UIColor.redColor;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
     //formatter.dateStyle = NSDateFormatterShortStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
     
-    self.startDateLabel.text = [formatter stringFromDate:event.startDateTime];
+    self.startDateLabel.text = [formatter stringFromDate:eventObj.startDate];
     
     
     self.contentView.layer.cornerRadius = 10;

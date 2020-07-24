@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "EventObject.h"
 #import "FlowViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -16,10 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *startDateLabel;
-@property (strong, nonatomic) Event* event;
+//@property (strong, nonatomic) Event* event;
+@property (strong, nonatomic) EventObject* eventObj;
 @property (weak, nonatomic) FlowViewController *flowVC;
 @property (nonatomic) BOOL nonEditable;
-- (void) setupAssets: (Event*)event flowViewController:(FlowViewController*)flowControl;
+- (void) setupAssets: (EventObject*)event flowViewController:(FlowViewController*)flowControl;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -74,18 +74,18 @@
 }
 
 
-- (void) setupDisplay: (Event*)event{
-    self.event = event;
+- (void) setupDisplay: (EventObject*)eventObj{
+    self.eventObj = eventObj;
     
-    self.titleLabel.text = event.Title;
+    self.titleLabel.text = eventObj.title;
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
     formatter.timeStyle = NSDateFormatterShortStyle;
     
-    self.startTimeLabel.text = [formatter stringFromDate:event.startDateTime];
-    self.endTimeLabel.text = [formatter stringFromDate:event.endDateTime];
+    self.startTimeLabel.text = [formatter stringFromDate:eventObj.startDate];
+    self.endTimeLabel.text = [formatter stringFromDate:eventObj.endDate];
     
     self.contentView.layer.cornerRadius = 10;
     self.contentView.layer.masksToBounds = true;
@@ -95,8 +95,8 @@
     
 }
 
-- (void)setupAssets: (Event*)event intercept: (UIView*)touchIntercept{
-    [self setupDisplay:event];
+- (void)setupAssets: (EventObject*)eventObj intercept: (UIView*)touchIntercept{
+    [self setupDisplay:eventObj];
     self.touchInterceptView = touchIntercept;
     [self setupIntercept];
 }

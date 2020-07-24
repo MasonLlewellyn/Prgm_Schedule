@@ -10,11 +10,6 @@
 
 @implementation EventObject
 
-@dynamic startDate;
-@dynamic endDate;
-@dynamic title;
-@dynamic userBool;
-
 + (NSString*) getKind{
     return @"EventObj";
 }
@@ -26,5 +21,19 @@
 - (BOOL)getActive{
     //TODO: Implement me!
     return TRUE;
+}
+
+- (void) saveToDatabase:(Flow *)flow completion:(PFBooleanResultBlock)completion{
+    DependsObject *dObj = [self pullDatabaseObj];
+    dObj[@"title"] = self.title;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+    //formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterShortStyle;
+    
+    dObj[@"startDate"] = [formatter stringFromDate:self.startDate];
+    dObj[@"endDate"] = [formatter stringFromDate:self.endDate];
+    [super saveToDatabase:flow completion:completion];
 }
 @end

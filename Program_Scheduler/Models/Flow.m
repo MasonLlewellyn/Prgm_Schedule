@@ -44,9 +44,15 @@
     [newFlow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         /*LocalDependsObject *ldo = [LocalDependsObject new];
         [ldo saveToDatabase:newFlow completion:nil];*/
-        WeatherObject *weatherObj = [WeatherObject new];
+        /*WeatherObject *weatherObj = [WeatherObject new];
         weatherObj.desiredTemp = 57.02;
-        [weatherObj saveToDatabase:newFlow completion:nil];
+        [weatherObj saveToDatabase:newFlow completion:nil];*/
+        
+        EventObject *eventObject = [EventObject new];
+        eventObject.title = @"Hoppin on train";
+        eventObject.startDate = [NSDate now];
+        eventObject.endDate = [NSDate now];
+        [eventObject saveToDatabase:newFlow completion:nil];
     }];
 }
 
@@ -75,7 +81,7 @@
     [depQuery whereKey:@"flowID" equalTo:self.objectId];
     [depQuery findObjectsInBackgroundWithBlock:completion];*/
     
-    [LocalDependsObject queryDependsObjects: completion];
+    [LocalDependsObject queryDependsObjects: self.objectId completion:completion];
 }
 
 - (void) copyFlow:(Flow *)givenFlow events: (NSArray*)events{

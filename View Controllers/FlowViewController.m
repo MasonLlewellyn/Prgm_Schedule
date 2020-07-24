@@ -51,13 +51,15 @@
         }
         else{
             NSLog(@"------------Local Objects: %@", objects);
+            self.objects = objects;
+            [self arrangeView];
         }
         
     }];
 }
 
 - (void) arrangeView{
-    CGFloat contentHeight = (170) * (self.events.count) - 20;
+    CGFloat contentHeight = (170) * (self.objects.count) - 20;
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, contentHeight);
     [self makeEventViews];
 }
@@ -66,11 +68,13 @@
 
 - (void) makeEventViews{
     NSUInteger startY = 0;
-    for (NSUInteger i = 0; i < self.events.count; i++){
+    for (NSUInteger i = 0; i < self.objects.count; i++){
+        if (![[self.objects[i] getKind] isEqualToString:[EventObject getKind]]) continue;
+        
         EventView *eView = [[EventView alloc] initWithFrame:CGRectMake(10, startY, 300, 120)];
         eView.nonEditable = self.nonEditable;
-        [eView setupAssets:self.events[i] flowViewController:self];
         
+        [eView setupAssets:(EventObject*)(self.objects[i]) flowViewController:self];
         [self.scrollView addSubview:eView];
         [self.eventViews addObject:eView];
         
@@ -85,7 +89,7 @@
     //Copy back the flow to the original user
     Flow *myFlow = [Flow new];
     
-    [myFlow copyFlow:self.flow events:self.events];
+    //[myFlow copyFlow:self.flow events:self.events];
     myFlow.author = [User currentUser];
     [myFlow saveInBackground];
 }
@@ -102,12 +106,19 @@
         //If we are editing an eventt or creating a new one
         UINavigationController *navCtrl = [segue destinationViewController];
         EventEditorViewController *evc = [navCtrl viewControllers][0];
-        evc.event = sender;
+        evc.eventObj = sender;
         evc.flow = self.flow;
     }
 }
 
 #pragma mark - Enlarged Event View
+- (NSUInteger) eventIndex: (EventObject*) key{
+    for (NSUInteger i = 0; i < self.eventViews.count; i++){
+        if ((EventObject*)self.eventViews[i].eventObj == key)
+            return i;
+    }
+    return self.objects.count;
+}
 - (void) displayDeleteAlert: (EnlargedEventView*)enlargedView{
     NSLog(@"Delegate Called!");
     UIAlertController *alert = [UIAlertController alloc];
@@ -119,13 +130,14 @@
     UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes"
            style:UIAlertActionStyleDefault
        handler:^(UIAlertAction * _Nonnull action) {
-        [enlargedView.event deleteInBackground];
+        [enlargedView.eventObj deleteDatabaseObj];
         //Refresh the Event space
         [self initializeView];
         
         //NOTE: This gives a warning but you know what, it works
         //Also, it's pretty much guarunteed that the event is nonnll
-        NSUInteger eventIndex = [self.eventViews indexOfObject:enlargedView.event];
+        //NSUInteger eventIndex = [self.eventViews indexOfObject:enlargedView.eventObj];
+        NSUInteger eventIndex = [self eventIndex:enlargedView.eventObj];
         [self.eventViews removeObjectAtIndex:eventIndex];
         [self arrangeView];
     }];
@@ -148,7 +160,7 @@
 
 - (void) editSelectedEvent:(EnlargedEventView *)enlargedView{
     NSLog(@"Editing the selected event");
-    [self performSegueWithIdentifier:@"flowToEventEditor" sender:enlargedView.event];
+    [self performSegueWithIdentifier:@"flowToEventEditor" sender:enlargedView.eventObj];
 }
 
 

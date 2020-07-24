@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Event.h"
 #import "Flow.h"
+#import "EventObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EventEditorViewController : UIViewController
-@property (strong, nonatomic) Event *event;
+@property (strong, nonatomic) EventObject *eventObj;
 @property (strong, nonatomic) Flow *flow;
 @end
 

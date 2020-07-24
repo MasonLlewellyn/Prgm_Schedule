@@ -25,37 +25,35 @@
     self.startDatePicker.datePickerMode = UIDatePickerModeTime;
     self.endDatePicker.datePickerMode = UIDatePickerModeTime;
     
-    if (self.event)
+    if (self.eventObj)
         [self setupView];
 }
 
 - (void) setupView{
-    self.titleTextField.text = self.event.Title;
-    [self.startDatePicker setDate:self.event.startDateTime];
-    [self.endDatePicker setDate:self.event.endDateTime];
+    self.titleTextField.text = self.eventObj.title;
+    [self.startDatePicker setDate:self.eventObj.startDate];
+    [self.endDatePicker setDate:self.eventObj.endDate];
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
-    if (self.event == nil) self.event = [Event new];
+    if (self.eventObj == nil) self.eventObj = [EventObject new];
     
-    self.event.Title = self.titleTextField.text;
-    self.event.startDateTime = self.startDatePicker.date;
-    self.event.endDateTime = self.endDatePicker.date;
+    self.eventObj.title = self.titleTextField.text;
+    self.eventObj.startDate = self.startDatePicker.date;
+    self.eventObj.endDate = self.endDatePicker.date;
     
-    [self.event saveEventToFlow:self.flow completionHandler:^(BOOL succeeded, NSError * _Nullable error) {
+    [self.eventObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
         FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
-        [fvc.events addObject:self.event];
+        [fvc.objects addObject:self.eventObj];
         //Dismiss the editing view and update the Flow View
         [self dismissViewControllerAnimated:YES completion:^{
             //Question: Should this go in the initializeView section
             //Resets the englarged display view if it is currently being displayed
             if (fvc.currEnlargedView){
-                [fvc.currEnlargedView setupDisplay:self.event];
+                [fvc.currEnlargedView setupDisplay:self.eventObj];
             }
             [fvc initializeView];
         }];
-        
-        
     }];
 }
 

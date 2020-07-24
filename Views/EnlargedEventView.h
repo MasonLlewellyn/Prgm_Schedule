@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "EventObject.h"
 #import "EnlargedEventViewDelegate.h"
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,12 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (weak, nonatomic) UIView *touchInterceptView;
-@property (weak, nonatomic) Event *event;
+@property (weak, nonatomic) EventObject *eventObj;
 
 @property (nonatomic, weak) id <EnlargedEventViewDelegate> delegate;
 @property (nonatomic) BOOL nonEditable;
-- (void)setupAssets: (Event*)event intercept: (UIView*)touchIntercept;
-- (void)setupDisplay: (Event*)event;
+- (void)setupAssets: (EventObject*)eventObj intercept: (UIView*)touchIntercept;
+- (void)setupDisplay: (EventObject*)eventObj;
 @end
 
 

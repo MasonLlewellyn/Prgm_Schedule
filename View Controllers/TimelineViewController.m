@@ -213,14 +213,14 @@ NSInteger pageCount = 20;
 
 //Delete all of the events in a given flow
 - (void) removeAssociatedEvents: (Flow*) flow{
-    [flow getFlowEvents:^(NSArray<Event*> * _Nullable events, NSError * _Nullable error) {
+    [flow getFlowEvents:^(NSArray<EventObject*> * _Nullable events, NSError * _Nullable error) {
         if (error){
             NSLog(@"%@", error.localizedDescription);
         }
         else{
             //Delete all events in the array
             for (NSInteger i = 0; i < events.count; i++){
-                [events[i] deleteInBackground];
+                [events[i] deleteDatabaseObj];
             }
         }
     }];
@@ -232,9 +232,11 @@ NSInteger pageCount = 20;
         //If your data source is an NSMutableArray, do this
         Flow *removedFlow = self.activeFlows[indexPath.row];
         
+        //Delete all associated depends objects
         [self removeAssociatedEvents:removedFlow];
         [removedFlow deleteInBackground];
         
+        //Delete the flow itself
         [self.activeFlows removeObjectAtIndex:indexPath.row];
         [tableView reloadData]; // tell table to refresh now
     }
