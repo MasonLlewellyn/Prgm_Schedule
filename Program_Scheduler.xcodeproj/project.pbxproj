@@ -13,6 +13,7 @@
 		C30AE9FD24CA1C4D0089AFA5 /* DependsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AE9FC24CA1C4D0089AFA5 /* DependsObject.m */; };
 		C30AEA0024CA1C700089AFA5 /* EventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AE9FF24CA1C700089AFA5 /* EventObject.m */; };
 		C30AEA0324CA1C7D0089AFA5 /* WeatherObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AEA0224CA1C7D0089AFA5 /* WeatherObject.m */; };
+		C30AEA0624CA8E030089AFA5 /* LocalDependsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AEA0524CA8E030089AFA5 /* LocalDependsObject.m */; };
 		C36A703724C617890092AC2F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703624C617890092AC2F /* ProfileViewController.m */; };
 		C36A703A24C6241E0092AC2F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703924C6241E0092AC2F /* User.m */; };
 		C36A703D24C630A80092AC2F /* ImageUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703C24C630A80092AC2F /* ImageUploadViewController.m */; };
@@ -80,6 +81,8 @@
 		C30AE9FF24CA1C700089AFA5 /* EventObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventObject.m; sourceTree = "<group>"; };
 		C30AEA0124CA1C7D0089AFA5 /* WeatherObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherObject.h; sourceTree = "<group>"; };
 		C30AEA0224CA1C7D0089AFA5 /* WeatherObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherObject.m; sourceTree = "<group>"; };
+		C30AEA0424CA8E030089AFA5 /* LocalDependsObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDependsObject.h; sourceTree = "<group>"; };
+		C30AEA0524CA8E030089AFA5 /* LocalDependsObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDependsObject.m; sourceTree = "<group>"; };
 		C36A703524C617890092AC2F /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		C36A703624C617890092AC2F /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		C36A703824C6241E0092AC2F /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				C38A0D2824BE1B9600330524 /* Event.m */,
 				C38A0D2A24BE36E700330524 /* Flow.h */,
 				C38A0D2B24BE36E700330524 /* Flow.m */,
+				C30AEA0424CA8E030089AFA5 /* LocalDependsObject.h */,
+				C30AEA0524CA8E030089AFA5 /* LocalDependsObject.m */,
 				C3FD92F924C9075600B1D7C4 /* Weather.h */,
 				C3FD92FA24C9075600B1D7C4 /* Weather.m */,
 				C30AE9FE24CA1C700089AFA5 /* EventObject.h */,
@@ -566,6 +571,7 @@
 			files = (
 				C30AE9FD24CA1C4D0089AFA5 /* DependsObject.m in Sources */,
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
+				C30AEA0624CA8E030089AFA5 /* LocalDependsObject.m in Sources */,
 				C3804A3024BF908100027F85 /* FlowViewController.m in Sources */,
 				C36A704924C6B5000092AC2F /* FriendsViewController.m in Sources */,
 				C30AEA0024CA1C700089AFA5 /* EventObject.m in Sources */,

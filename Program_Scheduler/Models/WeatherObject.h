@@ -7,10 +7,14 @@
 //
 
 #import "DependsObject.h"
+#import "LocalDependsObject.h"
+#import <Parse/Parse.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WeatherObject : DependsObject
+@interface WeatherObject : LocalDependsObject
+@property (nonatomic) float desiredTemp;
+@property (strong, nonatomic) NSString *desiredCondition;
 @end
 
 NS_ASSUME_NONNULL_END

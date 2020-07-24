@@ -7,12 +7,27 @@
 //
 
 #import "DependsObject.h"
+#import "Flow.h"
 
 @implementation DependsObject
 @dynamic dependsOn;
 @dynamic flowID;
 
++ (nonnull NSString *)parseClassName {
+    return @"DependsObject";
+}
+
 - (BOOL) getActive{
     return YES;
+}
+
+- (void) saveToFlow:(Flow *)parentFlow completionHandler:(PFBooleanResultBlock)completion{
+    self.flowID = parentFlow.objectId;
+    if (completion == nil){
+        [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
+    }
+    else{
+        [self saveInBackgroundWithBlock:completion];
+    }
 }
 @end

@@ -7,10 +7,11 @@
 //
 
 #import "DependsObject.h"
+#import "LocalDependsObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EventObject : DependsObject
+@interface EventObject : LocalDependsObject
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSDate *startDate;
 @property (strong, nonatomic) NSDate *endDate;

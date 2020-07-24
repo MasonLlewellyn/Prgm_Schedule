@@ -43,6 +43,7 @@
     self.reminderButton.hidden = self.nonEditable;
     self.flowCopyButton.hidden = !self.nonEditable;
     
+    
     [self.flow getFlowEvents:^(NSArray<Event*> * _Nullable objects, NSError * _Nullable error) {
         if (error){
             NSLog(@"%@", error.localizedDescription);

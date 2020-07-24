@@ -62,7 +62,7 @@ NSInteger pageCount = 20;
     }
     
     [Flow testPostFlow];
-    [Event cleanHouse];
+    //[Event cleanHouse];
     [self fetchFlows];
     
     

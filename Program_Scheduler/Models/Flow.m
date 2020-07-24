@@ -9,6 +9,8 @@
 #import "Flow.h"
 #import "Event.h"
 #import "User.h"
+#import "DependsObject.h"
+#import "EventObject.h"
 
 @implementation Flow
 
@@ -30,21 +32,17 @@
     newFlow.endDate = [NSDate now];
     newFlow.active = NO;
     newFlow.author = [User currentUser];
-    Event *newEvent = [Event dummyEvent];
-    newEvent.Title = @"Fake event";
-    Event *secondEvent = [Event dummyEvent];
     
+    /*EventObject *eventObj = [EventObject new];
+    eventObj.title = @"A meeting that could be an email";
+    eventObj.startDate = newFlow.startDate;
+    eventObj.endDate = [NSDate now];*/
     
     //NSLog(@"Pre objectID: %@", newFlow.objectId);
     [newFlow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        //NSLog(@"Saved objectID: %@", newFlow.objectId);
-        [newEvent saveEventToFlow:newFlow completionHandler:nil];
-        [secondEvent saveEventToFlow:newFlow completionHandler:nil];
-        
-        for (int i = 0; i < 20; i++){
-            Event *loopEvent = [Event dummyEvent];
-            [loopEvent saveEventToFlow:newFlow completionHandler:nil];
-        }
+        DependsObject *d = [DependsObject new];
+        d[@"mirror_me"] = @"em_rorrim";
+        [d saveToFlow:newFlow completionHandler:nil];
     }];
 }
 

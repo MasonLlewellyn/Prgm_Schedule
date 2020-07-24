@@ -9,12 +9,14 @@
 #import "EventObject.h"
 
 @implementation EventObject
+
+@dynamic startDate;
+@dynamic endDate;
+@dynamic title;
+@dynamic userBool;
+
 - (BOOL)getActive{
-    //If the event depends on something, evaluate that
-    if (self.dependsOn){
-        return [self.dependsOn getActive];
-    }
-    //If the event had no dependency, just let it be active
+    //TODO: Implement me!
     return TRUE;
 }
 @end
