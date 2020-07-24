@@ -10,13 +10,14 @@
 #import "Weather.h"
 
 @implementation WeatherObject
-@dynamic desiredTemp;
-@dynamic desiredCondition;
 
-- (NSString*) getKind{
++ (NSString*) getKind{
     return @"WeatherObj";
 }
 
+- (NSString*) getKind{
+    return [WeatherObject getKind];
+}
 - (BOOL) getActive{
     float tolerance = 5.0;
     float temp = [Weather getTemperature];
@@ -31,6 +32,9 @@
     DependsObject *dObj = [self pullDatabaseObj];
     dObj[@"kind"] = [self getKind];
     dObj[@"desiredTemp"] = [NSString stringWithFormat:@"%f", self.desiredTemp];
-    dObj[@"desiredCondition"] = self.desiredCondition;
+    if (self.desiredCondition)
+        dObj[@"desiredCondition"] = self.desiredCondition;
+    
+    [dObj saveToFlow:flow completionHandler:completion];
 }
 @end

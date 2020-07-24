@@ -12,6 +12,7 @@
 #import "DependsObject.h"
 #import "EventObject.h"
 #import "LocalDependsObject.h"
+#import "WeatherObject.h"
 
 @implementation Flow
 
@@ -41,8 +42,11 @@
     
     //NSLog(@"Pre objectID: %@", newFlow.objectId);
     [newFlow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        LocalDependsObject *ldo = [LocalDependsObject new];
-        [ldo saveToDatabase:newFlow completion:nil];
+        /*LocalDependsObject *ldo = [LocalDependsObject new];
+        [ldo saveToDatabase:newFlow completion:nil];*/
+        WeatherObject *weatherObj = [WeatherObject new];
+        weatherObj.desiredTemp = 57.02;
+        [weatherObj saveToDatabase:newFlow completion:nil];
     }];
 }
 
@@ -63,10 +67,15 @@
     }];
 }
 
-- (void) getFlowEvents: (PFQueryArrayResultBlock) completion {
-    PFQuery *eventQuery = [Event query];
+- (void) getFlowEvents: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion {
+    /*PFQuery *eventQuery = [Event query];
     [eventQuery whereKey:@"flowID" equalTo:self.objectId];
-    [eventQuery findObjectsInBackgroundWithBlock:completion];
+    [eventQuery findObjectsInBackgroundWithBlock:completion];*/
+    /*PFQuery *depQuery = [DependsObject query];
+    [depQuery whereKey:@"flowID" equalTo:self.objectId];
+    [depQuery findObjectsInBackgroundWithBlock:completion];*/
+    
+    [LocalDependsObject queryDependsObjects: completion];
 }
 
 - (void) copyFlow:(Flow *)givenFlow events: (NSArray*)events{

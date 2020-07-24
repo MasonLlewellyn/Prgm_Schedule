@@ -15,6 +15,14 @@
 @dynamic title;
 @dynamic userBool;
 
++ (NSString*) getKind{
+    return @"EventObj";
+}
+
+- (NSString*) getKind{
+    return [EventObject getKind];
+}
+
 - (BOOL)getActive{
     //TODO: Implement me!
     return TRUE;

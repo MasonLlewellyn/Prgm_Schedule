@@ -23,7 +23,7 @@ static NSString *conditionStr;
 + (NSString*) getConditionStr;
 
 + (void) testWeather;
-+ (void) getWeather: (void (^)(NSError *error, Weather *weather))completion;//Gets the current weather
+//+ (void) getWeather: (void (^)(NSError *error, Weather *weather))completion;//Gets the current weather
 @end
 
 NS_ASSUME_NONNULL_END

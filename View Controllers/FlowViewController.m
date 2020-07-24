@@ -8,6 +8,7 @@
 
 #import "FlowViewController.h"
 #import "EventEditorViewController.h"
+#import "DependsObject.h"
 #import "EventView.h"
 #import "User.h"
 #import "Weather.h"
@@ -44,16 +45,14 @@
     self.flowCopyButton.hidden = !self.nonEditable;
     
     
-    [self.flow getFlowEvents:^(NSArray<Event*> * _Nullable objects, NSError * _Nullable error) {
+    [self.flow getFlowEvents:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {
         if (error){
-            NSLog(@"%@", error.localizedDescription);
-        }
-        else{
-            self.events = [NSMutableArray arrayWithArray:objects];
-            //TODO: Add Weather initialization here
-            [self arrangeView];
             
         }
+        else{
+            NSLog(@"------------Local Objects: %@", objects);
+        }
+        
     }];
 }
 

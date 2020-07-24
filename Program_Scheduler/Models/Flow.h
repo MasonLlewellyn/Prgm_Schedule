@@ -8,6 +8,7 @@
 
 #import <Parse/Parse.h>
 #import "Event.h"
+#import "LocalDependsObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) testPostFlow;
 + (void) testDownloadFlow;
 - (void) copyFlow: (Flow*)givenFlow events: (NSArray*)events;
-- (void) getFlowEvents: (PFQueryArrayResultBlock)completion;
+- (void) getFlowEvents: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion;
 @end
 
 NS_ASSUME_NONNULL_END

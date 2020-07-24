@@ -7,13 +7,18 @@
 //
 
 #import "LocalDependsObject.h"
+#import "WeatherObject.h"
+#import "EventObject.h"
 
 @implementation LocalDependsObject
 
-- (NSString*) getKind{
++ (NSString*) getKind{
     return @"LocalObj";
 }
 
+- (NSString*) getKind{
+    return [LocalDependsObject getKind];
+}
 - (BOOL) getActive{
     if (self.dependsOn){
         return [self.dependsOn getActive];
@@ -45,8 +50,45 @@
     [dObj saveToFlow:flow completionHandler:completion];
 }
 
+//TODO: Figure out how to copy the dependency tree without duplications
++ (LocalDependsObject*) databaseToLocal: (DependsObject*)dbObject{
+    NSString *kindStr = dbObject[@"kind"];
+    if ([kindStr isEqualToString:[WeatherObject getKind]]){
+        //If the thing is a weather object
+        WeatherObject *wObj = [WeatherObject new];
+        wObj.databaseObj = dbObject;
+        wObj.desiredCondition = dbObject[@"desiredCondition"];
+        wObj.desiredTemp = [dbObject[@"desiredTemp"] floatValue];
+        return wObj;
+    }
+    else if ([kindStr isEqualToString:[EventObject getKind]]){
+        //If it is an event
+        EventObject *eObj = [EventObject new];
+        eObj.databaseObj = dbObject;
+        return eObj;
+    }
+    //As a last resort, just instantiate it a a LocalDatabaseObject
+    LocalDependsObject *lObj = [LocalDependsObject new];
+    lObj.databaseObj = dbObject;
+    return lObj;
+}
 //The translation method
-+ (NSMutableArray*) queryDependsObjects{
++ (NSMutableArray*) queryDependsObjects:  (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion{
+    //TODO: Add completionhandler
+    PFQuery *query = [DependsObject query];
+    //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
+    //[query whereKey:@"author" equalTo:self.currUser];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<DependsObject*> * _Nullable objects, NSError * _Nullable error) {
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        if (!error){
+            for (unsigned long i = 0; i < objects.count; i++){
+                LocalDependsObject *lObj = [LocalDependsObject databaseToLocal:objects[i]];
+                [array addObject: lObj];
+            }
+        }
+        completion(array, error);
+    }];
+    
     return [NSMutableArray alloc];
 }
 @end
