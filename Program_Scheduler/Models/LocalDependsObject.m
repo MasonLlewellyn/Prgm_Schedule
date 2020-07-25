@@ -86,17 +86,50 @@
     lObj.databaseObj = dbObject;
     return lObj;
 }
+//Traces and sets up dependencies as far as it can for each object
++ (LocalDependsObject*) setupObject: (DependsObject*)dependsObject dependsMap: (NSMutableDictionary*)dependsMap{
+    if ([dependsMap valueForKey:dependsObject]){
+        return [dependsMap valueForKey:dependsObject];
+    }
+    
+    LocalDependsObject *originalObj = [LocalDependsObject databaseToLocal:dependsObject];
+    
+    NSMutableArray *depStack = [[NSMutableArray alloc] init];
+    [depStack addObject:dependsObject];
+    [dependsMap setObject:originalObj forKey:dependsObject];
+    
+    LocalDependsObject *currLocal = originalObj;
+    //We can imitate recusion without using as much mememory by using a stack
+    while (depStack.count > 0){
+        DependsObject *currDep = [depStack lastObject];
+        [depStack removeLastObject];
+        if (currDep.dependsOn){
+            if (![dependsMap valueForKey:currDep.dependsOn]){
+                [dependsMap setObject:[LocalDependsObject databaseToLocal:currDep.dependsOn] forKey:currDep.dependsOn];
+                [depStack addObject:currDep.dependsOn];
+            }
+            currLocal.dependsOn = [dependsMap valueForKey:currDep.dependsOn];
+        }
+    }
+    
+    return originalObj;
+}
+
 //The translation method
 + (NSMutableArray*) queryDependsObjects: (NSString*)flowID completion: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion{
-    //TODO: Add completionhandler
+    
+    
     PFQuery *query = [DependsObject query];
     //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
     [query whereKey:@"flowID" equalTo:flowID];
     [query findObjectsInBackgroundWithBlock:^(NSArray<DependsObject*> * _Nullable objects, NSError * _Nullable error) {
+        NSMutableDictionary *dependsMap = [NSMutableDictionary dictionary];
         NSMutableArray *array = [[NSMutableArray alloc] init];
         if (!error){
             for (unsigned long i = 0; i < objects.count; i++){
-                LocalDependsObject *lObj = [LocalDependsObject databaseToLocal:objects[i]];
+                //If this object has already been created
+                LocalDependsObject *lObj = [self setupObject:objects[i] dependsMap:dependsMap];//[LocalDependsObject databaseToLocal:objects[i]];
+                
                 [array addObject: lObj];
             }
         }
