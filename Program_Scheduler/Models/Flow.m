@@ -52,7 +52,18 @@
         eventObject.title = @"Hoppin on train";
         eventObject.startDate = [NSDate now];
         eventObject.endDate = [NSDate now];
-        [eventObject saveToDatabase:newFlow completion:nil];
+        
+        [eventObject saveToDatabase:newFlow completion:^(BOOL succeeded, NSError * _Nullable error) {
+            EventObject *secEvent = [EventObject new];
+            secEvent.title = @"Hoppin off train";
+            secEvent.startDate = [NSDate now];
+            secEvent.endDate = [NSDate now];
+            secEvent.dependsOn = eventObject;
+            [secEvent saveToDatabase:newFlow completion:nil];
+            
+            NSLog(@"Bet it all! Half was never the agreement!");
+        }];
+        
     }];
 }
 

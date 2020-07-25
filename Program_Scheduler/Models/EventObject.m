@@ -32,8 +32,8 @@
     //formatter.dateStyle = NSDateFormatterShortStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
     
-    dObj[@"startDate"] = [formatter stringFromDate:self.startDate];
-    dObj[@"endDate"] = [formatter stringFromDate:self.endDate];
+    dObj[@"startDate"] = self.startDate;
+    dObj[@"endDate"] = self.endDate;
     [super saveToDatabase:flow completion:completion];
 }
 @end

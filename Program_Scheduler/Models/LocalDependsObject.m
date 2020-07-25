@@ -46,6 +46,9 @@
 
 - (void) saveToDatabase: (Flow*)flow completion: (PFBooleanResultBlock)completion{
     DependsObject *dObj = [self pullDatabaseObj];
+    
+    //TODO: Make sure all of the data is loaded to the database of the parent object
+    dObj.dependsOn = self.dependsOn.databaseObj;
     [self loadAttributes];
     [dObj saveToFlow:flow completionHandler:completion];
 }
@@ -57,7 +60,7 @@
 
 //TODO: Figure out how to copy the dependency tree without duplications
 + (LocalDependsObject*) databaseToLocal: (DependsObject*)dbObject{
-    NSString *kindStr = dbObject[@"kind"];
+    NSString *kindStr = dbObject[@"kind"]; //TODO: Error:Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Key "kind" has no data.  Call fetchIfNeeded before getting its value.'
     if ([kindStr isEqualToString:[WeatherObject getKind]]){
         //If the thing is a weather object
         WeatherObject *wObj = [WeatherObject new];
@@ -77,8 +80,8 @@
         //formatter.dateStyle = NSDateFormatterShortStyle;
         formatter.timeStyle = NSDateFormatterShortStyle;
         
-        eObj.startDate = [formatter dateFromString:dbObject[@"startDate"]];
-        eObj.endDate = [formatter dateFromString:dbObject[@"endDate"]];
+        eObj.startDate = dbObject[@"startDate"];
+        eObj.endDate = dbObject[@"endDate"];
         return eObj;
     }
     //As a last resort, just instantiate it a a LocalDatabaseObject
@@ -87,9 +90,9 @@
     return lObj;
 }
 //Traces and sets up dependencies as far as it can for each object
-+ (LocalDependsObject*) setupObject: (DependsObject*)dependsObject dependsMap: (NSMutableDictionary*)dependsMap{
-    if ([dependsMap valueForKey:dependsObject]){
-        return [dependsMap valueForKey:dependsObject];
++ (LocalDependsObject*) setupObject: (DependsObject*)dependsObject dependsMap: (NSMapTable*)dependsMap{
+    if ([dependsMap objectForKey:dependsObject]){
+        return [dependsMap objectForKey:dependsObject];
     }
     
     LocalDependsObject *originalObj = [LocalDependsObject databaseToLocal:dependsObject];
@@ -104,11 +107,11 @@
         DependsObject *currDep = [depStack lastObject];
         [depStack removeLastObject];
         if (currDep.dependsOn){
-            if (![dependsMap valueForKey:currDep.dependsOn]){
+            if (![dependsMap objectForKey:currDep.dependsOn]){
                 [dependsMap setObject:[LocalDependsObject databaseToLocal:currDep.dependsOn] forKey:currDep.dependsOn];
                 [depStack addObject:currDep.dependsOn];
             }
-            currLocal.dependsOn = [dependsMap valueForKey:currDep.dependsOn];
+            currLocal.dependsOn = [dependsMap objectForKey:currDep.dependsOn];
         }
     }
     
@@ -123,7 +126,9 @@
     //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
     [query whereKey:@"flowID" equalTo:flowID];
     [query findObjectsInBackgroundWithBlock:^(NSArray<DependsObject*> * _Nullable objects, NSError * _Nullable error) {
-        NSMutableDictionary *dependsMap = [NSMutableDictionary dictionary];
+        //NSMutableDictionary *dependsMap = [NSMutableDictionary dictionary];
+        NSMapTable *dependsMap = [[NSMapTable alloc] initWithKeyOptions: NSMapTableWeakMemory valueOptions: NSMapTableStrongMemory capacity:objects.count];
+        
         NSMutableArray *array = [[NSMutableArray alloc] init];
         if (!error){
             for (unsigned long i = 0; i < objects.count; i++){
