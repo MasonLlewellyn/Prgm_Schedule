@@ -9,6 +9,7 @@
 #import "LocalDependsObject.h"
 #import "WeatherObject.h"
 #import "EventObject.h"
+#import "Flow.h"
 
 @implementation LocalDependsObject
 
@@ -21,10 +22,10 @@
 }
 - (BOOL) getActive{
     if (self.dependsOn){
-        return [self.dependsOn getActive];
+        return (self.userActive &&[self.dependsOn getActive]);
     }
     //Not active otherwise
-    return YES;
+    return self.userActive;
 }
 
 - (DependsObject*) pullDatabaseObj{
@@ -39,18 +40,27 @@
     
     self.databaseObj[@"kind"] = [self getKind];
     
-    DependsObject *dependDatabase = self.databaseObj;
+    /*DependsObject *dependDatabase = self.databaseObj;
     if (dependDatabase.objectId)
-        self.databaseObj[@"dependsOn"] = dependDatabase.objectId;
+        self.databaseObj[@"dependsOn"] = dependDatabase.objectId;*/
 }
 
 - (void) saveToDatabase: (Flow*)flow completion: (PFBooleanResultBlock)completion{
     DependsObject *dObj = [self pullDatabaseObj];
-    
+    self.flowID = flow.objectId;
     //TODO: Make sure all of the data is loaded to the database of the parent object
     dObj.dependsOn = self.dependsOn.databaseObj;
+    dObj.userActive = self.userActive;
     [self loadAttributes];
     [dObj saveToFlow:flow completionHandler:completion];
+}
+
+- (void) updateSave:(PFBooleanResultBlock)completion{
+    DependsObject *dObj = [self pullDatabaseObj];
+    dObj.dependsOn = self.dependsOn.databaseObj;
+    dObj.userActive = self.userActive;
+    [self loadAttributes];
+    [dObj saveToFlow:self.flowID completionFunction:completion];
 }
 
 - (void)deleteDatabaseObj{
@@ -76,6 +86,7 @@
         wObj.databaseObj = dbObject;
         wObj.desiredCondition = dbObject[@"desiredCondition"];
         wObj.desiredTemp = [dbObject[@"desiredTemp"] floatValue];
+        wObj.flowID = dbObject.flowID;
         return wObj;
     }
     else if ([kindStr isEqualToString:[EventObject getKind]]){
@@ -91,11 +102,15 @@
         
         eObj.startDate = dbObject[@"startDate"];
         eObj.endDate = dbObject[@"endDate"];
+        
+        eObj.userActive = dbObject.userActive;
+        eObj.flowID = dbObject.flowID;
         return eObj;
     }
     //As a last resort, just instantiate it a a LocalDatabaseObject
     LocalDependsObject *lObj = [LocalDependsObject new];
     lObj.databaseObj = dbObject;
+    lObj.flowID = dbObject.flowID;
     return lObj;
 }
 //Traces and sets up dependencies as far as it can for each object
@@ -119,8 +134,6 @@
         //Resolve the full dependency object
         currDep.dependsOn = [self getFullObject:currDep.dependsOn.objectId objects:objectsArr];
         if (currDep.dependsOn){
-            
-            
             NSLog(@"--------DependsON: %@", currDep.dependsOn);
             if (![dependsMap objectForKey:currDep.dependsOn]){
                 [dependsMap setObject:[LocalDependsObject databaseToLocal:currDep.dependsOn] forKey:currDep.dependsOn];

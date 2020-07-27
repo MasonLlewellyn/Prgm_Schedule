@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EnlargedEventView">
             <connections>
+                <outlet property="activeSwitch" destination="o3O-bE-aiQ" id="91j-yf-AWD"/>
                 <outlet property="backButton" destination="WJV-ln-Waj" id="jgo-fl-r6X"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="XBI-EI-b98"/>
                 <outlet property="deleteButton" destination="bdg-yu-nfH" id="CAR-lL-wN8"/>
@@ -79,6 +80,13 @@
                         <action selector="deleteButtonTapped:" destination="-1" eventType="touchUpInside" id="EFg-l0-2Kb"/>
                     </connections>
                 </button>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o3O-bE-aiQ">
+                    <rect key="frame" x="232" y="62" width="49" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="activeSwitchValueChanged:" destination="-1" eventType="valueChanged" id="t3K-Ol-aEd"/>
+                    </connections>
+                </switch>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>

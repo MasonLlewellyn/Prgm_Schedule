@@ -15,11 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) LocalDependsObject *dependsOn;
 @property (strong, nonatomic) NSString *flowID;
 @property (strong, nonatomic) DependsObject *databaseObj;
+@property (nonatomic) BOOL userActive; // Whether or not the user has switched an event to be active or inactive
 - (BOOL) getActive;
 + (NSString*) getKind; //Static method for returning the kind of the class
 - (NSString*) getKind; //Returns the kind of object that
 - (void) loadAttributes;
 - (void) saveToDatabase: (Flow*)flow completion:(nullable PFBooleanResultBlock)completion;
+- (void) updateSave: (nullable PFBooleanResultBlock)completion; //When you've 
 - (DependsObject*) pullDatabaseObj;
 - (void) deleteDatabaseObj;
 + (NSMutableArray*) queryDependsObjects: (NSString*)flowID completion: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion; //Querys the database for depends objects and converts them into the proper LocalDependsObject subclasses

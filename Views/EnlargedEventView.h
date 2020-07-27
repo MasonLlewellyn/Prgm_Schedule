@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UISwitch *activeSwitch;
 
 @property (weak, nonatomic) UIView *touchInterceptView;
 @property (weak, nonatomic) EventObject *eventObj;

@@ -12,6 +12,7 @@
 @implementation DependsObject
 @dynamic dependsOn;
 @dynamic flowID;
+@dynamic userActive;
 
 + (nonnull NSString *)parseClassName {
     return @"DependsObject";
@@ -19,6 +20,17 @@
 
 - (BOOL) getActive{
     return YES;
+}
+
+- (void) saveToFlow:(NSString *)parentFlowID completionFunction:(PFBooleanResultBlock)completion{
+    self.flowID = parentFlowID;
+    NSLog(@"Revised flow ID: %@", self.flowID);
+    if (completion == nil){
+        [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
+    }
+    else{
+        [self saveInBackgroundWithBlock:completion];
+    }
 }
 
 - (void) saveToFlow:(Flow *)parentFlow completionHandler:(PFBooleanResultBlock)completion{

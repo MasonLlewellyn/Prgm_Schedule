@@ -65,6 +65,14 @@
 - (IBAction)editButtonTapped:(id)sender {
     [self.delegate editSelectedEvent:self];
 }
+- (IBAction)activeSwitchValueChanged:(id)sender {
+    UISwitch *switc = sender;
+    self.eventObj.userActive = switc.isOn;
+    NSLog(@"----I just flipped a switch: %d", self.eventObj.userActive);
+    [self.eventObj updateSave:^(BOOL succeeded, NSError * _Nullable error) {
+        if (!error) NSLog(@"Save complete");
+    }];
+}
 
 - (void)setupIntercept{
     NSLog(@"Setting up intercept");
@@ -93,6 +101,7 @@
     self.editButton.hidden = self.nonEditable;
     self.deleteButton.hidden = self.nonEditable;
     
+    self.activeSwitch.on = self.eventObj.userActive;
 }
 
 - (void)setupAssets: (EventObject*)eventObj intercept: (UIView*)touchIntercept{

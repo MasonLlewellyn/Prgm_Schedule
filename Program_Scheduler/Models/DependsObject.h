@@ -14,8 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DependsObject : PFObject <PFSubclassing>
 @property (strong, nonatomic) DependsObject *dependsOn;
 @property (strong, nonatomic) NSString *flowID;
+@property (nonatomic) BOOL userActive;
 - (BOOL) getActive;
 - (void) saveToFlow: (Flow*)parentFlow completionHandler: (nullable PFBooleanResultBlock)completion;
+- (void) saveToFlow:(NSString *)parentFlowID completionFunction:(PFBooleanResultBlock)completion;
 @end
 
 NS_ASSUME_NONNULL_END
