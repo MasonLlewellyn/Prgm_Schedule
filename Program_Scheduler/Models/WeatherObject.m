@@ -21,9 +21,9 @@
 - (BOOL) getActive{
     float tolerance = 5.0;
     float temp = [Weather getTemperature];
-    BOOL tempGood = ((self.desiredTemp - tolerance) >= temp && temp <= (self.desiredTemp + tolerance));//Temperature is += (tolerance) degrees from set point
+    BOOL tempGood = ((self.desiredTemp - tolerance) <= temp && temp <= (self.desiredTemp + tolerance));//Temperature is += (tolerance) degrees from set point
     
-    BOOL condGood = [conditionStr isEqualToString:self.desiredCondition];
+    BOOL condGood = TRUE;//[conditionStr isEqualToString:self.desiredCondition];
     
     return (tempGood && condGood);
 }

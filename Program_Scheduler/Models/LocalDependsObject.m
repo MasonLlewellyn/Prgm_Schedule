@@ -24,7 +24,7 @@
         return [self.dependsOn getActive];
     }
     //Not active otherwise
-    return NO;
+    return YES;
 }
 
 - (DependsObject*) pullDatabaseObj{
@@ -56,6 +56,15 @@
 - (void)deleteDatabaseObj{
     if (self.databaseObj)
         [self.databaseObj deleteInBackground];
+}
+
+//Given the objectID, perform a linear search over the full list of downloaded objects
++ (DependsObject*) getFullObject: (NSString*)objectID objects: (NSArray<DependsObject*>*)objects{
+    if (!objectID) return nil;
+    for (unsigned long i = 0; i < objects.count; i++){
+        if ([objects[i].objectId isEqualToString:objectID]) return objects[i];
+    }
+    return nil;
 }
 
 //TODO: Figure out how to copy the dependency tree without duplications
@@ -90,11 +99,12 @@
     return lObj;
 }
 //Traces and sets up dependencies as far as it can for each object
-+ (LocalDependsObject*) setupObject: (DependsObject*)dependsObject dependsMap: (NSMapTable*)dependsMap{
++ (LocalDependsObject*) setupObject: (DependsObject*)dependsObject dependsMap: (NSMapTable*)dependsMap objectsArr: (NSArray<DependsObject*>*)objectsArr{
     if ([dependsMap objectForKey:dependsObject]){
         return [dependsMap objectForKey:dependsObject];
     }
     
+    NSLog(@"---------CurrObj: %@", dependsObject);
     LocalDependsObject *originalObj = [LocalDependsObject databaseToLocal:dependsObject];
     
     NSMutableArray *depStack = [[NSMutableArray alloc] init];
@@ -106,7 +116,12 @@
     while (depStack.count > 0){
         DependsObject *currDep = [depStack lastObject];
         [depStack removeLastObject];
+        //Resolve the full dependency object
+        currDep.dependsOn = [self getFullObject:currDep.dependsOn.objectId objects:objectsArr];
         if (currDep.dependsOn){
+            
+            
+            NSLog(@"--------DependsON: %@", currDep.dependsOn);
             if (![dependsMap objectForKey:currDep.dependsOn]){
                 [dependsMap setObject:[LocalDependsObject databaseToLocal:currDep.dependsOn] forKey:currDep.dependsOn];
                 [depStack addObject:currDep.dependsOn];
@@ -133,7 +148,7 @@
         if (!error){
             for (unsigned long i = 0; i < objects.count; i++){
                 //If this object has already been created
-                LocalDependsObject *lObj = [self setupObject:objects[i] dependsMap:dependsMap];//[LocalDependsObject databaseToLocal:objects[i]];
+                LocalDependsObject *lObj = [self setupObject:objects[i] dependsMap:dependsMap objectsArr:objects];//[LocalDependsObject databaseToLocal:objects[i]];
                 
                 [array addObject: lObj];
             }

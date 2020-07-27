@@ -52,7 +52,9 @@
         else{
             NSLog(@"------------Local Objects: %@", objects);
             self.objects = objects;
-            [self arrangeView];
+            [Weather initialize:^(NSError * _Nonnull error) {
+                [self arrangeView];
+            }];
         }
         
     }];

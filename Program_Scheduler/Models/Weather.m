@@ -16,7 +16,7 @@ NSString *API_KEY = @"bc4e17fd97575a98976af35841962bef";
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    NSString *baseURL = @"http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=";
+    NSString *baseURL = @"http://api.openweathermap.org/data/2.5/weather?q=North+Plainfield,us&appid=";
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", baseURL, API_KEY];
     
     NSURL *URL = [NSURL URLWithString:fullURL];
@@ -26,8 +26,9 @@ NSString *API_KEY = @"bc4e17fd97575a98976af35841962bef";
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil
     completionHandler:^(NSURLResponse *response, id  responseObject, NSError *error) {
         if (!error){
+            NSLog(@"%@", responseObject);
             [self setTemperature:[responseObject[@"main"][@"temp"] floatValue]];
-            [self setConditionStr:responseObject[@"weather"][@"main"]];
+            //[self setConditionStr:responseObject[@"weather"][@"main"]];
         }
         completion(error);
     }];

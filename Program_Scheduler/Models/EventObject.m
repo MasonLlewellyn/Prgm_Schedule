@@ -18,10 +18,10 @@
     return [EventObject getKind];
 }
 
-- (BOOL)getActive{
+/*- (BOOL)getActive{
     //TODO: Implement me!
     return TRUE;
-}
+}*/
 
 - (void) saveToDatabase:(Flow *)flow completion:(PFBooleanResultBlock)completion{
     DependsObject *dObj = [self pullDatabaseObj];

@@ -22,7 +22,7 @@ static NSString *conditionStr;
 + (void) setConditionStr: (NSString*)condition;
 + (NSString*) getConditionStr;
 
-+ (void) testWeather;
+//+ (void) testWeather;
 //+ (void) getWeather: (void (^)(NSError *error, Weather *weather))completion;//Gets the current weather
 @end
 

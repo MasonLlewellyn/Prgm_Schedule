@@ -44,21 +44,22 @@
     [newFlow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         /*LocalDependsObject *ldo = [LocalDependsObject new];
         [ldo saveToDatabase:newFlow completion:nil];*/
-        /*WeatherObject *weatherObj = [WeatherObject new];
-        weatherObj.desiredTemp = 57.02;
-        [weatherObj saveToDatabase:newFlow completion:nil];*/
+        WeatherObject *weatherObj = [WeatherObject new];
+        weatherObj.desiredTemp = 200.88;
+        [weatherObj saveToDatabase:newFlow completion:nil];
         
         EventObject *eventObject = [EventObject new];
         eventObject.title = @"Hoppin on train";
         eventObject.startDate = [NSDate now];
         eventObject.endDate = [NSDate now];
+        //eventObject.dependsOn = weatherObj;
         
         [eventObject saveToDatabase:newFlow completion:^(BOOL succeeded, NSError * _Nullable error) {
             EventObject *secEvent = [EventObject new];
             secEvent.title = @"Hoppin off train";
             secEvent.startDate = [NSDate now];
             secEvent.endDate = [NSDate now];
-            secEvent.dependsOn = eventObject;
+            secEvent.dependsOn = weatherObj;
             [secEvent saveToDatabase:newFlow completion:nil];
             
             NSLog(@"Bet it all! Half was never the agreement!");
