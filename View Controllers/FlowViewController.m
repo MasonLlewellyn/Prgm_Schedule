@@ -24,6 +24,7 @@
 
 
 @property (strong, nonatomic) NSMutableArray<EventView*> *eventViews;
+@property (strong, nonatomic) NSMutableArray<EventObject*> *eventObjects;
 @end
 
 @implementation FlowViewController
@@ -32,6 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initializeView];
+    self.eventViews = [[NSMutableArray alloc] init];
 }
 
 #pragma mark - Event Space
@@ -44,14 +46,19 @@
     self.reminderButton.hidden = self.nonEditable;
     self.flowCopyButton.hidden = !self.nonEditable;
     
+    [self destroyViews];
     
     [self.flow getFlowEvents:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {
         if (error){
             
         }
         else{
-            NSLog(@"------------Local Objects: %@", objects);
             self.objects = objects;
+            NSArray *interm = [self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+                return [evaluatedObject isKindOfClass:[EventObject class]];
+            }]];
+            
+            self.eventObjects = [[NSMutableArray alloc] initWithArray:interm];
             [Weather initialize:^(NSError * _Nonnull error) {
                 [self arrangeView];
             }];
@@ -66,22 +73,33 @@
     [self makeEventViews];
 }
 
-
+- (void) destroyViews{
+    //TODO: cannot actually get views to disappear from the scroll View
+    //Destroy all events that are on the current scrollview
+    NSLog(@"!!!!!! Deleting %ld events !!!!!!!!!!!!!", self.eventViews.count);
+    while (self.eventViews.count > 0){
+        [self.eventViews[0] leaveView];
+        [self.eventViews removeObjectAtIndex:0];
+        NSLog(@"------Removing event-----");
+    }
+    NSLog(@"Event view counts %ld", self.eventViews.count);
+}
 
 - (void) makeEventViews{
     NSUInteger startY = 0;
-    for (NSUInteger i = 0; i < self.objects.count; i++){
-        if (![[self.objects[i] getKind] isEqualToString:[EventObject getKind]]) continue;
-        
+    for (NSUInteger i = 0; i < self.eventObjects.count; i++){
+        NSLog(@"Create New Obj");
         EventView *eView = [[EventView alloc] initWithFrame:CGRectMake(10, startY, 300, 120)];
         eView.nonEditable = self.nonEditable;
         
-        [eView setupAssets:(EventObject*)(self.objects[i]) flowViewController:self];
+        [eView setupAssets:(EventObject*)(self.eventObjects[i]) flowViewController:self];
         [self.scrollView addSubview:eView];
         [self.eventViews addObject:eView];
         
         startY += 170;
     }
+    
+    
 }
 
 - (IBAction)eventButtonPressed:(id)sender {
@@ -109,18 +127,32 @@
         UINavigationController *navCtrl = [segue destinationViewController];
         EventEditorViewController *evc = [navCtrl viewControllers][0];
         evc.eventObj = sender;
+        evc.eventObjects = (NSArray*)[self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            return [evaluatedObject isKindOfClass:[EventObject class]];
+        }]];
         evc.flow = self.flow;
     }
 }
 
 #pragma mark - Enlarged Event View
+    
+- (NSInteger) getObjectIndex: (EventObject*) key{
+    for (NSUInteger i = 0; i < self.objects.count; i++){
+        if ((EventObject*)self.objects[i] == key)
+            return i;
+    }
+    return self.objects.count;
+}
+
 - (NSUInteger) eventIndex: (EventObject*) key{
     for (NSUInteger i = 0; i < self.eventViews.count; i++){
         if ((EventObject*)self.eventViews[i].eventObj == key)
             return i;
     }
-    return self.objects.count;
+    return self.eventViews.count;
 }
+    
+
 - (void) displayDeleteAlert: (EnlargedEventView*)enlargedView{
     NSLog(@"Delegate Called!");
     UIAlertController *alert = [UIAlertController alloc];
@@ -132,16 +164,26 @@
     UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes"
            style:UIAlertActionStyleDefault
        handler:^(UIAlertAction * _Nonnull action) {
+        //TODO: figure out why deleted views don't stay deleted
         [enlargedView.eventObj deleteDatabaseObj];
         //Refresh the Event space
-        [self initializeView];
+        //[self initializeView];
         
         //NOTE: This gives a warning but you know what, it works
         //Also, it's pretty much guarunteed that the event is nonnll
         //NSUInteger eventIndex = [self.eventViews indexOfObject:enlargedView.eventObj];
-        NSUInteger eventIndex = [self eventIndex:enlargedView.eventObj];
-        [self.eventViews removeObjectAtIndex:eventIndex];
-        [self arrangeView];
+        NSUInteger viewIndex = [self eventIndex:enlargedView.eventObj];
+        NSLog(@"Remove index %lu", viewIndex);
+        [self.eventViews removeObjectAtIndex:viewIndex];
+        
+        //TODO: for some reason it can't actually find where the eventObj is
+        [self.eventObjects removeObjectAtIndex:viewIndex];
+        
+        NSLog(@"Event Views: %@", self.eventViews);
+        NSLog(@"Objects: %@", self.eventObjects);
+        
+        [self destroyViews];
+        //[self arrangeView];
     }];
     
     
@@ -162,8 +204,13 @@
 
 - (void) editSelectedEvent:(EnlargedEventView *)enlargedView{
     NSLog(@"Editing the selected event");
+    
     [self performSegueWithIdentifier:@"flowToEventEditor" sender:enlargedView.eventObj];
 }
 
+- (void) leavingEventView:(EnlargedEventView *)enlargedView{
+    [self initializeView];
+    [self arrangeView];
+}
 
 @end

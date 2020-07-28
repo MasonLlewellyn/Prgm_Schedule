@@ -236,6 +236,11 @@
                                     <action selector="friendsButtonPressed:" destination="hmn-nL-ZZq" id="97B-aM-UQM"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem image="plus" catalog="system" id="Tzv-EQ-WCG">
+                                <connections>
+                                    <action selector="addFlowPressed:" destination="hmn-nL-ZZq" id="87X-mf-6qY"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -245,6 +250,7 @@
                         <outlet property="tableView" destination="TaV-LY-wX3" id="ZRj-RV-KRM"/>
                         <segue destination="Zgt-Sa-jf7" kind="presentation" identifier="timelineToProfileView" id="UQH-Pm-h68"/>
                         <segue destination="uQW-v7-YL3" kind="presentation" identifier="timelineToFriends" id="gB6-tP-idC"/>
+                        <segue destination="U4f-iB-2x1" kind="show" identifier="TimelineToEditor" id="bxc-P8-u78"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Viq-QE-a2B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -269,7 +275,14 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVQ-BM-20j">
-                                <rect key="frame" x="22" y="204" width="87" height="21"/>
+                                <rect key="frame" x="16" y="201" width="87" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zO-1X-8BV">
+                                <rect key="frame" x="16" y="262" width="87" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -280,30 +293,28 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pSa-0q-IWY">
-                                <rect key="frame" x="117" y="175" width="136" height="72"/>
+                                <rect key="frame" x="117" y="175" width="150" height="72"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gp-oh-2Z1">
-                                <rect key="frame" x="255" y="478" width="104" height="59"/>
+                                <rect key="frame" x="255" y="591" width="104" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="wnb-cu-bIt" eventType="touchUpInside" id="yoT-0u-XI3"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zO-1X-8BV">
-                                <rect key="frame" x="16" y="262" width="87" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBh-B9-4UO">
+                                <rect key="frame" x="0.0" y="309" width="375" height="201"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="HGO-pA-PKj"/>
                     </view>
                     <navigationItem key="navigationItem" id="twV-XC-iRx"/>
                     <connections>
+                        <outlet property="DependsPickerView" destination="EBh-B9-4UO" id="nlN-gX-jQU"/>
                         <outlet property="endDatePicker" destination="4uW-Km-IiC" id="BbC-8A-slu"/>
                         <outlet property="startDatePicker" destination="pSa-0q-IWY" id="WO4-GA-GHW"/>
                         <outlet property="titleTextField" destination="fTy-El-Cca" id="wlx-e4-AIy"/>
@@ -358,6 +369,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Yp-vW-hEy"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Kfa-aE-ayj"/>
                     <connections>
                         <outlet property="actionButton" destination="5JD-kl-BES" id="4nF-CP-xo2"/>
                         <outlet property="eventButton" destination="vg7-HT-RJB" id="MCS-zT-qkr"/>
@@ -612,6 +624,81 @@
             </objects>
             <point key="canvasLocation" x="3594.4000000000001" y="-1461.576354679803"/>
         </scene>
+        <!--Flow Editor View Controller-->
+        <scene sceneID="vmh-0E-0TV">
+            <objects>
+                <viewController id="U4f-iB-2x1" customClass="FlowEditorViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aN7-Hb-Hpz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Flow Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="44p-DS-b9p">
+                                <rect key="frame" x="16" y="119" width="327" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="M2w-5e-d0v">
+                                <rect key="frame" x="16" y="421" width="343" height="89"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjg-2N-VQK">
+                                <rect key="frame" x="16" y="355" width="113" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6h-d9-V3v">
+                                <rect key="frame" x="16" y="182" width="87" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="iNg-1R-PXc">
+                                <rect key="frame" x="16" y="211" width="343" height="91"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxu-ca-hcH">
+                                <rect key="frame" x="131" y="562" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKu-CV-QIl">
+                                <rect key="frame" x="16" y="567" width="87" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2L-TH-vpR">
+                                <rect key="frame" x="234" y="653" width="109" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="U4f-iB-2x1" eventType="touchUpInside" id="uRr-HS-o2o"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="wLf-wo-oUy"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fie-0F-Lvl"/>
+                    <connections>
+                        <outlet property="activationSwitch" destination="mxu-ca-hcH" id="pLK-AD-M5C"/>
+                        <outlet property="endDatePicker" destination="M2w-5e-d0v" id="hhd-2o-LcS"/>
+                        <outlet property="startDatePicker" destination="iNg-1R-PXc" id="yzy-AS-raL"/>
+                        <outlet property="titleTextField" destination="44p-DS-b9p" id="Rf0-oA-Skz"/>
+                        <segue destination="Nnv-5H-Rk2" kind="show" identifier="EditorToFlow" id="5es-b1-V60"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bdv-1u-W39" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5040.8000000000002" y="-2131.0344827586209"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="13h-Wq-WXK">
             <objects>
@@ -632,12 +719,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="gB6-tP-idC"/>
         <segue reference="u8X-Fj-2bP"/>
+        <segue reference="5es-b1-V60"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>

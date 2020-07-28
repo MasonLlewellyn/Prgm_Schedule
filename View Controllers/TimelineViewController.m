@@ -64,14 +64,14 @@ NSInteger pageCount = 20;
     [Flow testPostFlow];
     //[Event cleanHouse];
     [self fetchFlows];
-    
-    
-    
 }
 
 - (void) refreshFlows:(UIRefreshControl*)refreshControl{
     [self fetchFlows];
     [refreshControl endRefreshing];
+}
+- (IBAction)addFlowPressed:(id)sender {
+    [self performSegueWithIdentifier:@"TimelineToEditor" sender:nil];
 }
 
 - (IBAction)logoutPressed:(id)sender {
@@ -163,7 +163,7 @@ NSInteger pageCount = 20;
         controller.flow = cell.flow;
     }
     else{
-        //Going to user profile screen
+        //Going to user profile screen or making a new Flow
         
     }
 }

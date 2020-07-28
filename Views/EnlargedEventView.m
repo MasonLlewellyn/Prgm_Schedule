@@ -46,6 +46,7 @@
     [self removeFromSuperview];
     
     [self.touchInterceptView removeFromSuperview];
+    [self.delegate leavingEventView:self];
 }
 
 - (void)interceptTapped: (UITapGestureRecognizer*)recognizer{

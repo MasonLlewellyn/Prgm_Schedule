@@ -32,7 +32,7 @@
     newFlow.flowTitle = @"The other day";
     newFlow.startDate = [NSDate now];
     newFlow.endDate = [NSDate now];
-    newFlow.active = NO;
+    newFlow.active = YES;
     newFlow.author = [User currentUser];
     
     /*EventObject *eventObj = [EventObject new];
@@ -45,21 +45,23 @@
         /*LocalDependsObject *ldo = [LocalDependsObject new];
         [ldo saveToDatabase:newFlow completion:nil];*/
         WeatherObject *weatherObj = [WeatherObject new];
-        weatherObj.desiredTemp = 200.88;
+        weatherObj.desiredTemp = 308.88;
         [weatherObj saveToDatabase:newFlow completion:nil];
         
         EventObject *eventObject = [EventObject new];
-        eventObject.title = @"Hoppin on train";
+        eventObject.title = @"Go for an early run";
         eventObject.startDate = [NSDate now];
         eventObject.endDate = [NSDate now];
-        //eventObject.dependsOn = weatherObj;
+        eventObject.userActive = YES;
+        eventObject.dependsOn = weatherObj;
         
         [eventObject saveToDatabase:newFlow completion:^(BOOL succeeded, NSError * _Nullable error) {
             EventObject *secEvent = [EventObject new];
-            secEvent.title = @"Hoppin off train";
+            secEvent.title = @"Buy more CLIF Bars from the convenience store";
             secEvent.startDate = [NSDate now];
             secEvent.endDate = [NSDate now];
-            secEvent.dependsOn = weatherObj;
+            secEvent.dependsOn = eventObject;
+            secEvent.userActive = YES;
             [secEvent saveToDatabase:newFlow completion:nil];
             
             NSLog(@"Bet it all! Half was never the agreement!");
@@ -86,13 +88,6 @@
 }
 
 - (void) getFlowEvents: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion {
-    /*PFQuery *eventQuery = [Event query];
-    [eventQuery whereKey:@"flowID" equalTo:self.objectId];
-    [eventQuery findObjectsInBackgroundWithBlock:completion];*/
-    /*PFQuery *depQuery = [DependsObject query];
-    [depQuery whereKey:@"flowID" equalTo:self.objectId];
-    [depQuery findObjectsInBackgroundWithBlock:completion];*/
-    
     [LocalDependsObject queryDependsObjects: self.objectId completion:completion];
 }
 

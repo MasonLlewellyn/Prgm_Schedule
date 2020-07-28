@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) FlowViewController *flowVC;
 @property (nonatomic) BOOL nonEditable;
 - (void) setupAssets: (EventObject*)event flowViewController:(FlowViewController*)flowControl;
+- (void) leaveView;
 @end
 
 NS_ASSUME_NONNULL_END

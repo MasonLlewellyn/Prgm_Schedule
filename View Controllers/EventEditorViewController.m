@@ -9,10 +9,11 @@
 #import "EventEditorViewController.h"
 #import "FlowViewController.h"
 
-@interface EventEditorViewController ()
+@interface EventEditorViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *endDatePicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *DependsPickerView;
 
 @end
 
@@ -27,6 +28,10 @@
     
     if (self.eventObj)
         [self setupView];
+    
+    self.DependsPickerView.delegate = self;
+    self.DependsPickerView.dataSource = self;
+    
 }
 
 - (void) setupView{
@@ -41,6 +46,7 @@
     self.eventObj.title = self.titleTextField.text;
     self.eventObj.startDate = self.startDatePicker.date;
     self.eventObj.endDate = self.endDatePicker.date;
+    self.eventObj.dependsOn = self.eventObjects[[self.DependsPickerView selectedRowInComponent:0]];
     
     [self.eventObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
         FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
@@ -67,4 +73,27 @@
 }
 */
 
+#pragma mark - Picker View
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
+     return 1;  // Or return whatever as you intend
+}
+
+- (NSInteger)pickerView:(UIPickerView *)thePickerView
+numberOfRowsInComponent:(NSInteger)component {
+     return 3;//Or, return as suitable for you...normally we use array for dynamic
+}
+
+- (NSString *)pickerView:(UIPickerView *)thePickerView
+             titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if (row < self.eventObjects.count)
+        return self.eventObjects[row].title;
+    return @"";
+    //return [NSString stringWithFormat:@"Choice-%ld",(long)row];//Or, your suitable title; like Choice-a, etc.
+}
+
+- (void)pickerView:(UIPickerView *)thePickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component {
+
+}
 @end

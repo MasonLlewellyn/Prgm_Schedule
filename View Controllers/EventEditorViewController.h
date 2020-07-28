@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface EventEditorViewController : UIViewController
 @property (strong, nonatomic) EventObject *eventObj;
 @property (strong, nonatomic) Flow *flow;
+@property (strong, nonatomic) NSArray<EventObject*> *eventObjects;
 @end
 
 NS_ASSUME_NONNULL_END

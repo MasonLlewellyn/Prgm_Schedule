@@ -26,7 +26,6 @@ NSString *API_KEY = @"bc4e17fd97575a98976af35841962bef";
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil
     completionHandler:^(NSURLResponse *response, id  responseObject, NSError *error) {
         if (!error){
-            NSLog(@"%@", responseObject);
             [self setTemperature:[responseObject[@"main"][@"temp"] floatValue]];
             //[self setConditionStr:responseObject[@"weather"][@"main"]];
         }
