@@ -28,6 +28,8 @@
 		C386087024C0DDD2007C1F78 /* EnlargedEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C386086F24C0DDD2007C1F78 /* EnlargedEventView.xib */; };
 		C386087324C0E277007C1F78 /* EnlargedEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C386087224C0E277007C1F78 /* EnlargedEventView.m */; };
 		C386087C24C11B67007C1F78 /* EventEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C386087B24C11B67007C1F78 /* EventEditorViewController.m */; };
+		C386624E24D08B31008E7FFE /* WeatherEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C386624D24D08B31008E7FFE /* WeatherEditView.xib */; };
+		C386625124D08D58008E7FFE /* WeatherEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = C386625024D08D58008E7FFE /* WeatherEditView.m */; };
 		C38A0D2924BE1B9600330524 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2824BE1B9600330524 /* Event.m */; };
 		C38A0D2C24BE36E700330524 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2B24BE36E700330524 /* Flow.m */; };
 		C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2F24BE831B00330524 /* FlowFeedTableViewCell.m */; };
@@ -102,6 +104,9 @@
 		C386087224C0E277007C1F78 /* EnlargedEventView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnlargedEventView.m; sourceTree = "<group>"; };
 		C386087A24C11B67007C1F78 /* EventEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventEditorViewController.h; sourceTree = "<group>"; };
 		C386087B24C11B67007C1F78 /* EventEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventEditorViewController.m; sourceTree = "<group>"; };
+		C386624D24D08B31008E7FFE /* WeatherEditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherEditView.xib; sourceTree = "<group>"; };
+		C386624F24D08D57008E7FFE /* WeatherEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherEditView.h; sourceTree = "<group>"; };
+		C386625024D08D58008E7FFE /* WeatherEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherEditView.m; sourceTree = "<group>"; };
 		C38A0D2724BE1B9600330524 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C38A0D2824BE1B9600330524 /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C38A0D2A24BE36E700330524 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
@@ -200,6 +205,9 @@
 		C38A0D2D24BE82EC00330524 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C386624D24D08B31008E7FFE /* WeatherEditView.xib */,
+				C386624F24D08D57008E7FFE /* WeatherEditView.h */,
+				C386625024D08D58008E7FFE /* WeatherEditView.m */,
 				C3CC472224C7766C001BE164 /* FriendsTableViewCell.h */,
 				C3CC472324C7766C001BE164 /* FriendsTableViewCell.m */,
 				C3804A2924BF829B00027F85 /* EventView.xib */,
@@ -447,6 +455,7 @@
 				C386087024C0DDD2007C1F78 /* EnlargedEventView.xib in Resources */,
 				C39DBD4824BCCF0D00FEBFCA /* Main.storyboard in Resources */,
 				C3804A2A24BF829B00027F85 /* EventView.xib in Resources */,
+				C386624E24D08B31008E7FFE /* WeatherEditView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +586,7 @@
 				C30AE9FD24CA1C4D0089AFA5 /* DependsObject.m in Sources */,
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
 				C30AEA0624CA8E030089AFA5 /* LocalDependsObject.m in Sources */,
+				C386625124D08D58008E7FFE /* WeatherEditView.m in Sources */,
 				C3804A3024BF908100027F85 /* FlowViewController.m in Sources */,
 				C36A704924C6B5000092AC2F /* FriendsViewController.m in Sources */,
 				C30AEA0024CA1C700089AFA5 /* EventObject.m in Sources */,

@@ -131,6 +131,8 @@
             return [evaluatedObject isKindOfClass:[EventObject class]];
         }]];
         evc.flow = self.flow;
+        
+        
     }
 }
 
@@ -204,7 +206,7 @@
 
 - (void) editSelectedEvent:(EnlargedEventView *)enlargedView{
     NSLog(@"Editing the selected event");
-    
+    NSLog(@"%@", enlargedView.eventObj);
     [self performSegueWithIdentifier:@"flowToEventEditor" sender:enlargedView.eventObj];
 }
 

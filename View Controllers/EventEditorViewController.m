@@ -8,6 +8,7 @@
 
 #import "EventEditorViewController.h"
 #import "FlowViewController.h"
+#import "WeatherEditView.h"
 
 @interface EventEditorViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
@@ -32,12 +33,45 @@
     self.DependsPickerView.delegate = self;
     self.DependsPickerView.dataSource = self;
     
+    NSLog(@"%@", self.eventObj);
+    NSLog(@"%@", self.eventObjects);
+    NSLog(@"%@", self.flow);
+    
 }
 
 - (void) setupView{
     self.titleTextField.text = self.eventObj.title;
     [self.startDatePicker setDate:self.eventObj.startDate];
     [self.endDatePicker setDate:self.eventObj.endDate];
+    
+    [self.DependsPickerView reloadAllComponents];
+}
+
+- (IBAction)weatherButtonPressed:(id)sender {
+    WeatherEditView *weatherEView = [[WeatherEditView alloc] initWithFrame:CGRectZero];
+    
+    weatherEView.frame = CGRectMake(0, 0, self.view.superview.frame.size.width - 20, 450);
+    weatherEView.center = self.view.center;
+    
+    //Make a background that covers the whole flowView
+    UIView *touchInterceptView = [[UIView alloc] initWithFrame:CGRectZero];
+    touchInterceptView.frame = self.view.superview.superview.bounds;
+    touchInterceptView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
+    touchInterceptView.center = weatherEView.center;
+    
+    WeatherObject *wObj = nil;
+    if ([self.eventObj.dependsOn isKindOfClass:[WeatherObject class]])
+        wObj = (WeatherObject*)self.eventObj.dependsOn;
+    
+    
+    [self.view.superview addSubview:touchInterceptView];
+    [self.view.superview bringSubviewToFront:touchInterceptView];
+    
+    //Bring the enlarged schedule view to the front
+    [self.view.superview addSubview:weatherEView];
+    [self.view.superview bringSubviewToFront:weatherEView];
+    
+    [weatherEView setupAssets:wObj eventObject:self.eventObj intercept:touchInterceptView];
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
@@ -80,7 +114,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView
 numberOfRowsInComponent:(NSInteger)component {
-     return 3;//Or, return as suitable for you...normally we use array for dynamic
+    return self.eventObjects.count;//Or, return as suitable for you...normally we use array for dynamic
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView
