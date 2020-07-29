@@ -129,6 +129,8 @@
         EventEditorViewController *evc = [navCtrl viewControllers][0];
         evc.eventObj = sender;
         evc.eventObjects = (NSArray*)[self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            if (![evaluatedObject isKindOfClass:[EventObject class]]) return NO;
+            
             BOOL sameEvent = (sender && [evaluatedObject compareEvent:sender]);
             return ([evaluatedObject isKindOfClass:[EventObject class]] && !sameEvent);
         }]];

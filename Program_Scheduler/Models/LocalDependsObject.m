@@ -38,23 +38,24 @@
     if (!self.databaseObj)
         self.databaseObj = [DependsObject new];
     
+    //TODO: Make sure all of the data is loaded to the database of the parent object
+    self.databaseObj.dependsOn = self.dependsOn.databaseObj;
+    self.databaseObj.userActive = self.userActive;
     self.databaseObj[@"kind"] = [self getKind];
-    
-    /*DependsObject *dependDatabase = self.databaseObj;
-    if (dependDatabase.objectId)
-        self.databaseObj[@"dependsOn"] = dependDatabase.objectId;*/
 }
 
 - (void) saveToDatabase: (Flow*)flow completion: (PFBooleanResultBlock)completion{
-    DependsObject *dObj = [self pullDatabaseObj];
     self.flowID = flow.objectId;
-    //TODO: Make sure all of the data is loaded to the database of the parent object
-    dObj.dependsOn = self.dependsOn.databaseObj;
-    dObj.userActive = self.userActive;
     [self loadAttributes];
-    [dObj saveToFlow:flow completionHandler:completion];
+    [self.databaseObj saveToFlow:flow.objectId completionFunction:completion];
 }
 
+- (void) updateSave:(PFBooleanResultBlock)completion{
+    [self loadAttributes];
+    [self.databaseObj saveToFlow:self.flowID completionFunction:completion];
+ }
+
+/* OLD method
 - (void) updateSave:(PFBooleanResultBlock)completion{
     DependsObject *dObj = [self pullDatabaseObj];
     dObj.dependsOn = self.dependsOn.databaseObj;
@@ -62,7 +63,7 @@
     [self loadAttributes];
     [dObj saveToFlow:self.flowID completionFunction:completion];
 }
-
+*/
 - (void)deleteDatabaseObj{
     if (self.databaseObj)
         [self.databaseObj deleteInBackground];

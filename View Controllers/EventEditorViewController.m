@@ -9,8 +9,9 @@
 #import "EventEditorViewController.h"
 #import "FlowViewController.h"
 #import "WeatherEditView.h"
+#import "WeatherEditDelegate.h"
 
-@interface EventEditorViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface EventEditorViewController () <UIPickerViewDelegate, UIPickerViewDataSource, WeatherEditViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *endDatePicker;
@@ -90,8 +91,26 @@
     [self.view.superview bringSubviewToFront:weatherEView];
     
     weatherEView.flow = self.flow;
+    weatherEView.delegate = self;
     [weatherEView setupAssets:wObj eventObject:self.eventObj intercept:touchInterceptView];
 }
+
+- (void) saveEdits{
+    [self.eventObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
+           FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
+           [fvc.objects addObject:self.eventObj];
+           //Dismiss the editing view and update the Flow View
+           [self dismissViewControllerAnimated:YES completion:^{
+               //Question: Should this go in the initializeView section
+               //Resets the englarged display view if it is currently being displayed
+               if (fvc.currEnlargedView){
+                   [fvc.currEnlargedView setupDisplay:self.eventObj];
+               }
+               [fvc initializeView];
+           }];
+       }];
+}
+
 
 - (IBAction)saveButtonPressed:(id)sender {
     
@@ -100,25 +119,25 @@
     self.eventObj.endDate = self.endDatePicker.date;
     self.eventObj.userActive = YES;
     
+    //Solving dependency issues
     NSInteger selectedRow = [self.DependsPickerView selectedRowInComponent:0];
-    if (self.eventObjects.count > 0 && selectedRow > 0)
-        self.eventObj.dependsOn = self.eventObjects[selectedRow - 1]; //Off
-    else
-        self.eventObj.dependsOn = nil;
     
-    [self.eventObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
-        FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
-        [fvc.objects addObject:self.eventObj];
-        //Dismiss the editing view and update the Flow View
-        [self dismissViewControllerAnimated:YES completion:^{
-            //Question: Should this go in the initializeView section
-            //Resets the englarged display view if it is currently being displayed
-            if (fvc.currEnlargedView){
-                [fvc.currEnlargedView setupDisplay:self.eventObj];
-            }
-            [fvc initializeView];
+    //Currently, a selected depends event takes precedence over a weather event
+    //TODO: Show user an error when they try to tepend on more than one event (e.g.) the weather and another event
+    if (selectedRow > 0){
+        self.eventObj.dependsOn = self.eventObjects[selectedRow - 1];
+        [self saveEdits];
+    }
+    else if (self.weatherObj){
+        [self.weatherObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
+            self.eventObj.dependsOn = self.weatherObj;
+            [self saveEdits];
         }];
-    }];
+    }
+    else{
+        [self saveEdits];
+    }
+    
 }
 
 /*
@@ -153,6 +172,13 @@ numberOfRowsInComponent:(NSInteger)component {
 - (void)pickerView:(UIPickerView *)thePickerView
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component {
+}
 
+#pragma mark - Weather Edit View
+- (void) weatherSaveButtonPressed:(WeatherEditView *)weatherView{
+    //TODO: check over and remove magic numbers
+    self.weatherObj = weatherView.weatherObj;
+    //[self.eventObj loadAttributes];
+    [self.DependsPickerView selectRow:0 inComponent:0 animated:YES];
 }
 @end

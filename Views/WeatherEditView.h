@@ -10,6 +10,7 @@
 #import "WeatherObject.h"
 #import "EventObject.h"
 #import "Flow.h"
+#import "WeatherEditDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) EventObject *eventObj;
 @property (strong, nonatomic) NSArray<NSString*> *conditionStrings;
 @property (strong, nonatomic) Flow *flow;
+@property (nonatomic, weak) id <WeatherEditViewDelegate> delegate;
+
 - (void) setupAssets: (WeatherObject*)weatherObj eventObject:(EventObject*)eventObj intercept: (UIView*)touchIntercept;
 @end
 

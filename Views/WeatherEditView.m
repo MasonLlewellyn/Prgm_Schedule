@@ -71,8 +71,11 @@
     self.conditionPickerView.delegate = self;
     
     self.eventObj = eventObj;
-    if (!weatherObj){
+    
+    self.weatherObj = weatherObj;
+    if (!self.weatherObj){
         //We are creating a new weather event
+        NSLog(@"-----Creating a new weather object-----");
         self.weatherObj = [WeatherObject new];
     }
     
@@ -89,15 +92,16 @@
     NSLog(@"Save Button was pressed!");
     self.weatherObj.desiredTemp = [self.temperatureField.text floatValue];
     self.weatherObj.desiredCondition = self.conditionStrings[[self.conditionPickerView selectedRowInComponent:0]];
-    self.eventObj.dependsOn = self.weatherObj;
     
+    [self.delegate weatherSaveButtonPressed:self];
+    [self leaveView];
     
-    [self.weatherObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
+    /*[self.weatherObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
         [self.eventObj updateSave:^(BOOL succeeded, NSError * _Nullable error) {
             NSLog(@"Saving everything so I'm leaving");
             [self leaveView];
         }];
-    }];
+    }];*/
 }
 /*
 // Only override drawRect: if you perform custom drawing.

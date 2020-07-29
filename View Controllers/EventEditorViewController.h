@@ -10,6 +10,7 @@
 #import "Event.h"
 #import "Flow.h"
 #import "EventObject.h"
+#import "WeatherObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) EventObject *eventObj;
 @property (strong, nonatomic) Flow *flow;
 @property (strong, nonatomic) NSArray<EventObject*> *eventObjects;
+@property (strong, nonatomic) WeatherObject *weatherObj;
 @end
 
 NS_ASSUME_NONNULL_END

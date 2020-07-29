@@ -107,6 +107,7 @@
 		C386624D24D08B31008E7FFE /* WeatherEditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherEditView.xib; sourceTree = "<group>"; };
 		C386624F24D08D57008E7FFE /* WeatherEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherEditView.h; sourceTree = "<group>"; };
 		C386625024D08D58008E7FFE /* WeatherEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherEditView.m; sourceTree = "<group>"; };
+		C386625224D1F989008E7FFE /* WeatherEditDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherEditDelegate.h; sourceTree = "<group>"; };
 		C38A0D2724BE1B9600330524 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C38A0D2824BE1B9600330524 /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C38A0D2A24BE36E700330524 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
@@ -290,6 +291,7 @@
 				C3D77FD724CFD462003E9AD3 /* FlowEditorViewController.h */,
 				C3D77FD824CFD462003E9AD3 /* FlowEditorViewController.m */,
 				C3BBC5D424C244AD00372A03 /* EnlargedEventViewDelegate.h */,
+				C386625224D1F989008E7FFE /* WeatherEditDelegate.h */,
 				C386087A24C11B67007C1F78 /* EventEditorViewController.h */,
 				C386087B24C11B67007C1F78 /* EventEditorViewController.m */,
 				C39DBD7C24BCE78E00FEBFCA /* TimelineViewController.h */,
