@@ -122,14 +122,17 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([sender isKindOfClass:[Event class]] || sender == nil){
+    if ([sender isKindOfClass:[EventObject class]] || sender == nil){
         //If we are editing an eventt or creating a new one
+        NSLog(@"Segue to the editor view");
         UINavigationController *navCtrl = [segue destinationViewController];
         EventEditorViewController *evc = [navCtrl viewControllers][0];
         evc.eventObj = sender;
         evc.eventObjects = (NSArray*)[self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-            return [evaluatedObject isKindOfClass:[EventObject class]];
+            BOOL sameEvent = (sender && [evaluatedObject compareEvent:sender]);
+            return ([evaluatedObject isKindOfClass:[EventObject class]] && !sameEvent);
         }]];
+        
         evc.flow = self.flow;
         
         

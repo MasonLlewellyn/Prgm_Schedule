@@ -61,7 +61,7 @@ NSInteger pageCount = 20;
         self.currUser = [User currentUser];
     }
     
-    [Flow testPostFlow];
+    //[Flow testPostFlow];
     //[Event cleanHouse];
     [self fetchFlows];
 }

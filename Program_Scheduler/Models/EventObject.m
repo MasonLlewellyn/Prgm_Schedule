@@ -23,6 +23,13 @@
     return TRUE;
 }*/
 
+- (BOOL) compareEvent:(EventObject *)otherEvent{
+    BOOL stringCmp = [self.title isEqualToString:otherEvent.title];
+    BOOL startComp = [self.startDate isEqual:otherEvent.startDate];
+    BOOL endComp = [self.endDate isEqual:otherEvent.endDate];
+    return (stringCmp && startComp && endComp);
+}
+
 - (void) saveToDatabase:(Flow *)flow completion:(PFBooleanResultBlock)completion{
     DependsObject *dObj = [self pullDatabaseObj];
     dObj[@"title"] = self.title;

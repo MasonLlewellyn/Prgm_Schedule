@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WeatherObject.h"
 #import "EventObject.h"
+#import "Flow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) WeatherObject *weatherObj;
 @property (strong, nonatomic) EventObject *eventObj;
 @property (strong, nonatomic) NSArray<NSString*> *conditionStrings;
-
+@property (strong, nonatomic) Flow *flow;
 - (void) setupAssets: (WeatherObject*)weatherObj eventObject:(EventObject*)eventObj intercept: (UIView*)touchIntercept;
 @end
 

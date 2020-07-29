@@ -86,10 +86,18 @@
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
+    NSLog(@"Save Button was pressed!");
     self.weatherObj.desiredTemp = [self.temperatureField.text floatValue];
     self.weatherObj.desiredCondition = self.conditionStrings[[self.conditionPickerView selectedRowInComponent:0]];
     self.eventObj.dependsOn = self.weatherObj;
-    [self leaveView];
+    
+    
+    [self.weatherObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
+        [self.eventObj updateSave:^(BOOL succeeded, NSError * _Nullable error) {
+            NSLog(@"Saving everything so I'm leaving");
+            [self leaveView];
+        }];
+    }];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

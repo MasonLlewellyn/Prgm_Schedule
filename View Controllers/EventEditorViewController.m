@@ -27,11 +27,15 @@
     self.startDatePicker.datePickerMode = UIDatePickerModeTime;
     self.endDatePicker.datePickerMode = UIDatePickerModeTime;
     
-    if (self.eventObj)
-        [self setupView];
-    
     self.DependsPickerView.delegate = self;
     self.DependsPickerView.dataSource = self;
+    
+    if (self.eventObj){
+        [self setupView];
+    }
+    else{
+        self.eventObj = [EventObject new];
+    }
     
     NSLog(@"%@", self.eventObj);
     NSLog(@"%@", self.eventObjects);
@@ -39,12 +43,26 @@
     
 }
 
+- (NSInteger) getEventIndex: (EventObject*) evObj{
+    for (long i = 0; i < self.eventObjects.count; i++){
+        if ([self.eventObj compareEvent:self.eventObjects[i]]) return i;
+    }
+    return self.eventObjects.count;
+}
+
 - (void) setupView{
     self.titleTextField.text = self.eventObj.title;
     [self.startDatePicker setDate:self.eventObj.startDate];
     [self.endDatePicker setDate:self.eventObj.endDate];
     
+    NSInteger index = 0;
+    if ([self.eventObj.dependsOn isKindOfClass:[EventObject class]]){
+        NSLog(@"Auto-selecting stuff ");
+        index = [self getEventIndex:(EventObject*)self.eventObj.dependsOn];
+    }
+    
     [self.DependsPickerView reloadAllComponents];
+    [self.DependsPickerView selectRow:index inComponent:0 animated:YES];
 }
 
 - (IBAction)weatherButtonPressed:(id)sender {
@@ -71,16 +89,22 @@
     [self.view.superview addSubview:weatherEView];
     [self.view.superview bringSubviewToFront:weatherEView];
     
+    weatherEView.flow = self.flow;
     [weatherEView setupAssets:wObj eventObject:self.eventObj intercept:touchInterceptView];
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
-    if (self.eventObj == nil) self.eventObj = [EventObject new];
     
     self.eventObj.title = self.titleTextField.text;
     self.eventObj.startDate = self.startDatePicker.date;
     self.eventObj.endDate = self.endDatePicker.date;
-    self.eventObj.dependsOn = self.eventObjects[[self.DependsPickerView selectedRowInComponent:0]];
+    self.eventObj.userActive = YES;
+    
+    NSInteger selectedRow = [self.DependsPickerView selectedRowInComponent:0];
+    if (self.eventObjects.count > 0 && selectedRow > 0)
+        self.eventObj.dependsOn = self.eventObjects[selectedRow - 1]; //Off
+    else
+        self.eventObj.dependsOn = nil;
     
     [self.eventObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
         FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
@@ -114,13 +138,14 @@
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView
 numberOfRowsInComponent:(NSInteger)component {
-    return self.eventObjects.count;//Or, return as suitable for you...normally we use array for dynamic
+    return self.eventObjects.count + 1;
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView
              titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if (row < self.eventObjects.count)
-        return self.eventObjects[row].title;
+    if (row == 0) return @"None";
+    else if (row <= self.eventObjects.count)
+        return self.eventObjects[row - 1].title;
     return @"";
     //return [NSString stringWithFormat:@"Choice-%ld",(long)row];//Or, your suitable title; like Choice-a, etc.
 }
