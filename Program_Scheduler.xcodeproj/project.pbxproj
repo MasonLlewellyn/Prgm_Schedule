@@ -30,6 +30,7 @@
 		C386087C24C11B67007C1F78 /* EventEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C386087B24C11B67007C1F78 /* EventEditorViewController.m */; };
 		C386624E24D08B31008E7FFE /* WeatherEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C386624D24D08B31008E7FFE /* WeatherEditView.xib */; };
 		C386625124D08D58008E7FFE /* WeatherEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = C386625024D08D58008E7FFE /* WeatherEditView.m */; };
+		C386625424D258CA008E7FFE /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C386625324D258CA008E7FFE /* UserNotifications.framework */; };
 		C38A0D2924BE1B9600330524 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2824BE1B9600330524 /* Event.m */; };
 		C38A0D2C24BE36E700330524 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2B24BE36E700330524 /* Flow.m */; };
 		C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C38A0D2F24BE831B00330524 /* FlowFeedTableViewCell.m */; };
@@ -108,6 +109,7 @@
 		C386624F24D08D57008E7FFE /* WeatherEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherEditView.h; sourceTree = "<group>"; };
 		C386625024D08D58008E7FFE /* WeatherEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherEditView.m; sourceTree = "<group>"; };
 		C386625224D1F989008E7FFE /* WeatherEditDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherEditDelegate.h; sourceTree = "<group>"; };
+		C386625324D258CA008E7FFE /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		C38A0D2724BE1B9600330524 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C38A0D2824BE1B9600330524 /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C38A0D2A24BE36E700330524 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			files = (
 				C36A704624C663CC0092AC2F /* FacebookLogin in Frameworks */,
 				C36A704024C663CC0092AC2F /* FacebookShare in Frameworks */,
+				C386625424D258CA008E7FFE /* UserNotifications.framework in Frameworks */,
 				C36A704224C663CC0092AC2F /* FacebookCore in Frameworks */,
 				916D578827D5F907BBB8F191 /* Pods_Program_Scheduler.framework in Frameworks */,
 				C36A704424C663CC0092AC2F /* FacebookGamingServices in Frameworks */,
@@ -315,6 +318,7 @@
 		CEB00AF825F438D52A101ABB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C386625324D258CA008E7FFE /* UserNotifications.framework */,
 				B46D8F69D25A86F101D5D128 /* Pods_Program_Scheduler.framework */,
 				9CF8E309F5DB3BEBED841BBD /* Pods_Program_Scheduler_Program_SchedulerUITests.framework */,
 				2780D819A831FF00F7C17806 /* Pods_Program_SchedulerTests.framework */,

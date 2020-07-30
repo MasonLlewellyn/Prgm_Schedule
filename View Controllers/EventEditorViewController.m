@@ -61,7 +61,9 @@
         NSLog(@"Auto-selecting stuff ");
         index = [self getEventIndex:(EventObject*)self.eventObj.dependsOn];
     }
-    
+    else if ([self.eventObj.dependsOn isKindOfClass:[EventObject class]]){
+        self.weatherObj = (WeatherObject*)self.eventObj.dependsOn;
+    }
     [self.DependsPickerView reloadAllComponents];
     [self.DependsPickerView selectRow:index inComponent:0 animated:YES];
 }

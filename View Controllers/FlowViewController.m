@@ -15,7 +15,7 @@
 #import <Parse/Parse.h>
 
 
-@interface FlowViewController ()
+@interface FlowViewController () <UNUserNotificationCenterDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *eventButton;
 @property (weak, nonatomic) IBOutlet UIButton *reminderButton;
@@ -25,6 +25,8 @@
 
 @property (strong, nonatomic) NSMutableArray<EventView*> *eventViews;
 @property (strong, nonatomic) NSMutableArray<EventObject*> *eventObjects;
+
+
 @end
 
 @implementation FlowViewController
@@ -34,6 +36,47 @@
     // Do any additional setup after loading the view.
     [self initializeView];
     self.eventViews = [[NSMutableArray alloc] init];
+    
+    //[self loadNotifs];
+}
+
+- (void) loadNotification: (EventObject*) eventObj{
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDateComponents *components = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:eventObj.startDate];
+    
+    content.title = eventObj.title;
+    content.sound = [UNNotificationSound defaultSound];
+    //UNCalendarNotificationTrigger *caltrig = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+    
+    UNTimeIntervalNotificationTrigger *caltrig = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10 repeats:NO];
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:eventObj.databaseObj.objectId content:content trigger:caltrig];
+    
+    [center addNotificationRequest:request withCompletionHandler:nil];
+    
+    
+}
+
+- (void) loadNotifs{
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    
+    content.title = @"Test Notification";
+    content.subtitle = @"This is a test of the emergency warning system";
+    content.body = @"Again, this is a test of the emergency warning system.";
+    content.sound = [UNNotificationSound defaultSound];
+    
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10 repeats:NO];
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"test_notif" content:content trigger:trigger];
+    
+    [center addNotificationRequest:request withCompletionHandler:nil];
 }
 
 #pragma mark - Event Space
@@ -89,6 +132,8 @@
     NSUInteger startY = 0;
     for (NSUInteger i = 0; i < self.eventObjects.count; i++){
         NSLog(@"Create New Obj");
+        
+        [self loadNotification:self.eventObjects[i]];
         EventView *eView = [[EventView alloc] initWithFrame:CGRectMake(10, startY, 300, 120)];
         eView.nonEditable = self.nonEditable;
         
@@ -113,7 +158,6 @@
     myFlow.author = [User currentUser];
     [myFlow saveInBackground];
 }
-
 
 
 #pragma mark - Navigation

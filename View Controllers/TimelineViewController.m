@@ -63,6 +63,14 @@ NSInteger pageCount = 20;
     
     //[Flow testPostFlow];
     //[Event cleanHouse];
+    
+    //Request notification Auth
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    UNAuthorizationOptions options = UNAuthorizationOptionAlert+UNAuthorizationOptionSound;
+    [center requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        
+    }];
+    
     [self fetchFlows];
 }
 

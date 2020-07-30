@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UserNotifications/UserNotifications.h>
 #import "Flow.h"
 #import "Event.h"
 #import "EnlargedEventViewDelegate.h"
