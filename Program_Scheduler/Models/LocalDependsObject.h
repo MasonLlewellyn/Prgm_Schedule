@@ -16,7 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *flowID;
 @property (strong, nonatomic) DependsObject *databaseObj;
 @property (nonatomic) BOOL userActive; // Whether or not the user has switched an event to be active or inactive
+@property (nonatomic) BOOL cachedResult;
+@property (nonatomic) BOOL cacheDone;
+
 - (BOOL) getActive;
+- (BOOL) getCached;
 + (NSString*) getKind; //Static method for returning the kind of the class
 - (NSString*) getKind; //Returns the kind of object that
 - (void) loadAttributes;

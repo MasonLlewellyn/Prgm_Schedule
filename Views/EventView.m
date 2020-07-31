@@ -83,7 +83,7 @@
     self.eventObj = eventObj;
     self.titleLabel.text = eventObj.title;
     
-    self.contentView.backgroundColor = [self.eventObj getActive] ?  UIColor.systemGreenColor: UIColor.redColor;
+    self.contentView.backgroundColor = [self.eventObj getCached] ?  UIColor.systemGreenColor: UIColor.redColor;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";

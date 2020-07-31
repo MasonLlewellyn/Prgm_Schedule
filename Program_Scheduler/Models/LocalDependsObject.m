@@ -21,13 +21,24 @@
     return [LocalDependsObject getKind];
 }
 - (BOOL) getActive{
+    BOOL result = NO;
     if (self.dependsOn){
-        return (self.userActive &&[self.dependsOn getActive]);
+        result = (self.userActive && [self.dependsOn getActive]);
+    }
+    else{
+        result = self.userActive;
     }
     //Not active otherwise
-    return self.userActive;
+    return result;
 }
 
+- (BOOL) getCached{
+    if (self.cachedResult){
+        return self.cachedResult;
+    }
+    
+    return [self getActive];
+}
 - (DependsObject*) pullDatabaseObj{
     if (!self.databaseObj)
         self.databaseObj = [DependsObject new];

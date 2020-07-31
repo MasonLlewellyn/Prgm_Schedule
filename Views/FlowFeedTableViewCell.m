@@ -7,7 +7,7 @@
 //
 
 #import "FlowFeedTableViewCell.h"
-
+#import "NotificationUtils.h"
 @implementation FlowFeedTableViewCell
 
 - (void)awakeFromNib {
@@ -33,6 +33,11 @@
     NSLog(@"Shuffle ball change");
     UISwitch *swi = sender;
     self.flow.active = swi.isOn;
+    
+    if (self.flow.active)
+        [NotificationUtils loadFlowNotifications:self.flow];
+    else
+        [NotificationUtils removeFlowNotifications:self.flow];
     [self.flow saveInBackground];
 }
 

@@ -14,6 +14,7 @@
 		C30AEA0024CA1C700089AFA5 /* EventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AE9FF24CA1C700089AFA5 /* EventObject.m */; };
 		C30AEA0324CA1C7D0089AFA5 /* WeatherObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AEA0224CA1C7D0089AFA5 /* WeatherObject.m */; };
 		C30AEA0624CA8E030089AFA5 /* LocalDependsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AEA0524CA8E030089AFA5 /* LocalDependsObject.m */; };
+		C32E7A6524D36EFC00F1D1C9 /* NotificationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E7A6424D36EFC00F1D1C9 /* NotificationUtils.m */; };
 		C36A703724C617890092AC2F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703624C617890092AC2F /* ProfileViewController.m */; };
 		C36A703A24C6241E0092AC2F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703924C6241E0092AC2F /* User.m */; };
 		C36A703D24C630A80092AC2F /* ImageUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A703C24C630A80092AC2F /* ImageUploadViewController.m */; };
@@ -87,6 +88,8 @@
 		C30AEA0224CA1C7D0089AFA5 /* WeatherObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherObject.m; sourceTree = "<group>"; };
 		C30AEA0424CA8E030089AFA5 /* LocalDependsObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDependsObject.h; sourceTree = "<group>"; };
 		C30AEA0524CA8E030089AFA5 /* LocalDependsObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDependsObject.m; sourceTree = "<group>"; };
+		C32E7A6324D36EFC00F1D1C9 /* NotificationUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationUtils.h; sourceTree = "<group>"; };
+		C32E7A6424D36EFC00F1D1C9 /* NotificationUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationUtils.m; sourceTree = "<group>"; };
 		C36A703524C617890092AC2F /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		C36A703624C617890092AC2F /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		C36A703824C6241E0092AC2F /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				C30AEA0224CA1C7D0089AFA5 /* WeatherObject.m */,
 				C30AE9FB24CA1C4D0089AFA5 /* DependsObject.h */,
 				C30AE9FC24CA1C4D0089AFA5 /* DependsObject.m */,
+				C32E7A6324D36EFC00F1D1C9 /* NotificationUtils.h */,
+				C32E7A6424D36EFC00F1D1C9 /* NotificationUtils.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -603,6 +608,7 @@
 				C30AEA0324CA1C7D0089AFA5 /* WeatherObject.m in Sources */,
 				C386087324C0E277007C1F78 /* EnlargedEventView.m in Sources */,
 				C38A0D3024BE831B00330524 /* FlowFeedTableViewCell.m in Sources */,
+				C32E7A6524D36EFC00F1D1C9 /* NotificationUtils.m in Sources */,
 				C3D77FD924CFD462003E9AD3 /* FlowEditorViewController.m in Sources */,
 				C3FD92FB24C9075600B1D7C4 /* Weather.m in Sources */,
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,

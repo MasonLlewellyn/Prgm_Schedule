@@ -51,9 +51,9 @@
     
     content.title = eventObj.title;
     content.sound = [UNNotificationSound defaultSound];
-    //UNCalendarNotificationTrigger *caltrig = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+    UNCalendarNotificationTrigger *caltrig = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
     
-    UNTimeIntervalNotificationTrigger *caltrig = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10 repeats:NO];
+    //UNTimeIntervalNotificationTrigger *caltrig = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10 repeats:NO];
     
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:eventObj.databaseObj.objectId content:content trigger:caltrig];
     
@@ -91,7 +91,7 @@
     
     [self destroyViews];
     
-    [self.flow getFlowEvents:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {
+    /*[self.flow getFlowEvents:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {
         if (error){
             
         }
@@ -107,7 +107,28 @@
             }];
         }
         
+    }];*/
+    
+    [self.flow evaluateObjects:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {
+        if (error){
+            
+        }
+        else{
+            self.objects = objects;
+            NSArray *interm = [self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+                return [evaluatedObject isKindOfClass:[EventObject class]];
+            }]];
+            
+            self.eventObjects = [[NSMutableArray alloc] initWithArray:interm];
+            [Weather initialize:^(NSError * _Nonnull error) {
+                [self arrangeView];
+            }];
+        }
     }];
+}
+
+- (void) updateView{
+    
 }
 
 - (void) arrangeView{

@@ -71,7 +71,12 @@
     self.eventObj.userActive = switc.isOn;
     NSLog(@"----I just flipped a switch: %d", self.eventObj.userActive);
     [self.eventObj updateSave:^(BOOL succeeded, NSError * _Nullable error) {
-        if (!error) NSLog(@"Save complete");
+        if (error){
+            NSLog(@"Enlarged view switch error: %@", error.localizedDescription);
+        }
+        else{
+            //[self.delegate updateForChangedEvent:self];
+        }
     }];
 }
 

@@ -13,6 +13,7 @@
 #import "EventObject.h"
 #import "LocalDependsObject.h"
 #import "WeatherObject.h"
+#import "NotificationUtils.h"
 
 @implementation Flow
 
@@ -27,6 +28,7 @@
     return @"Flow";
 }
 
+#pragma mark Flow Testing
 + (void) testPostFlow{
     Flow *newFlow = [Flow new];
     newFlow.flowTitle = @"The other day";
@@ -109,5 +111,54 @@
     NSLog(@"Count: %lu", self.events.count);
 }
 
+- (void) evaluateObjects: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion{
+    [self getFlowEvents:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {
+        if (error){
+            NSLog(@"Evaluate error: %@", objects);
+        }
+        else{
+            for (unsigned long i = 0; i < objects.count; i++){
+                [objects[i] getActive]; //This function will cache the
+            }
+        }
+        
+        self.dependsObjects = objects;
+        completion(objects, error);
+    }];
+}
 
+#pragma mark Notifications
+
+- (void) loadNotification: (EventObject*) eventObj{
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDateComponents *components = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:eventObj.startDate];
+    
+    content.title = eventObj.title;
+    content.sound = [UNNotificationSound defaultSound];
+    UNCalendarNotificationTrigger *caltrig = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+    
+    //UNTimeIntervalNotificationTrigger *caltrig = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10 repeats:NO];
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:eventObj.databaseObj.objectId content:content trigger:caltrig];
+    
+    [center addNotificationRequest:request withCompletionHandler:nil];
+    
+    
+}
+
+- (void) setNotifications: (NSArray<LocalDependsObject*>*)objects{
+    //Only eventsObjects should have notifications connected to them
+    NSArray<EventObject*> *events = (NSArray*)[objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return [evaluatedObject isKindOfClass:[EventObject class]];
+    }]];
+    
+    for (unsigned long i = 0; i < events.count; i++){
+        [self loadNotification:events[i]];
+    }
+}
 @end

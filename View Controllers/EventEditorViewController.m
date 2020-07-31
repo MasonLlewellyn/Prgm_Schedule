@@ -10,6 +10,7 @@
 #import "FlowViewController.h"
 #import "WeatherEditView.h"
 #import "WeatherEditDelegate.h"
+#import "NotificationUtils.h"
 
 @interface EventEditorViewController () <UIPickerViewDelegate, UIPickerViewDataSource, WeatherEditViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
@@ -99,18 +100,23 @@
 
 - (void) saveEdits{
     [self.eventObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
-           FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
-           [fvc.objects addObject:self.eventObj];
-           //Dismiss the editing view and update the Flow View
-           [self dismissViewControllerAnimated:YES completion:^{
-               //Question: Should this go in the initializeView section
-               //Resets the englarged display view if it is currently being displayed
-               if (fvc.currEnlargedView){
-                   [fvc.currEnlargedView setupDisplay:self.eventObj];
-               }
-               [fvc initializeView];
-           }];
-       }];
+        FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
+        
+        [NotificationUtils removeNotification:self.eventObj]; //Remove the old notification and replace it with a new one
+        [NotificationUtils loadNotification:self.eventObj];
+        
+        [fvc.objects addObject:self.eventObj];
+        //Dismiss the editing view and update the Flow View
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            //Question: Should this go in the initializeView section
+            //Resets the englarged display view if it is currently being displayed
+            if (fvc.currEnlargedView){
+                [fvc.currEnlargedView setupDisplay:self.eventObj];
+            }
+            [fvc initializeView];
+        }];
+    }];
 }
 
 
@@ -139,6 +145,7 @@
     else{
         [self saveEdits];
     }
+    
     
 }
 
