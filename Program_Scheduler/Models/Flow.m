@@ -112,6 +112,41 @@
     NSLog(@"Count: %lu", self.events.count);
 }*/
 
+/*- (LocalDependsObject*) copyObj: (LocalDependsObject*)obj dependsMap: (NSMapTable*)dependsMap{
+    
+}*/
+
+
+//TODO: Copy database objects
+- (LocalDependsObject*) resolveObject: (LocalDependsObject*)obj dependsMap: (NSMapTable*)dependsMap{
+    if ([dependsMap objectForKey:obj]){
+        return [dependsMap objectForKey:obj];
+    }
+    
+    NSMutableArray<LocalDependsObject*> *depStack = [[NSMutableArray alloc] init];
+    [depStack addObject: obj];
+    
+    //TODO: update the depends fields of database objects to point to one another
+    while (depStack.count > 0){
+        LocalDependsObject *currObj = [depStack lastObject];
+        [depStack removeLastObject];
+        
+        LocalDependsObject *opObj = [currObj copy];
+        [opObj loadAttributes];
+        
+        if (currObj.dependsOn){
+            if (![dependsMap objectForKey:currObj.dependsOn]){
+                [dependsMap setObject:[currObj.dependsOn copy] forKey:currObj.dependsOn];
+                [depStack addObject:currObj.dependsOn];
+            }
+            
+            opObj.dependsOn = [dependsMap objectForKey:currObj.dependsOn];
+        }
+        
+        [dependsMap setObject:opObj forKey:currObj];
+    }
+    return [dependsMap objectForKey:obj];
+}
 
 - (void) copyFlow:(Flow *)givenFlow events:(NSArray<LocalDependsObject*>*)dependsObjs{
     self.flowTitle = givenFlow.flowTitle;
@@ -121,6 +156,33 @@
     
     NSMapTable *oldToNew = [[NSMapTable alloc] initWithKeyOptions: NSMapTableWeakMemory valueOptions: NSMapTableStrongMemory capacity:dependsObjs.count];
     
+    NSMutableArray <LocalDependsObject*> *newObjects = [[NSMutableArray alloc] initWithCapacity:dependsObjs.count];
+    
+    [newObjects addObject:dependsObjs[0]];
+    
+    for (unsigned int i = 0; i < dependsObjs.count; i++){
+        LocalDependsObject *newObj = [self resolveObject:dependsObjs[i] dependsMap:oldToNew];
+        [newObjects addObject:newObj];
+    }
+    
+    //After all new objects are initialized, also initialize their database objects
+    //Note: every parent must be saved before every child so that objectIDs work
+
+    
+    [self save];//Save the Parent flow so that it has an ID
+    
+    //Save all db objects in the foreground to create ObjectIDs
+    for (unsigned int j = 0; j < newObjects.count; j++){
+        newObjects[j].databaseObj.flowID = self.objectId;
+        [newObjects[j].databaseObj save];
+    }
+    
+    //Establish connections between all objects
+    for (unsigned int k = 0; k < newObjects.count; k++){
+        newObjects[k].databaseObj.dependsOn = newObjects[k].dependsOn.databaseObj;
+    }
+    
+    NSLog(@"---------------------Finished Copying-------------------");
     
 }
 

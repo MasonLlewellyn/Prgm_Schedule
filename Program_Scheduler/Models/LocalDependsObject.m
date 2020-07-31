@@ -83,7 +83,7 @@
 
 
 //Shallow copy function
-- (instancetype) copy:(LocalDependsObject *)dependsObj{
+- (instancetype) copy{
     //This function does not do much because all of its attribute would need to be deep-copied.
     LocalDependsObject *opObject = [LocalDependsObject new];
     return opObject;

@@ -43,4 +43,15 @@
     dObj[@"endDate"] = self.endDate;
     [super saveToDatabase:flow completion:completion];
 }
+
+- (instancetype) copy{
+    EventObject *newObj = [EventObject new];
+    
+    newObj.title = [self.title copy];
+    newObj.startDate = self.startDate;
+    newObj.endDate = self.endDate;
+    newObj.userBool = self.userBool;
+    
+    return newObj;
+}
 @end

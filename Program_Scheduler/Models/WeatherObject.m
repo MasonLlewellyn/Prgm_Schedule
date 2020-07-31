@@ -37,4 +37,14 @@
     
     [dObj saveToFlow:flow completionHandler:completion];
 }
+
+- (instancetype) copy{
+    WeatherObject *newObj = [WeatherObject new];
+    
+    newObj.desiredCondition = [self.desiredCondition copy];
+    newObj.desiredTemp = self.desiredTemp;
+    
+    return newObj;
+}
+
 @end

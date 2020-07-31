@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) deleteDatabaseObj;
 + (NSMutableArray*) queryDependsObjects: (NSString*)flowID completion: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion; //Querys the database for depends objects and converts them into the proper LocalDependsObject subclasses
 
-- (instancetype) copy: (LocalDependsObject*)dependsObj;
+- (instancetype) copy;
 @end
 
 NS_ASSUME_NONNULL_END

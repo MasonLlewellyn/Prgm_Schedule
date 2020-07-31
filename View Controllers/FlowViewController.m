@@ -197,11 +197,12 @@
     //Copy back the flow to the original user
     Flow *myFlow = [Flow new];
     
-    //[myFlow copyFlow:self.flow events:self.events];
-    
-    
     myFlow.author = [User currentUser];
-    [myFlow saveInBackground];
+    [myFlow copyFlow:self.flow events:self.objects];
+    
+    
+    
+    //[myFlow saveInBackground];
 }
 
 
