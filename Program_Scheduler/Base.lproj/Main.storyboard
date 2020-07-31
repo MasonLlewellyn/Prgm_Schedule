@@ -244,6 +244,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addFlowButton" destination="Tzv-EQ-WCG" id="uum-z1-3Ta"/>
                         <outlet property="friendsButton" destination="fBy-aC-8ql" id="8II-k5-ige"/>
                         <outlet property="logoutButton" destination="nI7-ZG-1WN" id="MNb-Sl-jdF"/>
                         <outlet property="profileButton" destination="nrX-yi-IJw" id="myJ-Kx-BNJ"/>
@@ -733,8 +734,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="gB6-tP-idC"/>
         <segue reference="u8X-Fj-2bP"/>
-        <segue reference="5es-b1-V60"/>
+        <segue reference="OcG-Nk-Drr"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>

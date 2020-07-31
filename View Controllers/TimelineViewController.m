@@ -22,10 +22,12 @@
 @interface TimelineViewController ()
 @property (nonatomic, strong) NSMutableArray *activeFlows;
 @property (nonatomic, strong) NSMutableArray *inactiveFlows;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *profileButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *friendsButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addFlowButton;
 
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) NSInteger loadedCount;
@@ -50,10 +52,12 @@ NSInteger pageCount = 20;
         [self.friendsButton setEnabled:NO];
         [self.logoutButton setEnabled:NO];
         [self.profileButton setEnabled:NO];
+        [self.profileButton setEnabled:NO];
         
         [self.friendsButton setTintColor:[UIColor clearColor]];
         [self.logoutButton setTintColor:[UIColor clearColor]];
         [self.profileButton setTintColor:[UIColor clearColor]];
+        [self.addFlowButton setTintColor:[UIColor clearColor]];
         self.title = @"Flows";
     }
     else if (!self.showOther && self.currUser == nil){

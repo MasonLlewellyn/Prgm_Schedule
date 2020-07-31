@@ -12,6 +12,7 @@
 #import "EventView.h"
 #import "User.h"
 #import "Weather.h"
+#import "NotificationUtils.h"
 #import <Parse/Parse.h>
 
 
@@ -127,8 +128,29 @@
     }];
 }
 
+- (void) mismatchHandler: (LocalDependsObject*)localObj{
+    //NOTE: event caches are updated before they are passed to the mismatch handler
+    if ([localObj isKindOfClass:[EventObject class]]){
+        if ([localObj getCached])
+            [NotificationUtils loadNotification:(EventObject*)localObj];
+        else
+            [NotificationUtils removeNotification:(EventObject*)localObj];
+    }
+}
+
 - (void) updateView{
-    
+    [self.flow updateEvaluations:^(LocalDependsObject * _Nonnull localObj) {
+        [self mismatchHandler:localObj];
+        
+    } completion:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {
+        self.objects = objects;
+        NSArray *interm = [self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            return [evaluatedObject isKindOfClass:[EventObject class]];
+        }]];
+        self.eventObjects = [[NSMutableArray alloc] initWithArray:interm];
+        
+        [self arrangeView];
+    }];
 }
 
 - (void) arrangeView{
@@ -176,6 +198,8 @@
     Flow *myFlow = [Flow new];
     
     //[myFlow copyFlow:self.flow events:self.events];
+    
+    
     myFlow.author = [User currentUser];
     [myFlow saveInBackground];
 }
@@ -281,7 +305,8 @@
 }
 
 - (void) leavingEventView:(EnlargedEventView *)enlargedView{
-    [self initializeView];
+    //[self initializeView];
+    [self updateView];
     [self arrangeView];
 }
 

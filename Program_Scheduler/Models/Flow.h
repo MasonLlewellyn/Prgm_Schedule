@@ -9,7 +9,7 @@
 #import <Parse/Parse.h>
 #import "Event.h"
 #import "LocalDependsObject.h"
-#import <UserNotifications/UserNotifications.h>
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,7 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) getFlowEvents: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion;
 
 - (void) evaluateObjects: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion; //Evaluate all of the events in the flow with a completion handler.  This should be a drop-in replacement for the getFlowEventsFunction
-- (void) setNotifications: (NSArray<LocalDependsObject*>*)objects; //Set all notifications for the flow
+
+- (void) updateEvaluations: (void(^)(LocalDependsObject *eventObj))misMatchHandler completion:(void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion; //Updates the cached activation values of events with a handler to update other things if there is a mismatch
+/*- (void) setNotifications: (NSArray<LocalDependsObject*>*)objects; //Set all notifications for the flow*/
 @end
 
 NS_ASSUME_NONNULL_END

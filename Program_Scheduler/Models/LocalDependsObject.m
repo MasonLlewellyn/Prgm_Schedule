@@ -39,6 +39,7 @@
     
     return [self getActive];
 }
+
 - (DependsObject*) pullDatabaseObj{
     if (!self.databaseObj)
         self.databaseObj = [DependsObject new];
@@ -80,6 +81,13 @@
         [self.databaseObj deleteInBackground];
 }
 
+
+//Shallow copy function
+- (instancetype) copy:(LocalDependsObject *)dependsObj{
+    //This function does not do much because all of its attribute would need to be deep-copied.
+    LocalDependsObject *opObject = [LocalDependsObject new];
+    return opObject;
+}
 //Given the objectID, perform a linear search over the full list of downloaded objects
 + (DependsObject*) getFullObject: (NSString*)objectID objects: (NSArray<DependsObject*>*)objects{
     if (!objectID) return nil;
@@ -131,7 +139,7 @@
         return [dependsMap objectForKey:dependsObject];
     }
     
-    NSLog(@"---------CurrObj: %@", dependsObject);
+    //NSLog(@"---------CurrObj: %@", dependsObject);
     LocalDependsObject *originalObj = [LocalDependsObject databaseToLocal:dependsObject];
     
     NSMutableArray *depStack = [[NSMutableArray alloc] init];

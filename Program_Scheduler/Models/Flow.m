@@ -93,7 +93,7 @@
     [LocalDependsObject queryDependsObjects: self.objectId completion:completion];
 }
 
-- (void) copyFlow:(Flow *)givenFlow events: (NSArray*)events{
+/*- (void) copyFlow:(Flow *)givenFlow events: (NSArray*)events{
     self.flowTitle = givenFlow.flowTitle;
     self.active = givenFlow.active;
     self.startDate = givenFlow.startDate;
@@ -102,13 +102,26 @@
     [self save];
     for (unsigned long i = 0; i < events.count; i++){
         //NOTE: Is there some sort of join() method for all of these background completion handlers
-        Event *e = [Event new];
+        
+        /*Event *e = [Event new];
         [e copyEvent:events[i]];
         [e saveEventToFlow:self completionHandler:nil];
     }
     
     NSLog(@"-----Copying this flow over-----");
     NSLog(@"Count: %lu", self.events.count);
+}*/
+
+
+- (void) copyFlow:(Flow *)givenFlow events:(NSArray<LocalDependsObject*>*)dependsObjs{
+    self.flowTitle = givenFlow.flowTitle;
+    self.active = givenFlow.active;
+    self.startDate = givenFlow.startDate;
+    self.endDate = givenFlow.endDate;
+    
+    NSMapTable *oldToNew = [[NSMapTable alloc] initWithKeyOptions: NSMapTableWeakMemory valueOptions: NSMapTableStrongMemory capacity:dependsObjs.count];
+    
+    
 }
 
 - (void) evaluateObjects: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion{
@@ -122,43 +135,15 @@
             }
         }
         
-        self.dependsObjects = objects;
+        //self.dependsObjects = objects;
         completion(objects, error);
     }];
 }
 
+- (void) updateEvaluations:(void (^)(LocalDependsObject * _Nonnull))misMatchHandler completion:(void (^)(NSMutableArray<LocalDependsObject *> * _Nullable, NSError * _Nullable))completion{
+    //TODO implement me
+}
+
 #pragma mark Notifications
 
-- (void) loadNotification: (EventObject*) eventObj{
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    
-    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-    
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
-    NSDateComponents *components = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:eventObj.startDate];
-    
-    content.title = eventObj.title;
-    content.sound = [UNNotificationSound defaultSound];
-    UNCalendarNotificationTrigger *caltrig = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
-    
-    //UNTimeIntervalNotificationTrigger *caltrig = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10 repeats:NO];
-    
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:eventObj.databaseObj.objectId content:content trigger:caltrig];
-    
-    [center addNotificationRequest:request withCompletionHandler:nil];
-    
-    
-}
-
-- (void) setNotifications: (NSArray<LocalDependsObject*>*)objects{
-    //Only eventsObjects should have notifications connected to them
-    NSArray<EventObject*> *events = (NSArray*)[objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-        return [evaluatedObject isKindOfClass:[EventObject class]];
-    }]];
-    
-    for (unsigned long i = 0; i < events.count; i++){
-        [self loadNotification:events[i]];
-    }
-}
 @end
