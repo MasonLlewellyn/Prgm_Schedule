@@ -30,6 +30,13 @@
     return (stringCmp && startComp && endComp);
 }
 
+- (void) loadAttributes{
+    [super loadAttributes];
+    
+    self.databaseObj[@"title"] = self.title;
+    self.databaseObj[@"startDate"] = self.startDate;
+    self.databaseObj[@"endDate"] = self.endDate;
+}
 - (void) saveToDatabase:(Flow *)flow completion:(PFBooleanResultBlock)completion{
     DependsObject *dObj = [self pullDatabaseObj];
     dObj[@"title"] = self.title;

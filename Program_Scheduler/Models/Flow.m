@@ -158,7 +158,7 @@
     
     NSMutableArray <LocalDependsObject*> *newObjects = [[NSMutableArray alloc] initWithCapacity:dependsObjs.count];
     
-    [newObjects addObject:dependsObjs[0]];
+    NSLog(@"Count: %lu", dependsObjs.count);
     
     for (unsigned int i = 0; i < dependsObjs.count; i++){
         LocalDependsObject *newObj = [self resolveObject:dependsObjs[i] dependsMap:oldToNew];
@@ -174,12 +174,14 @@
     //Save all db objects in the foreground to create ObjectIDs
     for (unsigned int j = 0; j < newObjects.count; j++){
         newObjects[j].databaseObj.flowID = self.objectId;
+        NSLog(@"%@", newObjects[j].databaseObj);
         [newObjects[j].databaseObj save];
     }
     
     //Establish connections between all objects
     for (unsigned int k = 0; k < newObjects.count; k++){
         newObjects[k].databaseObj.dependsOn = newObjects[k].dependsOn.databaseObj;
+        [newObjects[k].databaseObj save];
     }
     
     NSLog(@"---------------------Finished Copying-------------------");

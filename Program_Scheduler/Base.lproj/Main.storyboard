@@ -204,7 +204,7 @@
                                             <outlet property="activeSwitch" destination="RrM-gr-Q9I" id="WBP-bC-LYJ"/>
                                             <outlet property="descriptionLabel" destination="VNM-tB-sP4" id="MUf-2A-Eif"/>
                                             <outlet property="titleLabel" destination="WbH-TW-oTk" id="NoK-bK-dHL"/>
-                                            <segue destination="Nnv-5H-Rk2" kind="presentation" id="OcG-Nk-Drr"/>
+                                            <segue destination="Nnv-5H-Rk2" kind="show" identifier="cellToFlowView" id="OcG-Nk-Drr"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -251,7 +251,7 @@
                         <outlet property="tableView" destination="TaV-LY-wX3" id="ZRj-RV-KRM"/>
                         <segue destination="Zgt-Sa-jf7" kind="presentation" identifier="timelineToProfileView" id="UQH-Pm-h68"/>
                         <segue destination="uQW-v7-YL3" kind="presentation" identifier="timelineToFriends" id="gB6-tP-idC"/>
-                        <segue destination="U4f-iB-2x1" kind="show" identifier="TimelineToEditor" id="bxc-P8-u78"/>
+                        <segue destination="U4f-iB-2x1" kind="presentation" identifier="TimelineToEditor" id="bxc-P8-u78"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Viq-QE-a2B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -687,7 +687,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2L-TH-vpR">
-                                <rect key="frame" x="234" y="653" width="109" height="32"/>
+                                <rect key="frame" x="234" y="562" width="109" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Save">
@@ -734,7 +734,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gB6-tP-idC"/>
         <segue reference="u8X-Fj-2bP"/>
         <segue reference="OcG-Nk-Drr"/>
     </inferredMetricsTieBreakers>

@@ -28,6 +28,13 @@
     return (tempGood && condGood);
 }
 
+- (void) loadAttributes{
+    [super loadAttributes];
+    self.databaseObj[@"kind"] = [self getKind];
+    self.databaseObj[@"desiredTemp"] = [NSString stringWithFormat:@"%f", self.desiredTemp];
+    self.databaseObj[@"desiredCondition"] = self.desiredCondition;
+    
+}
 - (void)saveToDatabase:(Flow *)flow completion:(PFBooleanResultBlock)completion{
     DependsObject *dObj = [self pullDatabaseObj];
     dObj[@"kind"] = [self getKind];

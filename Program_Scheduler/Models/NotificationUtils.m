@@ -28,6 +28,7 @@
     
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:eventObj.databaseObj.objectId content:content trigger:caltrig];
     
+    
     [center addNotificationRequest:request withCompletionHandler:nil];
 }
 

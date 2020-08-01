@@ -15,11 +15,12 @@
 #import "FlowViewController.h"
 #import "SceneDelegate.h"
 #import "AppDelegate.h"
+#import "FlowEditorViewController.h"
 #import "NotificationUtils.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <FlowEditDelegate>
 @property (nonatomic, strong) NSMutableArray *activeFlows;
 @property (nonatomic, strong) NSMutableArray *inactiveFlows;
 
@@ -78,6 +79,10 @@ NSInteger pageCount = 20;
     [self fetchFlows];
 }
 
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self fetchFlows];
+}
 - (void) refreshFlows:(UIRefreshControl*)refreshControl{
     [self fetchFlows];
     [refreshControl endRefreshing];
@@ -174,12 +179,33 @@ NSInteger pageCount = 20;
         
         controller.flow = cell.flow;
     }
-    else{
-        //Going to user profile screen or making a new Flow
+    else if ([segue.identifier isEqualToString:@"TimelineToEditor"]){
+        //User is maing a new flow
+        FlowEditorViewController *controller = [segue destinationViewController];
+        controller.delegate = self;
+    }
+    else if ([segue.identifier isEqualToString:@"cellToFlowView"]){
+        //TODO: condensce this with the FlowFeedCell conditions
+        FlowViewController *controller = [segue destinationViewController];
+        Flow *sentFlow = sender;
         
+        if ([User currentUser] != self.currUser){
+            NSLog(@"I'm not feeling like myself");
+            controller.nonEditable = YES;
+        }
+        
+        controller.flow = sentFlow;
+    }
+    else{
+        //User is making a profile view
     }
 }
 
+#pragma mark FlowEditorView
+
+- (void) editFlowSaved:(FlowEditorViewController *)fvc{
+    [self performSegueWithIdentifier:@"cellToFlowView" sender:fvc.flow];
+}
 
 #pragma mark -Table View
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

@@ -52,6 +52,7 @@
     
     content.title = eventObj.title;
     content.sound = [UNNotificationSound defaultSound];
+    
     UNCalendarNotificationTrigger *caltrig = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
     
     //UNTimeIntervalNotificationTrigger *caltrig = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10 repeats:NO];

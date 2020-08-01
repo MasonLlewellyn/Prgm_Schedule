@@ -49,6 +49,7 @@
 		C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7A24BCE63600FEBFCA /* SignUpViewController.m */; };
 		C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */; };
 		C3CC472424C7766C001BE164 /* FriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC472324C7766C001BE164 /* FriendsTableViewCell.m */; };
+		C3CE23CF24D4CD6F009AEE7D /* dependsTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CE23CE24D4CD6F009AEE7D /* dependsTrigger.m */; };
 		C3D77FD924CFD462003E9AD3 /* FlowEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D77FD824CFD462003E9AD3 /* FlowEditorViewController.m */; };
 		C3FD92FB24C9075600B1D7C4 /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD92FA24C9075600B1D7C4 /* Weather.m */; };
 /* End PBXBuildFile section */
@@ -147,6 +148,8 @@
 		C3BBC5D424C244AD00372A03 /* EnlargedEventViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnlargedEventViewDelegate.h; sourceTree = "<group>"; };
 		C3CC472224C7766C001BE164 /* FriendsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewCell.h; sourceTree = "<group>"; };
 		C3CC472324C7766C001BE164 /* FriendsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewCell.m; sourceTree = "<group>"; };
+		C3CE23CD24D4CD6F009AEE7D /* dependsTrigger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dependsTrigger.h; sourceTree = "<group>"; };
+		C3CE23CE24D4CD6F009AEE7D /* dependsTrigger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dependsTrigger.m; sourceTree = "<group>"; };
 		C3D77FD724CFD462003E9AD3 /* FlowEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowEditorViewController.h; sourceTree = "<group>"; };
 		C3D77FD824CFD462003E9AD3 /* FlowEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowEditorViewController.m; sourceTree = "<group>"; };
 		C3FD92F924C9075600B1D7C4 /* Weather.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 				C30AE9FC24CA1C4D0089AFA5 /* DependsObject.m */,
 				C32E7A6324D36EFC00F1D1C9 /* NotificationUtils.h */,
 				C32E7A6424D36EFC00F1D1C9 /* NotificationUtils.m */,
+				C3CE23CD24D4CD6F009AEE7D /* dependsTrigger.h */,
+				C3CE23CE24D4CD6F009AEE7D /* dependsTrigger.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -622,6 +627,7 @@
 				C39DBD4224BCCF0D00FEBFCA /* SceneDelegate.m in Sources */,
 				C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */,
 				C39DBD7524BCD78100FEBFCA /* LoginViewController.m in Sources */,
+				C3CE23CF24D4CD6F009AEE7D /* dependsTrigger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

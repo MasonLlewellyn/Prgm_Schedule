@@ -50,7 +50,12 @@
     self.flow.author = [User currentUser];
     
     [self.flow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        [self performSegueWithIdentifier:@"EditorToFlow" sender:self.flow];
+        //[self performSegueWithIdentifier:@"EditorToFlow" sender:self.flow];
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.delegate editFlowSaved:self];
+        }];
+        
     }];
     
     
