@@ -20,6 +20,17 @@
 - (NSString*) getKind{
     return [LocalDependsObject getKind];
 }
+
+- (BOOL) cacheActive{
+    BOOL active = [self getActive];
+    BOOL OP = (self.cachedResult == active);
+    
+    self.cachedResult = active;
+    self.cacheDone = YES;
+    
+    return OP;
+}
+
 - (BOOL) getActive{
     BOOL result = NO;
     if (self.dependsOn){

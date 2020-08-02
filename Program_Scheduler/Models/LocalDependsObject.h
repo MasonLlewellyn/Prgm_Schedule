@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL cacheDone;
 
 - (BOOL) getActive;
+- (BOOL) cacheActive; //Caches the state of the event and returns whether or not the
 - (BOOL) getCached;
 + (NSString*) getKind; //Static method for returning the kind of the class
 - (NSString*) getKind; //Returns the kind of object that
@@ -28,9 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) updateSave: (nullable PFBooleanResultBlock)completion; //When you've 
 - (DependsObject*) pullDatabaseObj;
 - (void) deleteDatabaseObj;
+- (instancetype) copy;
+
+
 + (NSMutableArray*) queryDependsObjects: (NSString*)flowID completion: (void(^)(NSMutableArray<LocalDependsObject *>* _Nullable objects,  NSError * _Nullable error))completion; //Querys the database for depends objects and converts them into the proper LocalDependsObject subclasses
 
-- (instancetype) copy;
 @end
 
 NS_ASSUME_NONNULL_END

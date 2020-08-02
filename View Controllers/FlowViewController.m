@@ -7,6 +7,7 @@
 //
 
 #import "FlowViewController.h"
+#import "FlowEditorViewController.h"
 #import "EventEditorViewController.h"
 #import "DependsObject.h"
 #import "EventView.h"
@@ -140,18 +141,17 @@
 }
 
 - (void) updateView{
-    [self.flow updateEvaluations:^(LocalDependsObject * _Nonnull localObj) {
-        [self mismatchHandler:localObj];
-        
-    } completion:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {
-        self.objects = objects;
-        NSArray *interm = [self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-            return [evaluatedObject isKindOfClass:[EventObject class]];
-        }]];
-        self.eventObjects = [[NSMutableArray alloc] initWithArray:interm];
-        
-        [self arrangeView];
+    [self.flow updateEvaluations:self.objects mismatchHandler:^(LocalDependsObject * _Nonnull eventObj) {
+        [self mismatchHandler:eventObj];
     }];
+    
+    NSArray *interm = [self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return [evaluatedObject isKindOfClass:[EventObject class]];
+    }]];
+    self.eventObjects = [[NSMutableArray alloc] initWithArray:interm];
+    
+    [self destroyViews];
+    [self arrangeView];
 }
 
 - (void) arrangeView{
@@ -189,6 +189,9 @@
     }
     
     
+}
+- (IBAction)flowEditButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"flowToFlowEditor" sender:self.flow];
 }
 
 - (IBAction)eventButtonPressed:(id)sender {
@@ -229,6 +232,12 @@
         evc.flow = self.flow;
         
         
+    }
+    else if ([sender isKindOfClass:[Flow class]]){
+        //UINavigationController *navCtrl = [segue destinationViewController];
+        FlowEditorViewController *editCtrl = [segue destinationViewController];
+        
+        editCtrl.flow = self.flow;
     }
 }
 
@@ -279,6 +288,8 @@
         
         NSLog(@"Event Views: %@", self.eventViews);
         NSLog(@"Objects: %@", self.eventObjects);
+        
+        [NotificationUtils removeNotification: enlargedView.eventObj];
         
         [self destroyViews];
         //[self arrangeView];

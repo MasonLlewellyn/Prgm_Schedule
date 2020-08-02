@@ -17,6 +17,10 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *endDatePicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *DependsPickerView;
+@property (weak, nonatomic) IBOutlet UILabel *tempLabel;
+@property (weak, nonatomic) IBOutlet UILabel *condLabel;
+
+
 
 @end
 
@@ -43,6 +47,7 @@
     NSLog(@"%@", self.eventObjects);
     NSLog(@"%@", self.flow);
     
+    [self restrictDatePickers];
 }
 
 - (NSInteger) getEventIndex: (EventObject*) evObj{
@@ -52,19 +57,48 @@
     return self.eventObjects.count;
 }
 
+- (IBAction)startDateChanged:(id)sender {
+     self.endDatePicker.minimumDate = self.startDatePicker.date;
+}
+
+- (void) setEnd: (id)sender{
+    NSLog(@"Das ender isct das beginning");
+    self.endDatePicker.minimumDate = self.startDatePicker.date;
+}
+
+- (void) restrictDatePickers{
+    self.startDatePicker.minimumDate = self.flow.startDate;
+    self.startDatePicker.maximumDate = self.flow.endDate;
+    
+    
+    //[self.startDatePicker addTarget:self action:@selector(setEnd:) forControlEvents:UIControlEventValueChanged];
+    
+    self.endDatePicker.minimumDate = self.flow.startDate;
+    self.endDatePicker.maximumDate = self.flow.endDate;
+    
+    
+}
+
 - (void) setupView{
     self.titleTextField.text = self.eventObj.title;
     [self.startDatePicker setDate:self.eventObj.startDate];
     [self.endDatePicker setDate:self.eventObj.endDate];
+    
+    self.tempLabel.text = @"";
+    self.condLabel.text = @"";
     
     NSInteger index = 0;
     if ([self.eventObj.dependsOn isKindOfClass:[EventObject class]]){
         NSLog(@"Auto-selecting stuff ");
         index = [self getEventIndex:(EventObject*)self.eventObj.dependsOn];
     }
-    else if ([self.eventObj.dependsOn isKindOfClass:[EventObject class]]){
+    else if ([self.eventObj.dependsOn isKindOfClass:[WeatherObject class]]){
         self.weatherObj = (WeatherObject*)self.eventObj.dependsOn;
+        self.tempLabel.text = [NSString stringWithFormat:@"%f", self.weatherObj.desiredTemp];
+        self.condLabel.text = self.weatherObj.desiredCondition;
     }
+    
+    
     [self.DependsPickerView reloadAllComponents];
     [self.DependsPickerView selectRow:index inComponent:0 animated:YES];
 }
@@ -100,7 +134,11 @@
 
 - (void) saveEdits{
     [self.eventObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
-        FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
+        //FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
+        
+        UINavigationController *contrl = (UINavigationController*)self.presentingViewController;
+        
+        FlowViewController *fvc = [contrl viewControllers][1];
         
         [NotificationUtils removeNotification:self.eventObj]; //Remove the old notification and replace it with a new one
         [NotificationUtils loadNotification:self.eventObj];

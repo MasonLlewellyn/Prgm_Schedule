@@ -195,7 +195,7 @@
         }
         else{
             for (unsigned long i = 0; i < objects.count; i++){
-                [objects[i] getActive]; //This function will cache the
+                [objects[i] cacheActive]; //This function will cache the
             }
         }
         
@@ -204,8 +204,16 @@
     }];
 }
 
-- (void) updateEvaluations:(void (^)(LocalDependsObject * _Nonnull))misMatchHandler completion:(void (^)(NSMutableArray<LocalDependsObject *> * _Nullable, NSError * _Nullable))completion{
+- (void) updateEvaluations: (NSArray<LocalDependsObject*>*)objects mismatchHandler:(void(^)(LocalDependsObject *eventObj))mismatchHandler{
     //TODO implement me
+    
+    for (unsigned long i = 0; i < objects.count; i++){
+        if (![objects[i] cacheActive]){
+            mismatchHandler(objects[i]);
+        }
+    }
+    
+    
 }
 
 #pragma mark Notifications
