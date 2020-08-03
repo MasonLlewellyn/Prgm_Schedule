@@ -221,22 +221,26 @@
                     </view>
                     <navigationItem key="navigationItem" id="fBa-BN-z7B">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="nI7-ZG-1WN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="logoutPressed:" destination="hmn-nL-ZZq" id="ffi-wR-f7Z"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="person.circle" catalog="system" id="nrX-yi-IJw">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="profileButtonPressed:" destination="hmn-nL-ZZq" id="ZFg-BD-C4L"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="person.3.fill" catalog="system" id="fBy-aC-8ql">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="friendsButtonPressed:" destination="hmn-nL-ZZq" id="97B-aM-UQM"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="plus" catalog="system" id="Tzv-EQ-WCG">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="addFlowPressed:" destination="hmn-nL-ZZq" id="87X-mf-6qY"/>
                                 </connections>
@@ -374,30 +378,39 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="4Fk-8m-Tmw"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vg7-HT-RJB">
-                                <rect key="frame" x="20" y="83" width="39" height="30"/>
+                                <rect key="frame" x="20" y="94" width="68" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Event"/>
+                                <color key="backgroundColor" red="0.32142291881658669" green="0.64880254516746794" blue="0.13970215004599448" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Event">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="eventButtonPressed:" destination="Nnv-5H-Rk2" eventType="touchUpInside" id="BJJ-KB-mHS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6V-6a-cU0">
-                                <rect key="frame" x="154" y="83" width="66" height="30"/>
+                                <rect key="frame" x="144" y="94" width="76" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reminder"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JD-kl-BES">
-                                <rect key="frame" x="314" y="83" width="44" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Action"/>
+                                <color key="backgroundColor" red="0.24744446065023076" green="0.13638726086230299" blue="0.84267407655715942" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Reminder">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzm-8d-7wN">
-                                <rect key="frame" x="20" y="45" width="72" height="30"/>
+                                <rect key="frame" x="16" y="56" width="72" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Copy Flow"/>
                                 <connections>
                                     <action selector="copyFlowButtonPressed:" destination="Nnv-5H-Rk2" eventType="touchUpInside" id="fAc-IJ-2W0"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JD-kl-BES">
+                                <rect key="frame" x="283" y="95" width="76" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.15489520520864741" green="0.29526969178082191" blue="0.59451938573628249" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Action">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -405,6 +418,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Kfa-aE-ayj">
                         <barButtonItem key="rightBarButtonItem" image="pencil" catalog="system" id="fAA-iX-lUd">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="flowEditButtonPressed:" destination="Nnv-5H-Rk2" id="iTx-45-Tck"/>
                             </connections>
@@ -433,6 +447,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZiB-dE-yIE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.88377240560000003" green="0.3084986924" blue="0.3981969635" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.81186548223350252" green="0.30760260764247649" blue="0.22455241297513079" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -527,6 +546,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="L2L-lt-t1b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.081958590076712287" green="0.29393073260000002" blue="0.28055091471232874" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -761,7 +785,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="yhP-2a-Ir5"/>
-        <segue reference="u8X-Fj-2bP"/>
+        <segue reference="Sgq-tz-Jch"/>
         <segue reference="OcG-Nk-Drr"/>
     </inferredMetricsTieBreakers>
     <resources>

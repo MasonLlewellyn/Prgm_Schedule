@@ -88,6 +88,11 @@
     [self setupIntercept];
 }
 
+- (IBAction)delete:(id)sender {
+    [self.delegate weatherDeleteButtonPressed:self];
+    [self leaveView];
+}
+
 - (IBAction)saveButtonPressed:(id)sender {
     NSLog(@"Save Button was pressed!");
     self.weatherObj.desiredTemp = [self.temperatureField.text floatValue];

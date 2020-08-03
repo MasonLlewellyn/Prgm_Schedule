@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tempLabel;
 @property (weak, nonatomic) IBOutlet UILabel *condLabel;
 
-
+@property (strong, nonatomic) NSArray<EventObject*> *filteredEvents;
 
 @end
 
@@ -47,7 +47,15 @@
     NSLog(@"%@", self.eventObjects);
     NSLog(@"%@", self.flow);
     
-    [self restrictDatePickers];
+    //[self restrictDatePickers];
+}
+
+//Filter the events by which ones come before the starting date
+- (void) filterEvents{
+    self.filteredEvents = [self.eventObjects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        BOOL before = [self.startDatePicker.date compare:((EventObject*)evaluatedObject).startDate] == NSOrderedDescending;
+        return before;
+    }]];
 }
 
 - (NSInteger) getEventIndex: (EventObject*) evObj{
@@ -59,12 +67,17 @@
 
 - (IBAction)startDateChanged:(id)sender {
      self.endDatePicker.minimumDate = self.startDatePicker.date;
+    
+    [self filterEvents];
+    [self.DependsPickerView reloadAllComponents];
 }
 
+//NOTE: Not using this one right now, need a slightly more intitive way to write thiese notifs
 - (void) setEnd: (id)sender{
     NSLog(@"Das ender isct das beginning");
     self.endDatePicker.minimumDate = self.startDatePicker.date;
 }
+
 
 - (void) restrictDatePickers{
     self.startDatePicker.minimumDate = self.flow.startDate;
@@ -77,6 +90,12 @@
     self.endDatePicker.maximumDate = self.flow.endDate;
     
     
+}
+
+- (void) setupWeather{
+    if (!self.weatherObj) return;
+    self.tempLabel.text = [NSString stringWithFormat:@"%f", self.weatherObj.desiredTemp];
+    self.condLabel.text = self.weatherObj.desiredCondition;
 }
 
 - (void) setupView{
@@ -94,11 +113,12 @@
     }
     else if ([self.eventObj.dependsOn isKindOfClass:[WeatherObject class]]){
         self.weatherObj = (WeatherObject*)self.eventObj.dependsOn;
-        self.tempLabel.text = [NSString stringWithFormat:@"%f", self.weatherObj.desiredTemp];
-        self.condLabel.text = self.weatherObj.desiredCondition;
+        [self setupWeather];
     }
     
+    self.title = self.eventObj.title;
     
+    [self filterEvents];
     [self.DependsPickerView reloadAllComponents];
     [self.DependsPickerView selectRow:index inComponent:0 animated:YES];
 }
@@ -157,10 +177,35 @@
     }];
 }
 
+- (void) alertTitleCollision: (NSString*)title{
+    NSString *messageStr = [NSString stringWithFormat:@"The title: %@ is already in use", title];
+    UIAlertController *alert = [UIAlertController alloc];
+    alert = [UIAlertController alertControllerWithTitle:@"Title Collision"
+                                                message:messageStr
+    preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Okay"
+           style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alert addAction:okayAction];
+    
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+    }];
+}
 
 - (IBAction)saveButtonPressed:(id)sender {
     
     self.eventObj.title = self.titleTextField.text;
+    if ([Flow hasEventWithTitle:self.eventObj objects:self.eventObjects]){
+        [self alertTitleCollision:self.titleTextField.text];
+        return;
+    }
+        
+    
     self.eventObj.startDate = self.startDatePicker.date;
     self.eventObj.endDate = self.endDatePicker.date;
     self.eventObj.userActive = YES;
@@ -204,14 +249,14 @@
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView
 numberOfRowsInComponent:(NSInteger)component {
-    return self.eventObjects.count + 1;
+    return self.filteredEvents.count + 1;
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView
              titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (row == 0) return @"None";
-    else if (row <= self.eventObjects.count)
-        return self.eventObjects[row - 1].title;
+    else if (row <= self.filteredEvents.count)
+        return self.filteredEvents[row - 1].title;
     return @"";
     //return [NSString stringWithFormat:@"Choice-%ld",(long)row];//Or, your suitable title; like Choice-a, etc.
 }
@@ -225,7 +270,41 @@ numberOfRowsInComponent:(NSInteger)component {
 - (void) weatherSaveButtonPressed:(WeatherEditView *)weatherView{
     //TODO: check over and remove magic numbers
     self.weatherObj = weatherView.weatherObj;
+    [self setupWeather];
     //[self.eventObj loadAttributes];
+    
     [self.DependsPickerView selectRow:0 inComponent:0 animated:YES];
+}
+
+- (void) weatherDeleteButtonPressed:(WeatherEditView *)weatherView{
+    UIAlertController *alert = [UIAlertController alloc];
+    
+    alert = [UIAlertController alertControllerWithTitle:@"Delete weather"
+         message:@"Are you sure that you want to delete this"
+    preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes"
+           style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * _Nonnull action) {
+        [self.weatherObj deleteDatabaseObj];
+        self.weatherObj = nil;
+        self.eventObj.dependsOn = nil;
+        
+        [self setupWeather];
+    }];
+    
+    
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No"
+           style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * _Nonnull action) {
+                   // handle response here.
+    }];
+    
+    [alert addAction:yesAction];
+    [alert addAction:noAction];
+    
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+    }];
 }
 @end

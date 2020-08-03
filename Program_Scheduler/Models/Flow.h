@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import "Event.h"
 #import "LocalDependsObject.h"
+#import "EventObject.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -31,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) updateEvaluations: (NSArray<LocalDependsObject*>*)eventObjects mismatchHandler:(void(^)(LocalDependsObject *eventObj))mismatchHandler; //Updates the cached activation values of events with a handler to update other things if there is a mismatch
 /*- (void) setNotifications: (NSArray<LocalDependsObject*>*)objects; //Set all notifications for the flow*/
++ (NSArray<EventObject*>*) getChildren: (EventObject*)parentObj objects:(NSArray<LocalDependsObject*>*)objects;
++ (BOOL) hasEventWithTitle: (EventObject*)saveObj objects: (NSArray<EventObject*>*)objects;
 @end
 
 NS_ASSUME_NONNULL_END

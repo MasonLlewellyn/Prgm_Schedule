@@ -184,6 +184,7 @@
     PFQuery *query = [DependsObject query];
     //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
     [query whereKey:@"flowID" equalTo:flowID];
+    [query orderByAscending:@"startDate"];
     [query findObjectsInBackgroundWithBlock:^(NSArray<DependsObject*> * _Nullable objects, NSError * _Nullable error) {
         //NSMutableDictionary *dependsMap = [NSMutableDictionary dictionary];
         NSMapTable *dependsMap = [[NSMapTable alloc] initWithKeyOptions: NSMapTableWeakMemory valueOptions: NSMapTableStrongMemory capacity:objects.count];

@@ -216,6 +216,24 @@
     
 }
 
+//search the list of events (no query here) and get the events that are children of the given event
++ (NSArray<EventObject*>*) getChildren: (EventObject*)parentObj objects:(NSArray<LocalDependsObject*>*)objects{
+    
+    NSArray<EventObject*> *opArr = (NSArray<EventObject*>*)[objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return ((EventObject*)evaluatedObject).dependsOn == parentObj;
+    }]];
+    
+    return opArr;
+}
+
++ (BOOL) hasEventWithTitle: (EventObject*)saveObj objects: (NSArray<EventObject*>*)objects{
+    for (unsigned long i = 0; i < objects.count; i++){
+        if (objects[i] != saveObj && [objects[i].title isEqualToString:saveObj.title]) return YES;
+    }
+    
+    return NO;
+}
+
 #pragma mark Notifications
 
 @end

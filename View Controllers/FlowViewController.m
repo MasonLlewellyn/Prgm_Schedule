@@ -94,24 +94,6 @@
     
     [self destroyViews];
     
-    /*[self.flow getFlowEvents:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {
-        if (error){
-            
-        }
-        else{
-            self.objects = objects;
-            NSArray *interm = [self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-                return [evaluatedObject isKindOfClass:[EventObject class]];
-            }]];
-            
-            self.eventObjects = [[NSMutableArray alloc] initWithArray:interm];
-            [Weather initialize:^(NSError * _Nonnull error) {
-                [self arrangeView];
-            }];
-        }
-        
-    }];*/
-    
     [self.flow evaluateObjects:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {
         if (error){
             
@@ -226,6 +208,11 @@
             if (![evaluatedObject isKindOfClass:[EventObject class]]) return NO;
             
             BOOL sameEvent = (sender && [evaluatedObject compareEvent:sender]);
+            
+            
+            /*if (sender)
+            before = [((EventObject*)sender).startDate compare:((EventObject*)evaluatedObject).startDate] == NSOrderedDescending;*/
+            
             return ([evaluatedObject isKindOfClass:[EventObject class]] && !sameEvent);
         }]];
         
@@ -279,6 +266,18 @@
         //NOTE: This gives a warning but you know what, it works
         //Also, it's pretty much guarunteed that the event is nonnll
         //NSUInteger eventIndex = [self.eventViews indexOfObject:enlargedView.eventObj];
+        
+        NSArray<EventObject*>* children = [Flow getChildren:enlargedView.eventObj objects:self.eventObjects];
+        
+        for (unsigned long i = 0; i < children.count; i++){
+            //reset the depends attribute of all of the children
+            children[i].dependsOn = nil;
+            [children[i] saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
+                
+            }];
+        }
+        
+        
         NSUInteger viewIndex = [self eventIndex:enlargedView.eventObj];
         NSLog(@"Remove index %lu", viewIndex);
         [self.eventViews removeObjectAtIndex:viewIndex];

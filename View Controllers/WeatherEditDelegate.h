@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol WeatherEditViewDelegate <NSObject>
 - (void) weatherSaveButtonPressed: (WeatherEditView*)weatherView;
+- (void) weatherDeleteButtonPressed: (WeatherEditView*)weatherView;
 @end
 
 NS_ASSUME_NONNULL_END
