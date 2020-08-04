@@ -94,6 +94,14 @@
     self.titleLabel.text = eventObj.title;
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
     
+    self.locationTitleLabel.text = @"";
+    if ([eventObj.dependsOn isKindOfClass:[EventObject class]]){
+        self.dependsTitleLabel.text = ((EventObject*)eventObj.dependsOn).title;
+    }
+    else{
+        self.dependsTitleLabel.text = @"";
+    }
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
     formatter.timeStyle = NSDateFormatterShortStyle;

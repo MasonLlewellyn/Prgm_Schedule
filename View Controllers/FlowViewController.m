@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *reminderButton;
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (weak, nonatomic) IBOutlet UIButton *flowCopyButton;
+@property (weak, nonatomic) IBOutlet UIView *palleteView;
 
 
 @property (strong, nonatomic) NSMutableArray<EventView*> *eventViews;
@@ -39,9 +40,21 @@
     [self initializeView];
     self.eventViews = [[NSMutableArray alloc] init];
     
+    self.title = self.flow.flowTitle;
+    
+    [self setupButtons];
     //[self loadNotifs];
 }
 
+
+- (void) setupButtons{
+    self.palleteView.layer.cornerRadius = 8;
+    self.eventButton.layer.cornerRadius = 5;
+    self.reminderButton.layer.cornerRadius = 5;
+    self.actionButton.layer.cornerRadius = 5;
+    
+    self.flowCopyButton.layer.cornerRadius = 5;
+}
 - (void) loadNotification: (EventObject*) eventObj{
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     
@@ -65,31 +78,27 @@
     
 }
 
-- (void) loadNotifs{
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    
-    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-    
-    content.title = @"Test Notification";
-    content.subtitle = @"This is a test of the emergency warning system";
-    content.body = @"Again, this is a test of the emergency warning system.";
-    content.sound = [UNNotificationSound defaultSound];
-    
-    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10 repeats:NO];
-    
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"test_notif" content:content trigger:trigger];
-    
-    [center addNotificationRequest:request withCompletionHandler:nil];
-}
 
 #pragma mark - Event Space
 //TODO: instantiate an EventView for each individual event and lay them out vertically
+
+- (void) sortEventList{
+    //Sorts events by ascending
+    NSArray<LocalDependsObject*> *sortedArr =  [self.objects sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [(NSDate*)obj1 compare:(NSDate*)obj2];
+    }];
+    
+    
+    self.objects = [[NSMutableArray alloc] initWithArray:sortedArr];
+}
+
 - (void) initializeView{
     //If the current user is looking at someone else's flow, they should not be able to edit it
     
     self.eventButton.hidden = self.nonEditable;
     self.actionButton.hidden = self.nonEditable;
     self.reminderButton.hidden = self.nonEditable;
+    self.palleteView.hidden = self.nonEditable;
     self.flowCopyButton.hidden = !self.nonEditable;
     
     [self destroyViews];

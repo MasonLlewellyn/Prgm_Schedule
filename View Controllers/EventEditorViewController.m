@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *DependsPickerView;
 @property (weak, nonatomic) IBOutlet UILabel *tempLabel;
 @property (weak, nonatomic) IBOutlet UILabel *condLabel;
+@property (weak, nonatomic) IBOutlet UIButton *weatherButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @property (strong, nonatomic) NSArray<EventObject*> *filteredEvents;
 
@@ -36,12 +38,18 @@
     self.DependsPickerView.delegate = self;
     self.DependsPickerView.dataSource = self;
     
+    self.weatherButton.layer.cornerRadius = 5;
+    self.saveButton.layer.cornerRadius = 5;
+    
     if (self.eventObj){
         [self setupView];
     }
     else{
         self.eventObj = [EventObject new];
     }
+    
+    self.tempLabel.text = @"";
+    self.condLabel.text = @"";
     
     NSLog(@"%@", self.eventObj);
     NSLog(@"%@", self.eventObjects);
@@ -102,9 +110,6 @@
     self.titleTextField.text = self.eventObj.title;
     [self.startDatePicker setDate:self.eventObj.startDate];
     [self.endDatePicker setDate:self.eventObj.endDate];
-    
-    self.tempLabel.text = @"";
-    self.condLabel.text = @"";
     
     NSInteger index = 0;
     if ([self.eventObj.dependsOn isKindOfClass:[EventObject class]]){
@@ -172,6 +177,7 @@
             if (fvc.currEnlargedView){
                 [fvc.currEnlargedView setupDisplay:self.eventObj];
             }
+            
             [fvc initializeView];
         }];
     }];

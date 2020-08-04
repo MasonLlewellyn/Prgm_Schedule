@@ -93,30 +93,6 @@
     [LocalDependsObject queryDependsObjects: self.objectId completion:completion];
 }
 
-/*- (void) copyFlow:(Flow *)givenFlow events: (NSArray*)events{
-    self.flowTitle = givenFlow.flowTitle;
-    self.active = givenFlow.active;
-    self.startDate = givenFlow.startDate;
-    self.endDate = givenFlow.endDate;
-    
-    [self save];
-    for (unsigned long i = 0; i < events.count; i++){
-        //NOTE: Is there some sort of join() method for all of these background completion handlers
-        
-        /*Event *e = [Event new];
-        [e copyEvent:events[i]];
-        [e saveEventToFlow:self completionHandler:nil];
-    }
-    
-    NSLog(@"-----Copying this flow over-----");
-    NSLog(@"Count: %lu", self.events.count);
-}*/
-
-/*- (LocalDependsObject*) copyObj: (LocalDependsObject*)obj dependsMap: (NSMapTable*)dependsMap{
-    
-}*/
-
-
 //TODO: Copy database objects
 - (LocalDependsObject*) resolveObject: (LocalDependsObject*)obj dependsMap: (NSMapTable*)dependsMap{
     if ([dependsMap objectForKey:obj]){

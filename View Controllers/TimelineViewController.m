@@ -59,6 +59,9 @@ NSInteger pageCount = 20;
         [self.logoutButton setTintColor:[UIColor clearColor]];
         [self.profileButton setTintColor:[UIColor clearColor]];
         [self.addFlowButton setTintColor:[UIColor clearColor]];
+        
+        UIColor *fbColor = [UIColor colorWithRed:59/255.0 green:89/255.0 blue:152/255.0 alpha:1.0];
+        [self.navigationController.navigationBar setBackgroundColor:fbColor];
         self.title = @"Flows";
     }
     else if (!self.showOther && self.currUser == nil){
@@ -66,6 +69,8 @@ NSInteger pageCount = 20;
         self.currUser = [User currentUser];
     }
     
+    
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     //[Flow testPostFlow];
     //[Event cleanHouse];
     

@@ -13,6 +13,8 @@
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 
 @end
@@ -23,6 +25,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.passwordField.secureTextEntry = YES;
+    
+    self.signUpButton.layer.cornerRadius = 5;
+    self.loginButton.layer.cornerRadius = 5;
+    
 }
 
 - (BOOL) loginProtection{
@@ -106,7 +112,11 @@
 }
 
 - (IBAction)signUpPressed:(id)sender {
-    [self performSegueWithIdentifier:@"loginToSignUp" sender:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"timelineViewController"];
+    
+    
+    //[self performSegueWithIdentifier:@"loginToSignUp" sender:nil];
 }
 
 /*

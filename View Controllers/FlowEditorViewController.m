@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *endDatePicker;
 @property (weak, nonatomic) IBOutlet UISwitch *activationSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *saveFlowButton;
 
 @end
 
@@ -28,6 +29,8 @@
     else {
         self.flow = [Flow new];
     }
+    
+    self.saveFlowButton.layer.cornerRadius = 5;
     // Do any additional setup after loading the view.
 }
 

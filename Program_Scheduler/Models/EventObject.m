@@ -58,6 +58,7 @@
     newObj.startDate = self.startDate;
     newObj.endDate = self.endDate;
     newObj.userBool = self.userBool;
+    newObj.userActive = self.userActive;
     
     return newObj;
 }

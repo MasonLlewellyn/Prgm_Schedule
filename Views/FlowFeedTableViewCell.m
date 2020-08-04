@@ -23,7 +23,7 @@
 
 - (void) setupCell: (Flow*) flow{
     self.titleLabel.text = flow.flowTitle;
-    self.descriptionLabel.text = @"Unavialable";
+    self.descriptionLabel.text = @"";
     
     [self.activeSwitch setOn:flow.active];
     self.flow = flow;

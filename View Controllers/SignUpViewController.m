@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *rePasswordField;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 
 
 @end
@@ -24,6 +25,8 @@
     // Do any additional setup after loading the view.
     self.passwordField.secureTextEntry = YES;
     self.rePasswordField.secureTextEntry = YES;
+    
+    self.signUpButton.layer.cornerRadius = 5;
 }
 
 - (IBAction)signUpPressed:(id)sender {
