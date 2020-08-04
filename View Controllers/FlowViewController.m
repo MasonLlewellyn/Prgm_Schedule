@@ -17,7 +17,7 @@
 #import <Parse/Parse.h>
 
 
-@interface FlowViewController () <UNUserNotificationCenterDelegate>
+@interface FlowViewController () <UNUserNotificationCenterDelegate, EventViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *eventButton;
 @property (weak, nonatomic) IBOutlet UIButton *reminderButton;
@@ -171,6 +171,7 @@
         [self loadNotification:self.eventObjects[i]];
         EventView *eView = [[EventView alloc] initWithFrame:CGRectMake(10, startY, 300, 120)];
         eView.nonEditable = self.nonEditable;
+        eView.delegate = self;
         
         [eView setupAssets:(EventObject*)(self.eventObjects[i]) flowViewController:self];
         [self.scrollView addSubview:eView];

@@ -13,6 +13,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol EventViewDelegate <NSObject>
+- (void) updateView;
+@end
+
 @interface EventView : UIView <UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -20,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (strong, nonatomic) Event* event;
 @property (strong, nonatomic) EventObject* eventObj;
 @property (weak, nonatomic) FlowViewController *flowVC;
+@property (nonatomic, weak) id <EventViewDelegate> delegate;
 @property (nonatomic) BOOL nonEditable;
 - (void) setupAssets: (EventObject*)event flowViewController:(FlowViewController*)flowControl;
 - (void) leaveView;

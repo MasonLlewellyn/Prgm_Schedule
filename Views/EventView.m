@@ -9,6 +9,7 @@
 #import "EventView.h"
 #import "EnlargedEventView.h"
 
+
 @implementation EventView
 
 
@@ -42,10 +43,38 @@
     [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    singleTapRecognizer.numberOfTapsRequired = 1;
     
-    [self addGestureRecognizer:tapGestureRecognizer];
-    tapGestureRecognizer.delegate = self;
+    UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewDoubleTapped:)];
+    doubleTapRecognizer.numberOfTapsRequired = 2;
+    
+    [singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
+    
+    [self addGestureRecognizer:singleTapRecognizer];
+    [self addGestureRecognizer:doubleTapRecognizer];
+    
+    doubleTapRecognizer.delegate = self;
+    singleTapRecognizer.delegate = self;
+    
+    
+}
+
+
+- (void) viewDoubleTapped: (UITapGestureRecognizer*)recognizer{
+    NSLog(@"------Double tapped------");
+    self.eventObj.userActive = !self.eventObj.userActive;
+    //NSLog(@"----I just flipped a switch: %d", self.eventObj.userActive);
+    
+    [self.eventObj updateSave:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error){
+            NSLog(@"Doubletap Switch error: %@", error.localizedDescription);
+        }
+        else{
+            //[self.delegate updateForChangedEvent:self];
+            [self.delegate updateView];
+        }
+    }];
 }
 
 - (void) viewTapped: (UITapGestureRecognizer*)recognizer{
