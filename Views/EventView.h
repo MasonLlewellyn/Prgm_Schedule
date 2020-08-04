@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol EventViewDelegate <NSObject>
 - (void) updateView;
+- (void) eventsChanged;
 @end
 
 @interface EventView : UIView <UIGestureRecognizerDelegate>

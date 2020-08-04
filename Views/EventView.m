@@ -56,8 +56,6 @@
     
     doubleTapRecognizer.delegate = self;
     singleTapRecognizer.delegate = self;
-    
-    
 }
 
 
@@ -72,7 +70,7 @@
         }
         else{
             //[self.delegate updateForChangedEvent:self];
-            [self.delegate updateView];
+            [self.delegate eventsChanged];
         }
     }];
 }
@@ -86,10 +84,16 @@
     EnlargedEventView *bigEView = [[EnlargedEventView alloc] initWithFrame:CGRectZero];
     bigEView.nonEditable = self.nonEditable;
     
-    bigEView.frame = CGRectMake(0, 0, self.superview.superview.frame.size.width - 20, 300);
+    bigEView.frame = CGRectMake(0, 0, self.superview.superview.frame.size.width - 20, 0);
     bigEView.center = self.superview.superview.center;
     
     bigEView.delegate = self.flowVC;
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        bigEView.frame = CGRectMake(0, 0, self.superview.superview.frame.size.width - 20, 300);
+        bigEView.center = self.superview.superview.center;
+    }];
+    
     self.flowVC.currEnlargedView = bigEView;
     
     //Make a background that covers the whole flowView

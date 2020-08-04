@@ -43,7 +43,14 @@
 }
 
 - (void)leaveView{
-    [self removeFromSuperview];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.frame = CGRectMake(0, 0, self.superview.superview.frame.size.width - 20, 0);
+        self.center = self.superview.superview.center;
+    } completion:^(BOOL finished) {
+        if (finished) [self removeFromSuperview];
+    }];
+    
+    
     
     [self.touchInterceptView removeFromSuperview];
     [self.delegate leavingEventView:self];
@@ -76,6 +83,7 @@
         }
         else{
             //[self.delegate updateForChangedEvent:self];
+            [self.delegate eventsChanged];
         }
     }];
 }

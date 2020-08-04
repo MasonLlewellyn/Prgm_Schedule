@@ -145,6 +145,28 @@
     [self arrangeView];
 }
 
+- (void) eventsChanged{
+    //The events should be re-evaluated and changed color based on their updated state, animate these changes
+    
+    [self.flow updateEvaluations:self.objects mismatchHandler:^(LocalDependsObject * _Nonnull eventObj) {
+        UIColor *activeColor = [UIColor colorWithRed:0.05 green:0.5 blue:0.5 alpha:1.0];
+        if ([eventObj isKindOfClass:[EventObject class]]){
+            EventObject *evnt = (EventObject*)eventObj;
+            [NotificationUtils removeNotification:(EventObject*)eventObj];
+            NSUInteger viewIndex = [self eventIndex:evnt];
+            
+            [UIView animateWithDuration:0.2 animations:^{
+                self.eventViews[viewIndex].contentView.backgroundColor = [eventObj getCached] ? activeColor : UIColor.redColor;
+                
+            }];
+            
+        }
+        
+       
+        
+    }];
+}
+
 - (void) arrangeView{
     CGFloat contentHeight = (170) * (self.objects.count) - 20;
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, contentHeight);
