@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) displayDeleteAlert: (EnlargedEventView*)enlargedView;
 - (void) editSelectedEvent: (EnlargedEventView*)enlargedView;
 - (void) leavingEventView: (EnlargedEventView*)enlargedView;
+- (void) updateLeave: (EnlargedEventView*)enlargedView;
 - (void) eventsChanged;
 //- (void) updateForChangedEvent: (EnlargedEventView*)enlargedEventView;//Update the cached dependencies for this changed event
 @end

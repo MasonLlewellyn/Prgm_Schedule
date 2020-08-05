@@ -67,7 +67,17 @@
 
 - (IBAction)deleteButtonTapped:(id)sender {
     [self.delegate displayDeleteAlert:self];
-    [self leaveView];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.frame = CGRectMake(0, 0, self.superview.superview.frame.size.width - 20, 0);
+        self.center = self.superview.superview.center;
+    } completion:^(BOOL finished) {
+        if (finished) [self removeFromSuperview];
+    }];
+    
+    
+    
+    [self.touchInterceptView removeFromSuperview];
 }
 
 - (IBAction)editButtonTapped:(id)sender {

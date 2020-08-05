@@ -34,6 +34,7 @@
 
 @implementation FlowViewController
 
+const unsigned int heightPerHour = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -92,6 +93,8 @@
     self.objects = [[NSMutableArray alloc] initWithArray:sortedArr];
 }
 
+
+
 - (void) initializeView{
     //If the current user is looking at someone else's flow, they should not be able to edit it
     
@@ -119,6 +122,8 @@
             }];
         }
     }];
+    
+    
 }
 
 - (void) mismatchHandler: (LocalDependsObject*)localObj{
@@ -145,6 +150,18 @@
     [self arrangeView];
 }
 
+
+//Update the state of the event views if there is no re-rendering necessary
+//This is in a situation where an event is not deleted or added but tather changed
+- (void) updateEventViews{
+    CGFloat contentHeight = (170) * (self.objects.count) - 20;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, contentHeight);
+    
+    for (unsigned long i = 0; i < self.eventViews.count; i++){
+        [self.eventViews[i] setupAssets:self.eventObjects[i] flowViewController:self];
+    }
+}
+
 - (void) eventsChanged{
     //The events should be re-evaluated and changed color based on their updated state, animate these changes
     
@@ -166,6 +183,17 @@
         
     }];
 }
+
+
+//Adds and renders the bar that displays where in the flow the current user is
+- (void) addTimeBar{
+    
+}
+
+- (void) sizePerTime{
+    
+}
+
 
 - (void) arrangeView{
     CGFloat contentHeight = (170) * (self.objects.count) - 20;
@@ -271,8 +299,8 @@
 }
 
 - (NSUInteger) eventIndex: (EventObject*) key{
-    for (NSUInteger i = 0; i < self.eventViews.count; i++){
-        if ((EventObject*)self.eventViews[i].eventObj == key)
+    for (NSUInteger i = 0; i < self.eventObjects.count; i++){
+        if (self.eventObjects[i] == key)
             return i;
     }
     return self.eventViews.count;
@@ -304,26 +332,34 @@
         for (unsigned long i = 0; i < children.count; i++){
             //reset the depends attribute of all of the children
             children[i].dependsOn = nil;
-            [children[i] saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
-                
-            }];
+            [children[i] saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {}];
         }
         
         
+        [self destroyViews];
+        
         NSUInteger viewIndex = [self eventIndex:enlargedView.eventObj];
         NSLog(@"Remove index %lu", viewIndex);
-        [self.eventViews removeObjectAtIndex:viewIndex];
+        //[self.eventViews removeObjectAtIndex:viewIndex];
         
         //TODO: for some reason it can't actually find where the eventObj is
+        NSLog(@"%@", self.eventObjects[viewIndex]);
         [self.eventObjects removeObjectAtIndex:viewIndex];
         
-        NSLog(@"Event Views: %@", self.eventViews);
-        NSLog(@"Objects: %@", self.eventObjects);
+        NSUInteger objIndex = [self getObjectIndex:enlargedView.eventObj];
+        NSLog(@"%@", self.objects[viewIndex]);
+        [self.objects removeObjectAtIndex:objIndex];
         
+        
+        //NSLog(@"Event Views: %@", self.eventViews);
+        //NSLog(@"Objects: %@", self.eventObjects);
+        
+        NSLog(@"%lu", self.objects.count);
+        NSLog(@"%lu", self.eventViews.count);
         [NotificationUtils removeNotification: enlargedView.eventObj];
         
-        [self destroyViews];
-        //[self arrangeView];
+        
+        [self arrangeView];
     }];
     
     
@@ -349,9 +385,13 @@
 }
 
 - (void) leavingEventView:(EnlargedEventView *)enlargedView{
-    //[self initializeView];
+    [self updateEventViews];
+}
+
+- (void) updateLeave: (EnlargedEventView*)enlargedView{
     [self updateView];
     [self arrangeView];
 }
+
 
 @end
