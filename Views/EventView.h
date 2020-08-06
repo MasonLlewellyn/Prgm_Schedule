@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *startDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *endDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dependsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *smallStartDate;
 //@property (strong, nonatomic) Event* event;
 @property (strong, nonatomic) EventObject* eventObj;
 @property (weak, nonatomic) FlowViewController *flowVC;

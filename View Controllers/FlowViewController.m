@@ -34,7 +34,8 @@
 
 @implementation FlowViewController
 
-const unsigned int heightPerHour = 0;
+const double heightPerMinute = 2.5; //TODO: update this with an actual acale value
+const double emptyCoeff = 0.5;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -154,8 +155,8 @@ const unsigned int heightPerHour = 0;
 //Update the state of the event views if there is no re-rendering necessary
 //This is in a situation where an event is not deleted or added but tather changed
 - (void) updateEventViews{
-    CGFloat contentHeight = (170) * (self.objects.count) - 20;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, contentHeight);
+    /*CGFloat contentHeight = (170) * (self.objects.count) - 20;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, contentHeight);*/
     
     for (unsigned long i = 0; i < self.eventViews.count; i++){
         [self.eventViews[i] setupAssets:self.eventObjects[i] flowViewController:self];
@@ -190,14 +191,23 @@ const unsigned int heightPerHour = 0;
     
 }
 
-- (void) sizePerTime{
+- (void) sizeView{
+    CGFloat contentHeight = 10; //Extra 10 for padding
+    for (unsigned long i = 0; i < self.eventObjects.count; ++i){
+        NSTimeInterval secondsBetween = [self.eventObjects[i].endDate timeIntervalSinceDate:self.eventObjects[i].startDate];
+        
+        contentHeight += (secondsBetween / 60) * heightPerMinute;
+    }
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, contentHeight);
     
 }
 
 
 - (void) arrangeView{
-    CGFloat contentHeight = (170) * (self.objects.count) - 20;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, contentHeight);
+    /*CGFloat contentHeight = (170) * (self.objects.count) - 20;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, contentHeight);*/
+    //[self sizeView];
     [self makeEventViews];
 }
 
@@ -213,22 +223,56 @@ const unsigned int heightPerHour = 0;
     NSLog(@"Event view counts %ld", self.eventViews.count);
 }
 
+- (CGFloat) secondsDifference: (NSDate*)startDate endDate:(NSDate*)endDate{
+    unsigned int unitFlags = NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay | NSCalendarUnitMonth;
+
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDateComponents *diffComponents = [gregorian components:unitFlags fromDate:startDate toDate:endDate options:0];
+    
+    NSLog(@"Diff Hour: %ld", [diffComponents hour]);
+    NSLog(@"Diff Minute: %ld", [diffComponents minute]);
+    
+    return 0.0;
+}
 - (void) makeEventViews{
-    NSUInteger startY = 0;
+    CGFloat startY = 0.0;
+    
+    CGRect contentRect = CGRectZero;
     for (NSUInteger i = 0; i < self.eventObjects.count; i++){
         NSLog(@"Create New Obj");
         
+        NSTimeInterval secondsBetween = [self.eventObjects[i].endDate timeIntervalSinceDate:self.eventObjects[i].startDate];
+        
+        CGFloat viewHeight = (secondsBetween / 60) * heightPerMinute;
+        
         [self loadNotification:self.eventObjects[i]];
-        EventView *eView = [[EventView alloc] initWithFrame:CGRectMake(10, startY, 300, 120)];
+        EventView *eView = [[EventView alloc] initWithFrame:CGRectMake(10, startY, 300, viewHeight)];
+        
         eView.nonEditable = self.nonEditable;
         eView.delegate = self;
+        
+        
         
         [eView setupAssets:(EventObject*)(self.eventObjects[i]) flowViewController:self];
         [self.scrollView addSubview:eView];
         [self.eventViews addObject:eView];
         
-        startY += 170;
+        contentRect = CGRectUnion(contentRect, eView.frame);
+        
+        
+        if (i < self.eventObjects.count - 1){
+            NSTimeInterval interSeconds = [self.eventObjects[i+1].startDate timeIntervalSinceDate:self.eventObjects[i].endDate];
+            
+            CGFloat diffHeight = (interSeconds / 60) * emptyCoeff;
+            CGFloat totalSizeUp = viewHeight + diffHeight;
+            startY += totalSizeUp;
+            
+            [self secondsDifference:self.eventObjects[i+1].startDate endDate: self.eventObjects[i].endDate];
+        }
     }
+    
+    self.scrollView.contentSize = contentRect.size;
     
     
 }

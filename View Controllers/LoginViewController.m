@@ -102,7 +102,11 @@
          } else {
              NSLog(@"User logged in successfully");
              // display view controller that needs to shown after successful login
-             [self performSegueWithIdentifier:@"loginToTimeline" sender:nil];
+              UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+             
+             
+             self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"timelineViewController"];
+             //[self performSegueWithIdentifier:@"loginToTimeline" sender:nil];
          }
      }];
  }
@@ -112,11 +116,7 @@
 }
 
 - (IBAction)signUpPressed:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"timelineViewController"];
-    
-    
-    //[self performSegueWithIdentifier:@"loginToSignUp" sender:nil];
+    [self performSegueWithIdentifier:@"loginToSignUp" sender:nil];
 }
 
 /*

@@ -132,6 +132,22 @@
     
     self.flowVC = flowControl;
     
+    BOOL bigViewMode = (self.frame.size.height >= 100);
+    self.endDateLabel.hidden = !bigViewMode;
+    self.dependsLabel.hidden = !bigViewMode;
+    self.startDateLabel.hidden = !bigViewMode;
+    self.smallStartDate.hidden = bigViewMode;
+    
+    self.endDateLabel.text = [formatter stringFromDate:eventObj.endDate];
+    self.smallStartDate.text = [formatter stringFromDate:eventObj.startDate];
+    if ([self.eventObj.dependsOn isKindOfClass:[EventObject class]]){
+        self.dependsLabel.text = [NSString stringWithFormat:@"Depends on: %@",
+                                  ((EventObject*)(self.eventObj.dependsOn)).title];
+    }
+    
+    
+
+    
 }
 
 - (void) leaveView{

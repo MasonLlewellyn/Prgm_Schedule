@@ -10,6 +10,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventView">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Ic9-bu-VuC"/>
+                <outlet property="dependsLabel" destination="QfY-Xf-bjc" id="kw8-Ya-BdX"/>
+                <outlet property="endDateLabel" destination="P30-fL-hUw" id="CBw-RS-L4g"/>
+                <outlet property="smallStartDate" destination="Gxy-b3-gEs" id="p9J-jL-nJp"/>
                 <outlet property="startDateLabel" destination="Khl-Tg-VCW" id="twA-de-Sub"/>
                 <outlet property="titleLabel" destination="nj5-tD-94z" id="qYm-FV-m7W"/>
             </connections>
@@ -31,13 +34,39 @@
                     <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EndDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P30-fL-hUw">
+                    <rect key="frame" x="293" y="55" width="66" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Depends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfY-Xf-bjc">
+                    <rect key="frame" x="16" y="100" width="69" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="smallStart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gxy-b3-gEs">
+                    <rect key="frame" x="282.5" y="23" width="76.5" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.081958590080000004" green="0.29393073260000002" blue="0.28055091469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="P30-fL-hUw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="55" id="2q7-cS-1YH"/>
+                <constraint firstAttribute="trailing" secondItem="P30-fL-hUw" secondAttribute="trailing" constant="16" id="91j-8x-Fap"/>
+                <constraint firstItem="P30-fL-hUw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Khl-Tg-VCW" secondAttribute="trailing" constant="10" id="BpU-fS-8en"/>
+                <constraint firstItem="QfY-Xf-bjc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="FvC-KP-VQN"/>
                 <constraint firstItem="Khl-Tg-VCW" firstAttribute="top" secondItem="nj5-tD-94z" secondAttribute="bottom" priority="750" constant="8" id="MVw-PI-i1e"/>
                 <constraint firstItem="Khl-Tg-VCW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="QWf-xi-ct1"/>
                 <constraint firstItem="nj5-tD-94z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="WdD-AS-qyW"/>
+                <constraint firstItem="Gxy-b3-gEs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nj5-tD-94z" secondAttribute="trailing" constant="10" id="fQQ-9b-5eZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Gxy-b3-gEs" secondAttribute="trailing" constant="16" id="j0n-Hs-B1b"/>
+                <constraint firstItem="QfY-Xf-bjc" firstAttribute="top" secondItem="Khl-Tg-VCW" secondAttribute="bottom" constant="25" id="kFp-vx-iUi"/>
                 <constraint firstItem="nj5-tD-94z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="nPq-Q1-eIT"/>
+                <constraint firstItem="Gxy-b3-gEs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="23" id="oWc-YU-WBv"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
