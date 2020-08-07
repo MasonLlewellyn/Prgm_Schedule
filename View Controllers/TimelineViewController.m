@@ -21,8 +21,9 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <DGActivityIndicatorView/DGActivityIndicatorView.h>
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface TimelineViewController () <FlowEditDelegate>
+@interface TimelineViewController () <FlowEditDelegate, MPMediaPickerControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *activeFlows;
 @property (nonatomic, strong) NSMutableArray *inactiveFlows;
 
@@ -104,6 +105,20 @@ NSInteger pageCount = 20;
     [self.view addSubview:self.activityIndicator];
     
     [self fetchFlows];
+    [self musiq_test];
+}
+
+- (void) musiq_test{
+    MPMediaPickerController *pickControl = [[MPMediaPickerController alloc] init];
+    //pickControl.allowsPickingMultipleItems = YES;
+    
+    pickControl.popoverPresentationController.sourceView = self.view;
+    pickControl.delegate = self;
+    [self presentViewController:pickControl animated:YES completion:^{
+        
+    }];
+    
+
 }
 
 - (void) setupLoadingView{
@@ -215,6 +230,18 @@ NSInteger pageCount = 20;
     }];
 }
 
+#pragma mark MPMediaPickerView
+- (void) mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection{
+    [mediaPicker dismissViewControllerAnimated:YES completion:nil];
+    
+    MPMusicPlayerController *mControl = [MPMusicPlayerApplicationController systemMusicPlayer];
+    [mControl setQueueWithItemCollection:mediaItemCollection];
+    [mControl play];
+}
+
+- (void) mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker{
+    [mediaPicker dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
