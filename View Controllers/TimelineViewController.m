@@ -17,8 +17,10 @@
 #import "AppDelegate.h"
 #import "FlowEditorViewController.h"
 #import "NotificationUtils.h"
+#import <CKLoadingView/CKLoadingView.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <DGActivityIndicatorView/DGActivityIndicatorView.h>
 
 @interface TimelineViewController () <FlowEditDelegate>
 @property (nonatomic, strong) NSMutableArray *activeFlows;
@@ -29,6 +31,10 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *profileButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *friendsButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addFlowButton;
+@property (strong, nonatomic) IBOutlet CKLoadingView *loadingView;
+
+@property (nonatomic) CKLoadingView *timelineLoadingView;
+@property (nonatomic) DGActivityIndicatorView *activityIndicator;
 
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) NSInteger loadedCount;
@@ -70,6 +76,7 @@ NSInteger pageCount = 20;
     }
     
     
+                            
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     //[Flow testPostFlow];
     //[Event cleanHouse];
@@ -81,7 +88,39 @@ NSInteger pageCount = 20;
         
     }];
     
+    /*self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
+    self.activityIndicator.center = self.view.center;
+    
+    [self.view addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];*/
+    
+    //[self setupLoadingView];
+    
+    //self.tableView.hidden = YES;
+    
+    self.activityIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeNineDots tintColor:UIColor.redColor size:50.0f];
+    self.activityIndicator.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    self.activityIndicator.center = self.view.center;
+    [self.view addSubview:self.activityIndicator];
+    
     [self fetchFlows];
+}
+
+- (void) setupLoadingView{
+    //TODO: Loading view is not displaying...Maybe set up with sotryboard instead
+    self.timelineLoadingView = [[CKLoadingView alloc] initWithFrame:CGRectMake(0, 100, CGRectGetWidth([UIScreen mainScreen].bounds), 200)];
+    
+    self.timelineLoadingView.center = self.view.center;
+    self.timelineLoadingView.animationSpeed = 0.5;
+    self.timelineLoadingView.animationItemDelayInterval = 0.1;
+    self.timelineLoadingView.animationStopWaitInterval = 0.1;
+    
+    //self.timelineLoadingView.backgroundColor = UIColor.brownColor;
+    self.timelineLoadingView.loadingShape = CKLoadingShapeRectangle;
+    [self.timelineLoadingView startAnimate];
+    [self.view addSubview:self.timelineLoadingView];
+    //[self.view addSubview:self.timelineLoadingView];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -125,6 +164,9 @@ NSInteger pageCount = 20;
         return;
     }
     __weak typeof(self) weakSelf = self;
+    
+    [self.activityIndicator startAnimating];
+    
     PFQuery *query = [Flow query];
     query.limit = pageCount;
     //[actQuery whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
@@ -133,6 +175,13 @@ NSInteger pageCount = 20;
         if (flows){
             weakSelf.activeFlows = [NSMutableArray arrayWithArray:flows];
             weakSelf.loadedCount = weakSelf.activeFlows.count;
+            
+            NSLog(@"-------Stop animation called----");
+            //[weakSelf.timelineLoadingView removeFromSuperview];
+            
+            //self.tableView.hidden = NO;
+            [self.activityIndicator stopAnimating];
+            [weakSelf.activityIndicator stopAnimating];
             [weakSelf.tableView reloadData];
         }
         else{

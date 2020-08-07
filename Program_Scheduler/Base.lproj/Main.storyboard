@@ -266,6 +266,7 @@
                     <connections>
                         <outlet property="addFlowButton" destination="Tzv-EQ-WCG" id="uum-z1-3Ta"/>
                         <outlet property="friendsButton" destination="fBy-aC-8ql" id="8II-k5-ige"/>
+                        <outlet property="loadingView" destination="xrS-xM-0Lq" id="jcZ-hR-x1X"/>
                         <outlet property="logoutButton" destination="nI7-ZG-1WN" id="MNb-Sl-jdF"/>
                         <outlet property="profileButton" destination="nrX-yi-IJw" id="myJ-Kx-BNJ"/>
                         <outlet property="tableView" destination="TaV-LY-wX3" id="ZRj-RV-KRM"/>
@@ -821,7 +822,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yhP-2a-Ir5"/>
+        <segue reference="bxc-P8-u78"/>
         <segue reference="VJB-1d-guM"/>
         <segue reference="OcG-Nk-Drr"/>
     </inferredMetricsTieBreakers>

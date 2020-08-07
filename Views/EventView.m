@@ -144,7 +144,9 @@
         self.dependsLabel.text = [NSString stringWithFormat:@"Depends on: %@",
                                   ((EventObject*)(self.eventObj.dependsOn)).title];
     }
-    
+    else{
+        self.dependsLabel.text = @"";
+    }
     
 
     

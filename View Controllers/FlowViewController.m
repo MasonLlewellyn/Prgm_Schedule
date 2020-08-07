@@ -15,7 +15,7 @@
 #import "Weather.h"
 #import "NotificationUtils.h"
 #import <Parse/Parse.h>
-
+#import <DGActivityIndicatorView/DGActivityIndicatorView.h>
 
 @interface FlowViewController () <UNUserNotificationCenterDelegate, EventViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -28,6 +28,7 @@
 
 @property (strong, nonatomic) NSMutableArray<EventView*> *eventViews;
 @property (strong, nonatomic) NSMutableArray<EventObject*> *eventObjects;
+@property (nonatomic) DGActivityIndicatorView *activityIndicator;
 
 
 @end
@@ -39,6 +40,12 @@ const double emptyCoeff = 0.5;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.activityIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeNineDots tintColor:UIColor.redColor size:50.0f];
+    self.activityIndicator.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    self.activityIndicator.center = self.view.center;
+    [self.view addSubview:self.activityIndicator];
+    
+    
     [self initializeView];
     self.eventViews = [[NSMutableArray alloc] init];
     
@@ -97,8 +104,10 @@ const double emptyCoeff = 0.5;
 
 
 - (void) initializeView{
-    //If the current user is looking at someone else's flow, they should not be able to edit it
+    //Start loading animation
+    [self.activityIndicator startAnimating];
     
+    //If the current user is looking at someone else's flow, they should not be able to edit it
     self.eventButton.hidden = self.nonEditable;
     self.actionButton.hidden = self.nonEditable;
     self.reminderButton.hidden = self.nonEditable;
@@ -119,6 +128,7 @@ const double emptyCoeff = 0.5;
             
             self.eventObjects = [[NSMutableArray alloc] initWithArray:interm];
             [Weather initialize:^(NSError * _Nonnull error) {
+                [self.activityIndicator stopAnimating];
                 [self arrangeView];
             }];
         }
@@ -186,11 +196,6 @@ const double emptyCoeff = 0.5;
 }
 
 
-//Adds and renders the bar that displays where in the flow the current user is
-- (void) addTimeBar{
-    
-}
-
 - (void) sizeView{
     CGFloat contentHeight = 10; //Extra 10 for padding
     for (unsigned long i = 0; i < self.eventObjects.count; ++i){
@@ -239,6 +244,7 @@ const double emptyCoeff = 0.5;
     CGFloat startY = 0.0;
     
     CGRect contentRect = CGRectZero;
+    
     for (NSUInteger i = 0; i < self.eventObjects.count; i++){
         NSLog(@"Create New Obj");
         
@@ -255,6 +261,7 @@ const double emptyCoeff = 0.5;
         
         
         [eView setupAssets:(EventObject*)(self.eventObjects[i]) flowViewController:self];
+        
         [self.scrollView addSubview:eView];
         [self.eventViews addObject:eView];
         
@@ -265,6 +272,12 @@ const double emptyCoeff = 0.5;
             NSTimeInterval interSeconds = [self.eventObjects[i+1].startDate timeIntervalSinceDate:self.eventObjects[i].endDate];
             
             CGFloat diffHeight = (interSeconds / 60) * emptyCoeff;
+            
+            //If two events overlap, make the later event lighter in opacity
+            if (diffHeight < 0.0){
+                eView.contentView.alpha = 0.75;
+            }
+            
             CGFloat totalSizeUp = viewHeight + diffHeight;
             startY += totalSizeUp;
             
