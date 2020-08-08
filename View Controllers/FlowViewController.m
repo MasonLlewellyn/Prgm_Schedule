@@ -9,11 +9,13 @@
 #import "FlowViewController.h"
 #import "FlowEditorViewController.h"
 #import "EventEditorViewController.h"
+#import "ActionEditorViewController.h"
 #import "DependsObject.h"
 #import "EventView.h"
 #import "User.h"
 #import "Weather.h"
 #import "NotificationUtils.h"
+#import "ActionObject.h"
 #import <Parse/Parse.h>
 #import <DGActivityIndicatorView/DGActivityIndicatorView.h>
 
@@ -292,10 +294,14 @@ const double emptyCoeff = 0.5;
 - (IBAction)flowEditButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"flowToFlowEditor" sender:self.flow];
 }
+- (IBAction)actionButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"flowToActionEditor" sender:nil];
+}
 
 - (IBAction)eventButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"flowToEventEditor" sender:nil];
 }
+
 - (IBAction)copyFlowButtonPressed:(id)sender {
     //Copy back the flow to the original user
     Flow *myFlow = [Flow new];
@@ -315,12 +321,16 @@ const double emptyCoeff = 0.5;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([sender isKindOfClass:[EventObject class]] || sender == nil){
+    if ([sender isKindOfClass:[EventObject class]]|| sender == nil){
         //If we are editing an eventt or creating a new one
         NSLog(@"Segue to the editor view");
         UINavigationController *navCtrl = [segue destinationViewController];
         EventEditorViewController *evc = [navCtrl viewControllers][0];
         evc.eventObj = sender;
+        
+        if ([sender isKindOfClass:[ActionObject class]])
+            ((ActionEditorViewController*)evc).actionObj = sender;
+        
         evc.eventObjects = (NSArray*)[self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
             if (![evaluatedObject isKindOfClass:[EventObject class]]) return NO;
             
@@ -337,7 +347,7 @@ const double emptyCoeff = 0.5;
         
         
     }
-    else if ([sender isKindOfClass:[Flow class]]){
+    else if ([segue.identifier isEqualToString:@"flowToEventEditor"]){
         //UINavigationController *navCtrl = [segue destinationViewController];
         FlowEditorViewController *editCtrl = [segue destinationViewController];
         

@@ -109,16 +109,27 @@ NSInteger pageCount = 20;
 }
 
 - (void) musiq_test{
-    MPMediaPickerController *pickControl = [[MPMediaPickerController alloc] init];
-    //pickControl.allowsPickingMultipleItems = YES;
+    /*MPMediaPickerController *pickControl = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeMusic];
     
+    //pickControl.allowsPickingMultipleItems = YES;
     pickControl.popoverPresentationController.sourceView = self.view;
     pickControl.delegate = self;
     [self presentViewController:pickControl animated:YES completion:^{
         
-    }];
+    }];*/
     
-
+    MPMediaQuery *mQuery = [MPMediaQuery playlistsQuery];
+    NSArray<MPMediaItemCollection*> *playlists = [mQuery collections];
+    
+    NSLog(@"!!!!!!Playlist count %lu!!!!!!!!!", playlists.count);
+    for (unsigned long i = 0; i < playlists.count; i++){
+        NSLog(@"!!!!!!!%@", [playlists[i] valueForProperty:MPMediaPlaylistPropertyName]);
+        NSLog(@"!!!!!!!%@", [playlists[i] valueForProperty:MPMediaPlaylistPropertyPersistentID]);
+    }
+    
+    /*MPMusicPlayerController *mControl = [MPMusicPlayerApplicationController systemMusicPlayer];
+    [mControl setQueueWithItemCollection:playlists[playlists.count - 1]];
+    [mControl play];*/
 }
 
 - (void) setupLoadingView{

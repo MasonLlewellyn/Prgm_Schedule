@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Flow *flow;
 @property (strong, nonatomic) NSArray<EventObject*> *eventObjects;
 @property (strong, nonatomic) WeatherObject *weatherObj;
+
+- (void) weatherOpen;
+- (void) startChanged;
+- (void) saveOperation;
 @end
 
 NS_ASSUME_NONNULL_END

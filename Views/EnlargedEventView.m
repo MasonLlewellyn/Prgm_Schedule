@@ -114,7 +114,7 @@
     
     self.locationTitleLabel.text = @"";
     if ([eventObj.dependsOn isKindOfClass:[EventObject class]]){
-        self.dependsTitleLabel.text = ((EventObject*)eventObj.dependsOn).title;
+        self.dependsTitleLabel.text = [NSString stringWithFormat:@"Depends on: %@", ((EventObject*)eventObj.dependsOn).title];
     }
     else{
         self.dependsTitleLabel.text = @"";

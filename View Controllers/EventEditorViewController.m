@@ -73,11 +73,15 @@
     return self.eventObjects.count;
 }
 
-- (IBAction)startDateChanged:(id)sender {
-     self.endDatePicker.minimumDate = self.startDatePicker.date;
+- (void) startChanged{
+    self.endDatePicker.minimumDate = self.startDatePicker.date;
     
     [self filterEvents];
     [self.DependsPickerView reloadAllComponents];
+}
+
+- (IBAction)startDateChanged:(id)sender {
+    [self startChanged];
 }
 
 //NOTE: Not using this one right now, need a slightly more intitive way to write thiese notifs
@@ -128,33 +132,38 @@
     [self.DependsPickerView selectRow:index inComponent:0 animated:YES];
 }
 
-- (IBAction)weatherButtonPressed:(id)sender {
+
+- (void) weatherOpen{
     WeatherEditView *weatherEView = [[WeatherEditView alloc] initWithFrame:CGRectZero];
-    
-    weatherEView.frame = CGRectMake(0, 0, self.view.superview.frame.size.width - 20, 450);
-    weatherEView.center = self.view.center;
-    
-    //Make a background that covers the whole flowView
-    UIView *touchInterceptView = [[UIView alloc] initWithFrame:CGRectZero];
-    touchInterceptView.frame = self.view.superview.superview.bounds;
-    touchInterceptView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
-    touchInterceptView.center = weatherEView.center;
-    
-    WeatherObject *wObj = nil;
-    if ([self.eventObj.dependsOn isKindOfClass:[WeatherObject class]])
-        wObj = (WeatherObject*)self.eventObj.dependsOn;
-    
-    
-    [self.view.superview addSubview:touchInterceptView];
-    [self.view.superview bringSubviewToFront:touchInterceptView];
-    
-    //Bring the enlarged schedule view to the front
-    [self.view.superview addSubview:weatherEView];
-    [self.view.superview bringSubviewToFront:weatherEView];
-    
-    weatherEView.flow = self.flow;
-    weatherEView.delegate = self;
-    [weatherEView setupAssets:wObj eventObject:self.eventObj intercept:touchInterceptView];
+       
+       weatherEView.frame = CGRectMake(0, 0, self.view.superview.frame.size.width - 20, 450);
+       weatherEView.center = self.view.center;
+       
+       //Make a background that covers the whole flowView
+       UIView *touchInterceptView = [[UIView alloc] initWithFrame:CGRectZero];
+       touchInterceptView.frame = self.view.superview.superview.bounds;
+       touchInterceptView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
+       touchInterceptView.center = weatherEView.center;
+       
+       WeatherObject *wObj = nil;
+       if ([self.eventObj.dependsOn isKindOfClass:[WeatherObject class]])
+           wObj = (WeatherObject*)self.eventObj.dependsOn;
+       
+       
+       [self.view.superview addSubview:touchInterceptView];
+       [self.view.superview bringSubviewToFront:touchInterceptView];
+       
+       //Bring the enlarged schedule view to the front
+       [self.view.superview addSubview:weatherEView];
+       [self.view.superview bringSubviewToFront:weatherEView];
+       
+       weatherEView.flow = self.flow;
+       weatherEView.delegate = self;
+       [weatherEView setupAssets:wObj eventObject:self.eventObj intercept:touchInterceptView];
+}
+
+- (IBAction)weatherButtonPressed:(id)sender {
+    [self weatherOpen];
 }
 
 - (void) saveEdits{
@@ -203,8 +212,7 @@
     }];
 }
 
-- (IBAction)saveButtonPressed:(id)sender {
-    
+- (void) saveOperation{
     self.eventObj.title = self.titleTextField.text;
     if ([Flow hasEventWithTitle:self.eventObj objects:self.eventObjects]){
         [self alertTitleCollision:self.titleTextField.text];
@@ -236,6 +244,10 @@
     }
     
     
+}
+
+- (IBAction)saveButtonPressed:(id)sender {
+    [self saveOperation];
 }
 
 /*

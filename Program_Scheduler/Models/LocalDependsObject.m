@@ -9,6 +9,7 @@
 #import "LocalDependsObject.h"
 #import "WeatherObject.h"
 #import "EventObject.h"
+#import "ActionObject.h"
 #import "Flow.h"
 
 @implementation LocalDependsObject
@@ -137,6 +138,26 @@
         eObj.userActive = dbObject.userActive;
         eObj.flowID = dbObject.flowID;
         return eObj;
+    }
+    else if ([kindStr isEqualToString:[EventObject getKind]]){
+        ActionObject *aObj = [ActionObject new];
+        aObj.databaseObj = dbObject;
+        aObj.title = dbObject[@"title"];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+        //formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterShortStyle;
+        
+        aObj.startDate = dbObject[@"startDate"];
+        aObj.endDate = dbObject[@"endDate"];
+        
+        aObj.userActive = dbObject.userActive;
+        aObj.flowID = dbObject.flowID;
+        
+        aObj.playlistTitle = dbObject[@"playlistTitle"];
+        aObj.playlistID = dbObject[@"playlistID"];
+        return aObj;
     }
     //As a last resort, just instantiate it a a LocalDatabaseObject
     LocalDependsObject *lObj = [LocalDependsObject new];

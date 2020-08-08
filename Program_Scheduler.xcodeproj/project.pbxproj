@@ -48,9 +48,14 @@
 		C39DBD7824BCE5B600FEBFCA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7724BCE5B600FEBFCA /* SignUpViewController.m */; };
 		C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7A24BCE63600FEBFCA /* SignUpViewController.m */; };
 		C39DBD7E24BCE78E00FEBFCA /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */; };
+		C3A80C0524DDD8DB00BFB5DD /* ActionEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A80C0424DDD8DB00BFB5DD /* ActionEditorViewController.m */; };
+		C3A80C0824DDFB6600BFB5DD /* ActionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A80C0724DDFB6600BFB5DD /* ActionObject.m */; };
 		C3CC472424C7766C001BE164 /* FriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC472324C7766C001BE164 /* FriendsTableViewCell.m */; };
 		C3CE23CF24D4CD6F009AEE7D /* dependsTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CE23CE24D4CD6F009AEE7D /* dependsTrigger.m */; };
 		C3D77FD924CFD462003E9AD3 /* FlowEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D77FD824CFD462003E9AD3 /* FlowEditorViewController.m */; };
+		C3EFED2324DE514D009614B7 /* PlaylistSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EFED2224DE514D009614B7 /* PlaylistSelectView.xib */; };
+		C3EFED2624DE56C4009614B7 /* PlaylistSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFED2524DE56C4009614B7 /* PlaylistSelectView.m */; };
+		C3EFED2924DE653F009614B7 /* playlistUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFED2824DE653F009614B7 /* playlistUtil.m */; };
 		C3FD92FB24C9075600B1D7C4 /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD92FA24C9075600B1D7C4 /* Weather.m */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +150,10 @@
 		C39DBD7A24BCE63600FEBFCA /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		C39DBD7C24BCE78E00FEBFCA /* TimelineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
 		C39DBD7D24BCE78E00FEBFCA /* TimelineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
+		C3A80C0324DDD8DB00BFB5DD /* ActionEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionEditorViewController.h; sourceTree = "<group>"; };
+		C3A80C0424DDD8DB00BFB5DD /* ActionEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionEditorViewController.m; sourceTree = "<group>"; };
+		C3A80C0624DDFB6600BFB5DD /* ActionObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionObject.h; sourceTree = "<group>"; };
+		C3A80C0724DDFB6600BFB5DD /* ActionObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionObject.m; sourceTree = "<group>"; };
 		C3BBC5D424C244AD00372A03 /* EnlargedEventViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnlargedEventViewDelegate.h; sourceTree = "<group>"; };
 		C3CC472224C7766C001BE164 /* FriendsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewCell.h; sourceTree = "<group>"; };
 		C3CC472324C7766C001BE164 /* FriendsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewCell.m; sourceTree = "<group>"; };
@@ -152,6 +161,11 @@
 		C3CE23CE24D4CD6F009AEE7D /* dependsTrigger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dependsTrigger.m; sourceTree = "<group>"; };
 		C3D77FD724CFD462003E9AD3 /* FlowEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowEditorViewController.h; sourceTree = "<group>"; };
 		C3D77FD824CFD462003E9AD3 /* FlowEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowEditorViewController.m; sourceTree = "<group>"; };
+		C3EFED2224DE514D009614B7 /* PlaylistSelectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistSelectView.xib; sourceTree = "<group>"; };
+		C3EFED2424DE56C4009614B7 /* PlaylistSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistSelectView.h; sourceTree = "<group>"; };
+		C3EFED2524DE56C4009614B7 /* PlaylistSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistSelectView.m; sourceTree = "<group>"; };
+		C3EFED2724DE653F009614B7 /* playlistUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = playlistUtil.h; sourceTree = "<group>"; };
+		C3EFED2824DE653F009614B7 /* playlistUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = playlistUtil.m; sourceTree = "<group>"; };
 		C3FD92F924C9075600B1D7C4 /* Weather.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
 		C3FD92FA24C9075600B1D7C4 /* Weather.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,6 +226,10 @@
 				C32E7A6424D36EFC00F1D1C9 /* NotificationUtils.m */,
 				C3CE23CD24D4CD6F009AEE7D /* dependsTrigger.h */,
 				C3CE23CE24D4CD6F009AEE7D /* dependsTrigger.m */,
+				C3A80C0624DDFB6600BFB5DD /* ActionObject.h */,
+				C3A80C0724DDFB6600BFB5DD /* ActionObject.m */,
+				C3EFED2724DE653F009614B7 /* playlistUtil.h */,
+				C3EFED2824DE653F009614B7 /* playlistUtil.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -220,6 +238,9 @@
 			isa = PBXGroup;
 			children = (
 				C386624D24D08B31008E7FFE /* WeatherEditView.xib */,
+				C3EFED2224DE514D009614B7 /* PlaylistSelectView.xib */,
+				C3EFED2424DE56C4009614B7 /* PlaylistSelectView.h */,
+				C3EFED2524DE56C4009614B7 /* PlaylistSelectView.m */,
 				C386624F24D08D57008E7FFE /* WeatherEditView.h */,
 				C386625024D08D58008E7FFE /* WeatherEditView.m */,
 				C3CC472224C7766C001BE164 /* FriendsTableViewCell.h */,
@@ -301,6 +322,8 @@
 		C39DBD7224BCD75600FEBFCA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3A80C0324DDD8DB00BFB5DD /* ActionEditorViewController.h */,
+				C3A80C0424DDD8DB00BFB5DD /* ActionEditorViewController.m */,
 				C3D77FD724CFD462003E9AD3 /* FlowEditorViewController.h */,
 				C3D77FD824CFD462003E9AD3 /* FlowEditorViewController.m */,
 				C3BBC5D424C244AD00372A03 /* EnlargedEventViewDelegate.h */,
@@ -468,6 +491,7 @@
 			files = (
 				C39DBD4D24BCCF0E00FEBFCA /* LaunchScreen.storyboard in Resources */,
 				C39DBD4A24BCCF0E00FEBFCA /* Assets.xcassets in Resources */,
+				C3EFED2324DE514D009614B7 /* PlaylistSelectView.xib in Resources */,
 				C386087024C0DDD2007C1F78 /* EnlargedEventView.xib in Resources */,
 				C39DBD4824BCCF0D00FEBFCA /* Main.storyboard in Resources */,
 				C3804A2A24BF829B00027F85 /* EventView.xib in Resources */,
@@ -602,6 +626,7 @@
 				C30AE9FD24CA1C4D0089AFA5 /* DependsObject.m in Sources */,
 				C39DBD4524BCCF0D00FEBFCA /* ViewController.m in Sources */,
 				C30AEA0624CA8E030089AFA5 /* LocalDependsObject.m in Sources */,
+				C3EFED2924DE653F009614B7 /* playlistUtil.m in Sources */,
 				C386625124D08D58008E7FFE /* WeatherEditView.m in Sources */,
 				C3804A3024BF908100027F85 /* FlowViewController.m in Sources */,
 				C36A704924C6B5000092AC2F /* FriendsViewController.m in Sources */,
@@ -616,6 +641,7 @@
 				C32E7A6524D36EFC00F1D1C9 /* NotificationUtils.m in Sources */,
 				C3D77FD924CFD462003E9AD3 /* FlowEditorViewController.m in Sources */,
 				C3FD92FB24C9075600B1D7C4 /* Weather.m in Sources */,
+				C3A80C0524DDD8DB00BFB5DD /* ActionEditorViewController.m in Sources */,
 				C39DBD3F24BCCF0D00FEBFCA /* AppDelegate.m in Sources */,
 				C38A0D2924BE1B9600330524 /* Event.m in Sources */,
 				C3CC472424C7766C001BE164 /* FriendsTableViewCell.m in Sources */,
@@ -626,8 +652,10 @@
 				C386087C24C11B67007C1F78 /* EventEditorViewController.m in Sources */,
 				C39DBD4224BCCF0D00FEBFCA /* SceneDelegate.m in Sources */,
 				C39DBD7B24BCE63600FEBFCA /* SignUpViewController.m in Sources */,
+				C3EFED2624DE56C4009614B7 /* PlaylistSelectView.m in Sources */,
 				C39DBD7524BCD78100FEBFCA /* LoginViewController.m in Sources */,
 				C3CE23CF24D4CD6F009AEE7D /* dependsTrigger.m in Sources */,
+				C3A80C0824DDFB6600BFB5DD /* ActionObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
