@@ -10,6 +10,7 @@
 #import "FlowViewController.h"
 #import "WeatherEditDelegate.h"
 #import "NotificationUtils.h"
+#import "PlaylistSelectView.h"
 
 @interface ActionEditorViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *weatherButton;
@@ -66,8 +67,25 @@
 }
 
 - (IBAction)selectPlaylistPressed:(id)sender {
+    PlaylistSelectView *psView = [[PlaylistSelectView alloc] initWithFrame:CGRectZero];
+    psView.frame = CGRectMake(0, 0, self.view.superview.frame.size.width - 20, 450);
+    psView.center = self.view.center;
     
+    //Make a background that covers the whole flowView
+    UIView *touchInterceptView = [[UIView alloc] initWithFrame:CGRectZero];
+    touchInterceptView.frame = self.view.superview.superview.bounds;
+    touchInterceptView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
+    touchInterceptView.center = psView.center;
+    
+    [self.view.superview addSubview:touchInterceptView];
+    [self.view.superview bringSubviewToFront:touchInterceptView];
+    
+    [self.view.superview addSubview:psView];
+    [self.view.superview bringSubviewToFront:psView];
+    
+    [psView setupAssets:self.actionObj touchIntercept:touchInterceptView];
 }
+
 - (IBAction)saveButtonPressed:(id)sender {
     [super saveOperation];
 }

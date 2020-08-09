@@ -16,9 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 
+@property (weak, nonatomic) UIView *touchInterceptView;
 @property (strong, nonatomic) ActionObject* actionObj;
 @property (strong, nonatomic) NSArray <MPMediaItemCollection*>* playlists;
-- (void) setupAssets: (ActionObject*)actionObj;
+- (void) setupAssets: (ActionObject*)actionObj touchIntercept: (UIView*)intercept;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -35,31 +35,74 @@
 }
 
 - (void) customInit{
-    [[[NSBundle mainBundle] loadNibNamed:@"WeatherEditView" owner:self options:nil] objectAtIndex:0];
+    [[[NSBundle mainBundle] loadNibNamed:@"PlaylistSelectView" owner:self options:nil] objectAtIndex:0];
     
     [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
 }
 
-- (void) setupAssets: (ActionObject*)actionObj{
+- (void) leaveView{
+    [self removeFromSuperview];
+    [self.touchInterceptView removeFromSuperview];
+}
+
+- (IBAction)cancelButtonPressed:(id)sender {
+    [self leaveView];
+}
+
+
+- (void) interceptTapped: (UITapGestureRecognizer*)recognizer{
+    //Leave the view if the intercept around the edit view is tapped
+    NSLog(@"---Intercept tapped----");
+    [self leaveView];
+}
+
+- (void) setupIntercept{
+    NSLog(@"---Setting a faulty intercept----");
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(interceptTapped:)];
+    
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    
+    [self.touchInterceptView setUserInteractionEnabled:YES];
+    [self.touchInterceptView addGestureRecognizer: tapGestureRecognizer];
+}
+
+
+- (void) setupAssets: (ActionObject*)actionObj touchIntercept: (UIView*)intercept{
     self.actionObj = actionObj;
+    self.touchInterceptView = intercept;
     
     MPMediaQuery *mQuery = [MPMediaQuery playlistsQuery];
     NSArray<MPMediaItemCollection*> *playlists = [mQuery collections];
     
     self.playlists = playlists;
-    
+    NSLog(@"!___!__Playlist count: %lu", self.playlists.count);
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    self.tableView.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height - 100);
+    
+    self.tableView.center = self.contentView.center;
+    
+    self.contentView.layer.cornerRadius = 10;
+    
+    [self setupIntercept];
 }
 
 #pragma mark Table View
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    NSString *reuseID = @"cellID";
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CellID"];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:reuseID];
+    
+    if (!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID];
+    }
+    
     
     cell.textLabel.text = [self.playlists[indexPath.row] valueForProperty:MPMediaPlaylistPropertyName];
     
+    NSLog(@"____text___%@", [self.playlists[indexPath.row] valueForProperty:MPMediaPlaylistPropertyName]);
     return cell;
 }
 
