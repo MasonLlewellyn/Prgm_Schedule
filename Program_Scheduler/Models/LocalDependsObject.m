@@ -139,7 +139,7 @@
         eObj.flowID = dbObject.flowID;
         return eObj;
     }
-    else if ([kindStr isEqualToString:[EventObject getKind]]){
+    else if ([kindStr isEqualToString:[ActionObject getKind]]){
         ActionObject *aObj = [ActionObject new];
         aObj.databaseObj = dbObject;
         aObj.title = dbObject[@"title"];

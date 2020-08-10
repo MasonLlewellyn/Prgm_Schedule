@@ -89,6 +89,7 @@ NSInteger pageCount = 20;
         
     }];
     
+    
     /*self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
     self.activityIndicator.center = self.view.center;
     

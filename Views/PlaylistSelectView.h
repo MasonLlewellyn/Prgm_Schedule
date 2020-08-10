@@ -11,14 +11,21 @@
 #import <MediaPlayer/MediaPlayer.h>
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol PlaylistSelectViewDelegate <NSObject>
+- (void) playlistSelected: (MPMediaItemCollection*)selectedPlaylist;
+- (void) playlistRemoved: (MPMediaItemCollection*)selectedPlaylist;
+@end
+
 @interface PlaylistSelectView : UIView <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 
+@property (nonatomic, weak) id <PlaylistSelectViewDelegate> delegate;
 @property (weak, nonatomic) UIView *touchInterceptView;
 @property (strong, nonatomic) ActionObject* actionObj;
 @property (strong, nonatomic) NSArray <MPMediaItemCollection*>* playlists;
+@property (strong, nonatomic) MPMediaItemCollection* playlist;
 - (void) setupAssets: (ActionObject*)actionObj touchIntercept: (UIView*)intercept;
 @end
 

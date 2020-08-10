@@ -23,7 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) weatherOpen;
 - (void) startChanged;
-- (void) saveOperation;
+- (void) saveOperation: (EventObject*)eventObj;
+- (void) setupOperation: (EventObject*)eventObj;
 @end
 
 NS_ASSUME_NONNULL_END

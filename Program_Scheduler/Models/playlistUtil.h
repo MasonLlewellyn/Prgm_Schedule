@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "ActionObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface playlistUtil : NSObject
++ (void) playIDPlaylist: (NSString*)playlistID;
 @end
 
 NS_ASSUME_NONNULL_END

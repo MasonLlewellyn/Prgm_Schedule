@@ -12,8 +12,22 @@
 @implementation NotificationUtils
 
 
++ (void) registerActions{
+    NSLog(@"Registering actions!");
+    
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    UNNotificationAction *playAction = [UNNotificationAction actionWithIdentifier:@"PLAY_ACTION" title:@"Play" options:UNNotificationActionOptionNone];
+    
+    UNNotificationCategory *actionCategory = [UNNotificationCategory categoryWithIdentifier:@"ACTION_CATEGORY" actions:@[playAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+    
+    UNNotificationCategory *normalCategory = [UNNotificationCategory categoryWithIdentifier:@"NORMAL_CATEGORY" actions:@[] intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];
+    
+    [center setNotificationCategories:[[NSSet alloc] initWithArray:@[actionCategory, normalCategory]]];
+}
+
 //TODO: Update this to take into account dependencies
 + (void) loadNotification:(EventObject *)eventObj{
+    [NotificationUtils registerActions];
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
@@ -24,18 +38,55 @@
     
     content.title = eventObj.title;
     content.sound = [UNNotificationSound defaultSound];
+    
+    if ([eventObj isKindOfClass:[ActionObject class]]){
+        NSLog(@"Setting Notif with actions");
+        content.categoryIdentifier = @"ACTION_CATEGORY";
+        content.body = ((ActionObject*)eventObj).playlistTitle;
+        //[content.userInfo setValue:((ActionObject*)eventObj).playlistID forKey:@"PLAYLIST_ID"];
+        content.userInfo = @{@"PLAYLIST_ID": ((ActionObject*)eventObj).playlistID};
+    }
+    else{
+        content.categoryIdentifier = @"NORMAL_CATEGORY";
+        content.body = @"";
+        content.userInfo = @{};
+    }
+    
     UNCalendarNotificationTrigger *caltrig = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
     
+    NSLog(@"Database ID: %@", eventObj.databaseObj.objectId);
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:eventObj.databaseObj.objectId content:content trigger:caltrig];
     
     
-    [center addNotificationRequest:request withCompletionHandler:nil];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {}];
+    
+    [center getNotificationCategoriesWithCompletionHandler:^(NSSet<UNNotificationCategory *> * _Nonnull categories) {
+        NSLog(@"OUTERMOST");
+        for (UNNotificationCategory *i in categories){
+            NSLog(@"BackChat!@!@#!");
+            if ([i.identifier isEqualToString:@"ACTION_CATEGORY"]){
+                NSLog(@"^###^@^!^#^$^@&#*(@&(#@&!^&@*FOUND it!: %@", i);
+            }
+        }
+    }];
+    
+    [center getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+        NSLog(@"!!!!!!!!SYM-BIONIC Titan!!!!!!!");
+        for (UNNotificationRequest *req in requests){
+            if ([req.identifier isEqualToString:eventObj.databaseObj.objectId])
+                NSLog(@"%@", req.content);
+        }
+    }];
+    
+    
 }
 
 + (void) removeNotification:(EventObject *)eventObj{
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     [center removePendingNotificationRequestsWithIdentifiers:@[eventObj.databaseObj.objectId]];
 }
+
+
 
 + (void) removeFlowNotifications:(Flow *)flow{
     [flow getFlowEvents:^(NSMutableArray<LocalDependsObject *> * _Nullable objects, NSError * _Nullable error) {

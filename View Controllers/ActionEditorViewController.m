@@ -11,8 +11,9 @@
 #import "WeatherEditDelegate.h"
 #import "NotificationUtils.h"
 #import "PlaylistSelectView.h"
+#import "playlistUtil.h"
 
-@interface ActionEditorViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface ActionEditorViewController () <UIPickerViewDataSource, UIPickerViewDelegate, PlaylistSelectViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *weatherButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectPlaylistButton;
 @property (weak, nonatomic) IBOutlet UILabel *tempLabel;
@@ -42,6 +43,7 @@
     
     if (self.actionObj){
         [self setupView];
+        NSLog(@"%@", self.actionObj.playlistTitle);
     }
     else{
         self.actionObj = [ActionObject new];
@@ -52,10 +54,10 @@
 }
 
 - (void) setupView{
-    self.title = self.actionObj.title;
+    [super setupOperation:self.actionObj];
+    [self.selectPlaylistButton setTitle:self.actionObj.playlistTitle forState:UIControlStateNormal];
     
-    self.startDatePicker.date = self.actionObj.startDate;
-    self.endDatePicker.date = self.actionObj.endDate;
+    
 }
 
 - (IBAction)startDateChanged:(id)sender {
@@ -83,13 +85,22 @@
     [self.view.superview addSubview:psView];
     [self.view.superview bringSubviewToFront:psView];
     
+    psView.delegate = self;
     [psView setupAssets:self.actionObj touchIntercept:touchInterceptView];
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
-    [super saveOperation];
+    [super saveOperation: self.actionObj];
 }
 
+#pragma mark Playlist Select View
+- (void) playlistSelected:(MPMediaItemCollection *)selectedPlaylist{
+    self.actionObj.playlistID = [selectedPlaylist valueForProperty:MPMediaPlaylistPropertyPersistentID];
+    self.actionObj.playlistTitle = [selectedPlaylist valueForProperty:MPMediaPlaylistPropertyName];
+    
+    
+    self.selectPlaylistButton.titleLabel.text = self.actionObj.playlistTitle;
+}
 
 /*
 #pragma mark - Navigation

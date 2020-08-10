@@ -111,7 +111,13 @@
     return self.playlists.count;
 }
 
-
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    MPMediaItemCollection* selectedCollection = self.playlists[indexPath.row];
+    
+    [self.delegate playlistSelected:selectedCollection];
+    [self leaveView];
+}
 
 
 /*

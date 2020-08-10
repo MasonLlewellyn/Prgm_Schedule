@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "User.h"
+#import "playlistUtil.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/Parse.h>
 #import <UserNotifications/UserNotifications.h>
@@ -24,10 +25,37 @@
     
     UNNotificationPresentationOptions presentationOptions = UNNotificationPresentationOptionSound +UNNotificationPresentationOptionAlert;
 
+    [center getNotificationCategoriesWithCompletionHandler:^(NSSet<UNNotificationCategory *> * _Nonnull categories) {
+        NSLog(@"OUTERMOST");
+        for (UNNotificationCategory *i in categories){
+            NSLog(@"BackChat!@!@#!");
+            if ([i.identifier isEqualToString:@"ACTION_CATEGORY"]){
+                NSLog(@"^###^@^!^#^$^@&#*(@&(#@&!^&@*FOUND it!: %@", i);
+            }
+        }
+    }];
+    
+    [center getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
+        for (UNNotification *notif in notifications){
+            NSLog(@"%@", notif.request.content);
+        }
+    }];
+    
     completionHandler(presentationOptions);
 }
 
-
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
+    
+   // response.notification.request.content
+    if ([response.actionIdentifier isEqualToString:@"PLAY_ACTION"]){
+        NSString *playlistID = response.notification.request.content.userInfo[@"PLAYLIST_ID"];
+        NSLog(@"Playlist ID: %@", playlistID);
+        [playlistUtil playIDPlaylist:playlistID];
+    }
+    
+    completionHandler();
+    
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [User registerSubclass]; //Hope this works

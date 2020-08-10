@@ -126,6 +126,7 @@ const double emptyCoeff = 0.5;
             self.objects = objects;
             NSArray *interm = [self.objects filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
                 return [evaluatedObject isKindOfClass:[EventObject class]];
+                
             }]];
             
             self.eventObjects = [[NSMutableArray alloc] initWithArray:interm];
@@ -179,7 +180,11 @@ const double emptyCoeff = 0.5;
     //The events should be re-evaluated and changed color based on their updated state, animate these changes
     
     [self.flow updateEvaluations:self.objects mismatchHandler:^(LocalDependsObject * _Nonnull eventObj) {
-        UIColor *activeColor = [UIColor colorWithRed:0.05 green:0.5 blue:0.5 alpha:1.0];
+        UIColor *eventActiveColor = [UIColor colorWithRed:0.05 green:0.5 blue:0.5 alpha:1.0];
+        UIColor *actionActiveColor = [UIColor colorWithRed:(39.0/255.0) green:(75.0/255.0) blue:(152.0/255.0) alpha:1.0];
+        
+        UIColor *activeColor = [eventObj isKindOfClass:[ActionObject class]] ? actionActiveColor : eventActiveColor;
+        
         if ([eventObj isKindOfClass:[EventObject class]]){
             EventObject *evnt = (EventObject*)eventObj;
             [NotificationUtils removeNotification:(EventObject*)eventObj];
@@ -448,7 +453,10 @@ const double emptyCoeff = 0.5;
 - (void) editSelectedEvent:(EnlargedEventView *)enlargedView{
     NSLog(@"Editing the selected event");
     NSLog(@"%@", enlargedView.eventObj);
-    [self performSegueWithIdentifier:@"flowToEventEditor" sender:enlargedView.eventObj];
+    
+    NSString *segueID = [enlargedView.eventObj isKindOfClass:[ActionObject class]] ? @"flowToActionEditor" : @"flowToEventEditor";
+    
+    [self performSegueWithIdentifier:segueID sender:enlargedView.eventObj];
 }
 
 - (void) leavingEventView:(EnlargedEventView *)enlargedView{

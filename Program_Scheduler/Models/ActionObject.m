@@ -14,6 +14,10 @@
     return @"ActionObj";
 }
 
+- (NSString*) getKind{
+    return [ActionObject getKind];
+}
+
 - (void) saveToDatabase:(Flow *)flow completion:(PFBooleanResultBlock)completion{
     DependsObject* dObj = [self pullDatabaseObj];
     dObj[@"playlistID"] = self.playlistID;

@@ -110,26 +110,30 @@
     self.condLabel.text = self.weatherObj.desiredCondition;
 }
 
-- (void) setupView{
-    self.titleTextField.text = self.eventObj.title;
-    [self.startDatePicker setDate:self.eventObj.startDate];
-    [self.endDatePicker setDate:self.eventObj.endDate];
+
+- (void) setupOperation: (EventObject*)eventObj{
+    self.titleTextField.text = eventObj.title;
+    [self.startDatePicker setDate:eventObj.startDate];
+    [self.endDatePicker setDate:eventObj.endDate];
     
     NSInteger index = 0;
     if ([self.eventObj.dependsOn isKindOfClass:[EventObject class]]){
         NSLog(@"Auto-selecting stuff ");
-        index = [self getEventIndex:(EventObject*)self.eventObj.dependsOn];
+        index = [self getEventIndex:(EventObject*)eventObj.dependsOn];
     }
-    else if ([self.eventObj.dependsOn isKindOfClass:[WeatherObject class]]){
-        self.weatherObj = (WeatherObject*)self.eventObj.dependsOn;
+    else if ([eventObj.dependsOn isKindOfClass:[WeatherObject class]]){
+        self.weatherObj = (WeatherObject*)eventObj.dependsOn;
         [self setupWeather];
     }
     
-    self.title = self.eventObj.title;
+    self.title = eventObj.title;
     
     [self filterEvents];
     [self.DependsPickerView reloadAllComponents];
     [self.DependsPickerView selectRow:index inComponent:0 animated:YES];
+}
+- (void) setupView{
+    [self setupOperation:self.eventObj];
 }
 
 
@@ -166,25 +170,25 @@
     [self weatherOpen];
 }
 
-- (void) saveEdits{
-    [self.eventObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
+- (void) saveEdits: (EventObject*)eventObj{
+    [eventObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
         //FlowViewController *fvc = (FlowViewController*)self.presentingViewController;
         
         UINavigationController *contrl = (UINavigationController*)self.presentingViewController;
         
         FlowViewController *fvc = [contrl viewControllers][1];
         
-        [NotificationUtils removeNotification:self.eventObj]; //Remove the old notification and replace it with a new one
-        [NotificationUtils loadNotification:self.eventObj];
+        [NotificationUtils removeNotification:eventObj]; //Remove the old notification and replace it with a new one
+        [NotificationUtils loadNotification:eventObj];
         
-        [fvc.objects addObject:self.eventObj];
+        [fvc.objects addObject:eventObj];
         //Dismiss the editing view and update the Flow View
         
         [self dismissViewControllerAnimated:YES completion:^{
             //Question: Should this go in the initializeView section
             //Resets the englarged display view if it is currently being displayed
             if (fvc.currEnlargedView){
-                [fvc.currEnlargedView setupDisplay:self.eventObj];
+                [fvc.currEnlargedView setupDisplay:eventObj];
             }
             
             [fvc initializeView];
@@ -212,17 +216,17 @@
     }];
 }
 
-- (void) saveOperation{
-    self.eventObj.title = self.titleTextField.text;
-    if ([Flow hasEventWithTitle:self.eventObj objects:self.eventObjects]){
+- (void) saveOperation: (EventObject*)eventObj{
+    eventObj.title = self.titleTextField.text;
+    if ([Flow hasEventWithTitle:eventObj objects:self.eventObjects]){
         [self alertTitleCollision:self.titleTextField.text];
         return;
     }
         
     
-    self.eventObj.startDate = self.startDatePicker.date;
-    self.eventObj.endDate = self.endDatePicker.date;
-    self.eventObj.userActive = YES;
+    eventObj.startDate = self.startDatePicker.date;
+    eventObj.endDate = self.endDatePicker.date;
+    eventObj.userActive = YES;
     
     //Solving dependency issues
     NSInteger selectedRow = [self.DependsPickerView selectedRowInComponent:0];
@@ -230,24 +234,24 @@
     //Currently, a selected depends event takes precedence over a weather event
     //TODO: Show user an error when they try to tepend on more than one event (e.g.) the weather and another event
     if (selectedRow > 0){
-        self.eventObj.dependsOn = self.eventObjects[selectedRow - 1];
-        [self saveEdits];
+        eventObj.dependsOn = self.eventObjects[selectedRow - 1];
+        [self saveEdits:eventObj];
     }
     else if (self.weatherObj){
         [self.weatherObj saveToDatabase:self.flow completion:^(BOOL succeeded, NSError * _Nullable error) {
-            self.eventObj.dependsOn = self.weatherObj;
-            [self saveEdits];
+            eventObj.dependsOn = self.weatherObj;
+            [self saveEdits: eventObj];
         }];
     }
     else{
-        [self saveEdits];
+        [self saveEdits: eventObj];
     }
     
     
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
-    [self saveOperation];
+    [self saveOperation: self.eventObj];
 }
 
 /*

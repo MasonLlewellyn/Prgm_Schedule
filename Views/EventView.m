@@ -7,6 +7,7 @@
 //
 
 #import "EventView.h"
+#import "ActionObject.h"
 #import "EnlargedEventView.h"
 
 
@@ -116,7 +117,11 @@
     self.eventObj = eventObj;
     self.titleLabel.text = eventObj.title;
     
-    UIColor *activeColor = [UIColor colorWithRed:0.05 green:0.5 blue:0.5 alpha:1.0];
+    UIColor *eventActiveColor = [UIColor colorWithRed:0.05 green:0.5 blue:0.5 alpha:1.0];
+    UIColor *actionActiveColor = [UIColor colorWithRed:(39.0/255.0) green:(75.0/255.0) blue:(152.0/255.0) alpha:1.0];
+    
+    UIColor *activeColor = [eventObj isKindOfClass:[ActionObject class]] ? actionActiveColor : eventActiveColor;
+    
     self.contentView.backgroundColor = [self.eventObj getCached] ?  activeColor: UIColor.redColor;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
