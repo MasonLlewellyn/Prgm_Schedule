@@ -113,12 +113,14 @@
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
     
     self.locationTitleLabel.text = @"";
-    if ([eventObj.dependsOn isKindOfClass:[EventObject class]]){
-        self.dependsTitleLabel.text = [NSString stringWithFormat:@"Depends on: %@", ((EventObject*)eventObj.dependsOn).title];
-    }
-    else{
-        self.dependsTitleLabel.text = @"";
-    }
+    
+    BOOL dependsOnEvent = [eventObj.dependsOn isKindOfClass:[EventObject class]];
+    self.dependsTitleLabel.text = dependsOnEvent ? [NSString stringWithFormat:@"Depends on: %@", ((EventObject*)eventObj.dependsOn).title] : @"";
+    
+    BOOL isAction = [eventObj isKindOfClass:[ActionObject class]];
+    self.playlistLabel.hidden = !isAction;
+    
+    self.playlistLabel.text = isAction ? [NSString stringWithFormat:@"Playlist: %@", ((ActionObject*)eventObj).playlistTitle] : @"";
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";

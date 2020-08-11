@@ -125,7 +125,7 @@
 		C38A0D2B24BE36E700330524 /* Flow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flow.m; sourceTree = "<group>"; };
 		C38A0D2E24BE831B00330524 /* FlowFeedTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowFeedTableViewCell.h; sourceTree = "<group>"; };
 		C38A0D2F24BE831B00330524 /* FlowFeedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowFeedTableViewCell.m; sourceTree = "<group>"; };
-		C39DBD3A24BCCF0D00FEBFCA /* Program_Scheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Program_Scheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C39DBD3A24BCCF0D00FEBFCA /* Schedulr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schedulr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39DBD3D24BCCF0D00FEBFCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C39DBD3E24BCCF0D00FEBFCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C39DBD4024BCCF0D00FEBFCA /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 		C39DBD3B24BCCF0D00FEBFCA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C39DBD3A24BCCF0D00FEBFCA /* Program_Scheduler.app */,
+				C39DBD3A24BCCF0D00FEBFCA /* Schedulr.app */,
 				C39DBD5524BCCF0E00FEBFCA /* Program_SchedulerTests.xctest */,
 				C39DBD6024BCCF0E00FEBFCA /* Program_SchedulerUITests.xctest */,
 			);
@@ -397,7 +397,7 @@
 				C36A704524C663CC0092AC2F /* FacebookLogin */,
 			);
 			productName = Program_Scheduler;
-			productReference = C39DBD3A24BCCF0D00FEBFCA /* Program_Scheduler.app */;
+			productReference = C39DBD3A24BCCF0D00FEBFCA /* Schedulr.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C39DBD5424BCCF0E00FEBFCA /* Program_SchedulerTests */ = {
@@ -833,7 +833,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.FBU.Program-Scheduler";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Schedulr;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -851,7 +851,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.FBU.Program-Scheduler";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Schedulr;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

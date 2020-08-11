@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ActionObject : EventObject
 @property (strong, nonatomic) NSString *playlistTitle;
-@property (strong, nonatomic) NSString *playlistID;
+@property (strong, nonatomic) NSNumber *playlistID;
 @end
 
 NS_ASSUME_NONNULL_END

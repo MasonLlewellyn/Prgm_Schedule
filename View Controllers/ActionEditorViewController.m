@@ -95,9 +95,11 @@
 
 #pragma mark Playlist Select View
 - (void) playlistSelected:(MPMediaItemCollection *)selectedPlaylist{
-    self.actionObj.playlistID = [selectedPlaylist valueForProperty:MPMediaPlaylistPropertyPersistentID];
-    self.actionObj.playlistTitle = [selectedPlaylist valueForProperty:MPMediaPlaylistPropertyName];
+    //NSNumber *playlistID = [selectedPlaylist valueForProperty:MPMediaPlaylistPropertyPersistentID];
     
+    NSNumber *playlistID = [selectedPlaylist valueForProperty:MPMediaPlaylistPropertyPersistentID];
+    self.actionObj.playlistTitle = [selectedPlaylist valueForProperty:MPMediaPlaylistPropertyName];
+    self.actionObj.playlistID = playlistID;
     
     self.selectPlaylistButton.titleLabel.text = self.actionObj.playlistTitle;
 }

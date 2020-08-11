@@ -10,14 +10,18 @@
 
 @implementation playlistUtil
 
-+ (MPMediaItemCollection*) playlistForID: (NSString*)playlistID{
++ (MPMediaItemCollection*) playlistForID: (NSNumber*)playlistID{
     MPMediaQuery *mQuery = [MPMediaQuery playlistsQuery];
     NSArray<MPMediaItemCollection*> *playlists = [mQuery collections];
     
     for (unsigned long i = 0; i < playlists.count; i++){
-        [playlists[i] valueForProperty:MPMediaPlaylistPropertyPersistentID];
+        NSNumber *playNum = [playlists[i] valueForProperty:MPMediaPlaylistPropertyPersistentID];
         
-        if ([[playlists[i] valueForProperty:MPMediaPlaylistPropertyPersistentID] isEqual:playlistID]){
+        unsigned long divNum = [playNum unsignedLongValue] / 1000;
+        unsigned long divID = [playlistID unsignedLongValue] / 1000;
+        
+        
+        if (divID == divNum){
             return playlists[i];
         }
     }
@@ -25,7 +29,7 @@
     return nil;
 }
 
-+ (void) playIDPlaylist: (NSString*)playlistID{
++ (void) playIDPlaylist: (NSNumber*)playlistID{
     MPMediaItemCollection *actionList = [self playlistForID:playlistID];
     
     MPMusicPlayerController *mControl = [MPMusicPlayerApplicationController systemMusicPlayer];

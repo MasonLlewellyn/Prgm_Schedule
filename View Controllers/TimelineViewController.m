@@ -86,7 +86,7 @@ NSInteger pageCount = 20;
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     UNAuthorizationOptions options = UNAuthorizationOptionAlert+UNAuthorizationOptionSound;
     [center requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        
+        [NotificationUtils registerActions];
     }];
     
     

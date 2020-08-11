@@ -38,7 +38,7 @@
                                     <action selector="signUpPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Pc-hY-zaG"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Program" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysj-OC-CPm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedulr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysj-OC-CPm">
                                 <rect key="frame" x="50" y="94" width="275" height="42"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="42"/>
                                 <nil key="textColor"/>
@@ -466,6 +466,7 @@
                         <outlet property="actionButton" destination="5JD-kl-BES" id="4nF-CP-xo2"/>
                         <outlet property="eventButton" destination="vg7-HT-RJB" id="MCS-zT-qkr"/>
                         <outlet property="flowCopyButton" destination="qzm-8d-7wN" id="AWw-qV-s2R"/>
+                        <outlet property="flowEditButton" destination="fAA-iX-lUd" id="iGH-xf-GL6"/>
                         <outlet property="palleteView" destination="vfS-AD-Kbk" id="2rP-qM-jWx"/>
                         <outlet property="scrollView" destination="ow5-vJ-OOV" id="Oe9-oz-VLk"/>
                         <segue destination="foV-aM-DzH" kind="show" identifier="flowToEventEditor" id="YNI-Od-6Py"/>
@@ -953,6 +954,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.1548952052" green="0.29526969180000001" blue="0.59451938569999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

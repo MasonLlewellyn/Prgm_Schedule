@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface playlistUtil : NSObject
-+ (void) playIDPlaylist: (NSString*)playlistID;
++ (void) playIDPlaylist: (NSNumber*)playlistID;
 @end
 
 NS_ASSUME_NONNULL_END

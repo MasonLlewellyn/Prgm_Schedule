@@ -62,6 +62,9 @@
 
 - (void) viewDoubleTapped: (UITapGestureRecognizer*)recognizer{
     NSLog(@"------Double tapped------");
+    
+    if (self.nonEditable) return;
+    
     self.eventObj.userActive = !self.eventObj.userActive;
     //NSLog(@"----I just flipped a switch: %d", self.eventObj.userActive);
     
@@ -117,10 +120,12 @@
     self.eventObj = eventObj;
     self.titleLabel.text = eventObj.title;
     
+    BOOL isAction = [eventObj isKindOfClass:[ActionObject class]];
+    
     UIColor *eventActiveColor = [UIColor colorWithRed:0.05 green:0.5 blue:0.5 alpha:1.0];
     UIColor *actionActiveColor = [UIColor colorWithRed:(39.0/255.0) green:(75.0/255.0) blue:(152.0/255.0) alpha:1.0];
     
-    UIColor *activeColor = [eventObj isKindOfClass:[ActionObject class]] ? actionActiveColor : eventActiveColor;
+    UIColor *activeColor = isAction ? actionActiveColor : eventActiveColor;
     
     self.contentView.backgroundColor = [self.eventObj getCached] ?  activeColor: UIColor.redColor;
     
@@ -141,10 +146,17 @@
     self.endDateLabel.hidden = !bigViewMode;
     self.dependsLabel.hidden = !bigViewMode;
     self.startDateLabel.hidden = !bigViewMode;
+    self.playlistLabel.hidden = !bigViewMode;
     self.smallStartDate.hidden = bigViewMode;
+    
+    
+    self.playlistLabel.text = isAction ? [NSString stringWithFormat:@"Playlist: %@", ((ActionObject*)self.eventObj).playlistTitle] : @"";
     
     self.endDateLabel.text = [formatter stringFromDate:eventObj.endDate];
     self.smallStartDate.text = [formatter stringFromDate:eventObj.startDate];
+    
+    
+    
     if ([self.eventObj.dependsOn isKindOfClass:[EventObject class]]){
         self.dependsLabel.text = [NSString stringWithFormat:@"Depends on: %@",
                                   ((EventObject*)(self.eventObj.dependsOn)).title];

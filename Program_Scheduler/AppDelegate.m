@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "User.h"
 #import "playlistUtil.h"
+#import "NotificationUtils.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/Parse.h>
 #import <UserNotifications/UserNotifications.h>
@@ -69,6 +70,7 @@
     
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
+    
     
     return YES;
 }

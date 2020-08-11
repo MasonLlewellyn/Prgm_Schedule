@@ -24,8 +24,6 @@
     
     [center setNotificationCategories:[[NSSet alloc] initWithArray:@[actionCategory, normalCategory]]];
 }
-
-//TODO: Update this to take into account dependencies
 + (void) loadNotification:(EventObject *)eventObj{
     [NotificationUtils registerActions];
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
@@ -42,7 +40,7 @@
     if ([eventObj isKindOfClass:[ActionObject class]]){
         NSLog(@"Setting Notif with actions");
         content.categoryIdentifier = @"ACTION_CATEGORY";
-        content.body = ((ActionObject*)eventObj).playlistTitle;
+        content.body = [NSString stringWithFormat:@"Playlist: %@", ((ActionObject*)eventObj).playlistTitle];
         //[content.userInfo setValue:((ActionObject*)eventObj).playlistID forKey:@"PLAYLIST_ID"];
         content.userInfo = @{@"PLAYLIST_ID": ((ActionObject*)eventObj).playlistID};
     }

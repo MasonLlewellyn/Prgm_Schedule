@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (weak, nonatomic) IBOutlet UIButton *flowCopyButton;
 @property (weak, nonatomic) IBOutlet UIView *palleteView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *flowEditButton;
 
 
 @property (strong, nonatomic) NSMutableArray<EventView*> *eventViews;
@@ -66,6 +67,7 @@ const double emptyCoeff = 0.5;
     
     self.flowCopyButton.layer.cornerRadius = 5;
 }
+
 - (void) loadNotification: (EventObject*) eventObj{
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     
@@ -114,6 +116,12 @@ const double emptyCoeff = 0.5;
     self.actionButton.hidden = self.nonEditable;
     self.reminderButton.hidden = self.nonEditable;
     self.palleteView.hidden = self.nonEditable;
+    
+    if (self.nonEditable){
+        [self.flowEditButton setEnabled:!self.nonEditable];
+        [self.flowEditButton setTintColor:[UIColor clearColor]];
+    }
+    
     self.flowCopyButton.hidden = !self.nonEditable;
     
     [self destroyViews];
@@ -259,7 +267,7 @@ const double emptyCoeff = 0.5;
         
         CGFloat viewHeight = (secondsBetween / 60) * heightPerMinute;
         
-        [self loadNotification:self.eventObjects[i]];
+        //[self loadNotification:self.eventObjects[i]];
         EventView *eView = [[EventView alloc] initWithFrame:CGRectMake(10, startY, 300, viewHeight)];
         
         eView.nonEditable = self.nonEditable;
@@ -276,7 +284,15 @@ const double emptyCoeff = 0.5;
         
         
         if (i < self.eventObjects.count - 1){
-            NSTimeInterval interSeconds = [self.eventObjects[i+1].startDate timeIntervalSinceDate:self.eventObjects[i].endDate];
+            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+            
+            NSDateComponents *nStartComp = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:self.eventObjects[i+1].startDate];
+            NSDateComponents *endComp = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:self.eventObjects[i].endDate];
+            
+            NSDate *nDate = [gregorian dateFromComponents:nStartComp];
+            NSDate *endDate = [gregorian dateFromComponents:endComp];
+            
+            NSTimeInterval interSeconds = [nDate timeIntervalSinceDate:endDate];
             
             CGFloat diffHeight = (interSeconds / 60) * emptyCoeff;
             
@@ -314,7 +330,10 @@ const double emptyCoeff = 0.5;
     myFlow.author = [User currentUser];
     [myFlow copyFlow:self.flow events:self.objects];
     
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
+    
+    self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"timelineViewController"];
     
     //[myFlow saveInBackground];
 }

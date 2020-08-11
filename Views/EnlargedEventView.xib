@@ -17,6 +17,7 @@
                 <outlet property="editButton" destination="6Q9-dO-Wna" id="eHx-Y9-tZU"/>
                 <outlet property="endTimeLabel" destination="EKe-e5-2fC" id="ppw-5x-oJT"/>
                 <outlet property="locationTitleLabel" destination="8qj-MM-cIJ" id="uts-8x-mRP"/>
+                <outlet property="playlistLabel" destination="yyu-Xy-LHo" id="dMw-XU-8U6"/>
                 <outlet property="startTimeLabel" destination="PU0-Pi-vCy" id="GCD-a5-IyW"/>
                 <outlet property="titleLabel" destination="s0G-Mj-87Y" id="EAH-94-fpK"/>
             </connections>
@@ -87,15 +88,21 @@
                         <action selector="activeSwitchValueChanged:" destination="-1" eventType="valueChanged" id="t3K-Ol-aEd"/>
                     </connections>
                 </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyu-Xy-LHo">
+                    <rect key="frame" x="16" y="180.5" width="54" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="2A3-J0-wMv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="0nC-WG-mLJ"/>
                 <constraint firstItem="6Q9-dO-Wna" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="5vI-23-dnu"/>
+                <constraint firstItem="yyu-Xy-LHo" firstAttribute="top" secondItem="2A3-J0-wMv" secondAttribute="bottom" constant="18" id="ALL-aL-UDr"/>
                 <constraint firstItem="s0G-Mj-87Y" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="AV8-ba-IKu"/>
                 <constraint firstItem="WJV-ln-Waj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="D61-Zl-n36"/>
                 <constraint firstItem="s0G-Mj-87Y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Gsu-E3-z9U"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2A3-J0-wMv" secondAttribute="bottom" constant="10" id="JLw-QM-yia"/>
                 <constraint firstAttribute="trailing" secondItem="WJV-ln-Waj" secondAttribute="trailing" constant="16" id="MDl-FZ-Z3u"/>
                 <constraint firstItem="6Q9-dO-Wna" firstAttribute="leading" secondItem="bdg-yu-nfH" secondAttribute="trailing" constant="12" id="R7v-6s-wQB"/>
                 <constraint firstItem="8qj-MM-cIJ" firstAttribute="top" secondItem="PU0-Pi-vCy" secondAttribute="bottom" constant="15" id="RCi-aT-EGx"/>
@@ -107,6 +114,7 @@
                 <constraint firstItem="WJV-ln-Waj" firstAttribute="leading" secondItem="6Q9-dO-Wna" secondAttribute="trailing" constant="20" id="haF-jE-BcC"/>
                 <constraint firstItem="EKe-e5-2fC" firstAttribute="leading" secondItem="PU0-Pi-vCy" secondAttribute="trailing" constant="45" id="rNY-nL-A5j"/>
                 <constraint firstItem="2A3-J0-wMv" firstAttribute="top" secondItem="8qj-MM-cIJ" secondAttribute="bottom" constant="18" id="xuM-Ye-nDb"/>
+                <constraint firstItem="yyu-Xy-LHo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="zB5-ig-A6t"/>
                 <constraint firstItem="8qj-MM-cIJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="zlB-bF-0Fl"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

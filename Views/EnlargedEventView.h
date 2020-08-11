@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Event.h"
 #import "EventObject.h"
+#import "ActionObject.h"
 #import "EnlargedEventViewDelegate.h"
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UISwitch *activeSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *playlistLabel;
 
 @property (weak, nonatomic) UIView *touchInterceptView;
 @property (weak, nonatomic) EventObject *eventObj;
