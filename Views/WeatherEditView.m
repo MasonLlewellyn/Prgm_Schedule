@@ -73,7 +73,11 @@
     self.eventObj = eventObj;
     
     self.weatherObj = weatherObj;
-    if (!self.weatherObj){
+    
+    if (self.weatherObj){
+        self.temperatureField.text = [NSString stringWithFormat:@"%f", weatherObj.desiredTemp];
+    }
+    else{
         //We are creating a new weather event
         NSLog(@"-----Creating a new weather object-----");
         self.weatherObj = [WeatherObject new];
@@ -82,7 +86,10 @@
     self.contentView.layer.cornerRadius = 10;
     self.contentView.layer.masksToBounds = true;
     
-    self.temperatureField.text = [NSString stringWithFormat:@"%f", weatherObj.desiredTemp];
+    
+    
+    self.saveButton.layer.cornerRadius = 5;
+    self.deleteButton.layer.cornerRadius = 5;
     
     self.touchInterceptView = touchIntercept;
     [self setupIntercept];

@@ -16,7 +16,7 @@ NSString *API_KEY = @"bc4e17fd97575a98976af35841962bef";
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    NSString *baseURL = @"http://api.openweathermap.org/data/2.5/weather?q=North+Plainfield,us&appid=";
+    NSString *baseURL = @"http://api.openweathermap.org/data/2.5/weather?q=North+Plainfield,us&units=imperial&appid=";
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", baseURL, API_KEY];
     
     NSURL *URL = [NSURL URLWithString:fullURL];

@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *temperatureField;
 @property (weak, nonatomic) IBOutlet UIPickerView *conditionPickerView;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @property (weak, nonatomic) UIView *touchInterceptView;
 @property (strong, nonatomic) WeatherObject *weatherObj;
